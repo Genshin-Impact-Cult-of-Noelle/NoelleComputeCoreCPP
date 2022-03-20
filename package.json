@@ -1,0 +1,7 @@
+{
+    "name": "noelle-core",
+    "version": "0.5.0.cpp",
+    "gypfile": true,
+    "dependencies": {
+    }
+}
