@@ -3,5 +3,9 @@
     "version": "0.5.0.cpp",
     "gypfile": true,
     "dependencies": {
+    },
+    "scripts": {
+        "init":"node-gyp configure",
+        "build":"node-gyp rebuild"
     }
 }
