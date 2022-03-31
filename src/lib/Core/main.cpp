@@ -1,18 +1,98 @@
 ﻿#include "Core.h"
 #include <ctime>
+#include <map>
 #include <iostream>
 #define LOOPCOUNT 100000000;
 using namespace std;
 using namespace Core;
 void testAttr();
 void testBaseObject();
-uint64_t FBNQ(uint64_t);
+double FBNQ(double);
+int LoopMapFindTest();
+Attr* LoopSwitchFindTest();
+void LoopRand();
 void main() {
-	testAttr();
-	testBaseObject();
+	//testAttr();
+	//testBaseObject();
+
+	clock_t start, end;
+
+	start = clock();
+	LoopMapFindTest();
+	LoopSwitchFindTest();
+	LoopRand();
+	//cout << FBNQ(45);
+	//testAttr();
+	//testBaseObject();
+	end = clock();
+	std::cout << endl << "RUN::" << ((double)(end - start) / 1000) << "秒" << endl;
 	system("pause");
 }
-uint64_t FBNQ(uint64_t n) {
+void LoopRand() {
+	clock_t start, end;
+	int LoopCount;
+	LoopCount = LOOPCOUNT;
+	int cache;
+	start = clock();
+
+	while (LoopCount--)
+	{
+		cache = rand() % 10;
+	}
+	end = clock();
+	LoopCount = LOOPCOUNT;
+
+	cout << cache << endl;
+	cout << LoopCount << "次Rand()%10::" << ((double)(end - start) / 1000) << "秒" << endl;
+
+	return;
+}
+int LoopMapFindTest() {
+	clock_t start, end;
+	int LoopCount;
+	LoopCount = LOOPCOUNT;
+	int cache;
+	map<int, int> data = *new map<int, int>();
+	cache = 0;
+	while (cache++ < 10)
+	{
+		data[cache] = rand();
+	}
+	start = clock();
+
+	while (LoopCount--)
+	{
+		cache = data[rand() % 10];
+	}
+	end = clock();
+	LoopCount = LOOPCOUNT;
+
+	cout << cache << endl;
+	cout << LoopCount << "次Map[key]+Rand()%10::" << ((double)(end - start) / 1000) << "秒" << endl;
+
+	return cache;
+}
+Attr* LoopSwitchFindTest() {
+	clock_t start, end;
+	int LoopCount;
+	LoopCount = LOOPCOUNT;
+
+	Attr* cache = Attr::Zero();
+	BaseObject data = *new BaseObject();
+	start = clock();
+	//map<int, int> data = *new map<int, int>();
+	while (LoopCount--)
+	{
+		cache = data.GetAttr(rand() % 10);
+	}
+	end = clock();
+	LoopCount = LOOPCOUNT;
+	cout << cache->LastValue() << endl;
+	cout << LoopCount << "次Switch(key)+Rand()%10::" << ((double)(end - start) / 1000) << "秒" << endl;
+
+	return cache;
+}
+double FBNQ(double n) {
 	{
 
 		if (n == 0)

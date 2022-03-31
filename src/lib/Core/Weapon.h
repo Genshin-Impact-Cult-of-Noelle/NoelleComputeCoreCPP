@@ -7,7 +7,7 @@ namespace Core {
 	class Weapon {
 	public:
 
-		Weapon(Attr**);
+		Weapon();
 		//void (*skill)(Character*, Character*, uint32_t);
 	};
 #pragma endregion

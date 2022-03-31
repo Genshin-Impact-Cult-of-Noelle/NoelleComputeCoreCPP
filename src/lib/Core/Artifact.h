@@ -6,7 +6,6 @@ namespace Core {
 	class Artifact : BaseObject {
 	public:
 		Artifact(Attr**);
-
 	};
 
 #pragma endregion
@@ -14,8 +13,8 @@ namespace Core {
 #pragma region 圣遗物组类
 	class ArtifactGroup : BaseObject {
 	public:
-		ArtifactGroup(Artifact**);
-		void	(*update) (uint32_t);
+		ArtifactGroup();
+		//void	(*update) (uint32_t);
 
 
 	};

@@ -3,6 +3,55 @@ using namespace Core::Enum;
 namespace Core {
 
 #pragma region 实例基类
+	Attr* BaseObject::GetAttrCur(uint32_t key) {
+		AttrType  typeKey = AttrType(key & 0xFF);
+		switch (typeKey)
+		{
+		case AttrType::Atk:
+			return Atk;
+		case AttrType::Def:
+			return Def;
+		case AttrType::Helath:
+			return Helath;
+		case AttrType::ElementMaster:
+			return ElementMaster;
+		case AttrType::CritRate:
+			return CritRate;
+		case AttrType::CritDamage:
+			return CritDamage;
+		case AttrType::CureRate:
+			return CureRate;
+		case AttrType::BeCureRate:
+			return BeCureRate;
+		case AttrType::ChargeRate:
+			return ChargeRate;
+		case AttrType::ColdDownRate:
+			return ColdDownRate;
+		case AttrType::ArmorRate:
+			return ArmorRate;
+		}
+		bool isDef = typeKey == AttrType::ElementDef;
+		ElementType element = ElementType((key & 0xFF00) >> 8);
+		switch (element)
+		{
+		case ElementType::Water:
+			return isDef ? (EWaterDef) : (EWaterDmg);
+		case ElementType::Fire:
+			return isDef ? (EFireDef) : (EFireDmg);
+		case ElementType::Ice:
+			return isDef ? (EIceDef) : (EIceDmg);
+		case ElementType::Electric:
+			return isDef ? (EElectricDef) : (EElectricDmg);
+		case ElementType::Grass:
+			return isDef ? (EGrassDef) : (EGrassDmg);
+		case ElementType::Land:
+			return isDef ? (ELandDef) : (ELandDmg);
+		case ElementType::Wind:
+			return isDef ? (EWindDef) : (EWindDmg);
+		case ElementType::Physical:
+			return isDef ? (EPhysicalDef) : (EPhysicalDmg);
+		}
+	}
 	BaseObject::Result::Result() {
 		Atk = DOUBLEZERO;
 		Def = DOUBLEZERO;
@@ -150,76 +199,7 @@ namespace Core {
 	}
 	BaseObject* BaseObject::SetAttr(uint32_t key, Attr* data) {
 		changed = true;
-
-		AttrType  typeKey = AttrType(key & 0xFF);
-
-		switch (typeKey)
-		{
-		case AttrType::Atk:
-			Atk->Copy(data);
-			return this;
-		case AttrType::Def:
-			Def->Copy(data);
-			return this;
-		case AttrType::Helath:
-			Helath->Copy(data);
-			return this;
-		case AttrType::ElementMaster:
-			ElementMaster->Copy(data);
-			return this;
-		case AttrType::CritRate:
-			CritRate->Copy(data);
-			return this;
-		case AttrType::CritDamage:
-			CritDamage->Copy(data);
-			return this;
-		case AttrType::CureRate:
-			CureRate->Copy(data);
-			return this;
-		case AttrType::BeCureRate:
-			BeCureRate->Copy(data);
-			return this;
-		case AttrType::ChargeRate:
-			ChargeRate->Copy(data);
-			return this;
-		case AttrType::ColdDownRate:
-			ColdDownRate->Copy(data);
-			return this;
-		case AttrType::ArmorRate:
-			ArmorRate->Copy(data);
-			return this;
-		}
-		bool isDef = typeKey == AttrType::ElementDef;
-		ElementType element = ElementType((key & 0xFF00) >> 8);
-		switch (element)
-		{
-		case ElementType::Water:
-			isDef ? (EWaterDef->Copy(data)) : (EWaterDmg->Copy(data));
-			return this;
-		case ElementType::Fire:
-			isDef ? (EFireDef->Copy(data)) : (EFireDmg->Copy(data));
-			return this;
-		case ElementType::Ice:
-			isDef ? (EIceDef->Copy(data)) : (EIceDmg->Copy(data));
-			return this;
-		case ElementType::Electric:
-			isDef ? (EElectricDef->Copy(data)) : (EElectricDmg->Copy(data));
-			return this;
-		case ElementType::Grass:
-			isDef ? (EGrassDef->Copy(data)) : (EGrassDmg->Copy(data));
-			return this;
-		case ElementType::Land:
-			isDef ? (ELandDef->Copy(data)) : (ELandDmg->Copy(data));
-			return this;
-		case ElementType::Wind:
-			isDef ? (EWindDef->Copy(data)) : (EWindDmg->Copy(data));
-			return this;
-		case ElementType::Physical:
-			isDef ? (EPhysicalDef->Copy(data)) : (EPhysicalDmg->Copy(data));
-			return this;
-		}
-		changed = false;
-
+		GetAttr(key)->Copy(data);
 		return this;
 	}
 	Attr* BaseObject::GetAttr(uint32_t key) {

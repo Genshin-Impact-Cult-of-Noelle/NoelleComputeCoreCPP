@@ -4,41 +4,68 @@ namespace Core {
 	namespace Enum {
 
 		enum class CharacterGender {
+			//女
 			Gril,
+			//男
 			Boy,
+			//未知
 			Unknow
 		};
 		enum class CharacterGroup {
+			//提瓦特
 			Tivat,
-			Byss,
+			//深渊
+			Abyss,
+			//未知
 			Unknow
 		};
 		enum class WeaponType {
+			//法器
 			Catalyst,
+			//弓箭
 			Bow,
+			//长枪
 			Polearm,
+			//单手剑
 			Sword,
+			//双手剑
 			Claymore
 		};
 		enum class ElementType {
+			//其他属性
 			OtherElement,
+			//水
 			Water,
+			//冰
 			Ice,
+			//火
 			Fire,
+			//电
 			Electric,
+			//草
 			Grass,
+			//岩
 			Land,
+			//风
 			Wind,
+			//物理
 			Physical
 		};
 
 		enum class DamageType {
+			//其他伤害
+			OtherDamageType,
+			//反应
 			Mix,
-			OtherDamageType = 0,
+			//普通攻击
 			Normal,
+			//重击
 			Heavy,
+			//下落
 			Fall,
+			//元素战技
 			Skill,
+			//元素爆发
 			Burst,
 		};
 

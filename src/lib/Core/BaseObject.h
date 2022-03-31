@@ -61,6 +61,7 @@ namespace Core {
 		//清空
 		void Clean();
 	private:
+		Attr* GetAttrCur(uint32_t);
 		bool changed;
 		Result* result;
 		Attr* Atk;

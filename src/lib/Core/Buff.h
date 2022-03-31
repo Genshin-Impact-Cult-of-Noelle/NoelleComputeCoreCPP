@@ -14,7 +14,8 @@ namespace Core {
 	};
 	//增益组
 	class BuffPool {
-		BuffPool(Buff*);
+	public:
+		BuffPool();
 		void Update(uint32_t);
 	};
 #pragma endregion
