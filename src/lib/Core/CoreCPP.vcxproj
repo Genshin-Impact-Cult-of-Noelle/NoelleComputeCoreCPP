@@ -139,13 +139,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Artifact.h" />
+    <ClInclude Include="Attr.h" />
+    <ClInclude Include="BaseObject.h" />
+    <ClInclude Include="Buff.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="Core.h" />
+    <ClInclude Include="Damage.h" />
+    <ClInclude Include="Enum.h" />
+    <ClInclude Include="Role.h" />
+    <ClInclude Include="Skill.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Artifact.cpp" />
+    <ClCompile Include="Attr.cpp" />
+    <ClCompile Include="BaseObject.cpp" />
+    <ClCompile Include="Buff.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="Core.cpp">
       <FavorSizeOrSpeed Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Speed</FavorSizeOrSpeed>
     </ClCompile>
+    <ClCompile Include="Damage.cpp" />
+    <ClCompile Include="Enum.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Role.cpp" />
+    <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
