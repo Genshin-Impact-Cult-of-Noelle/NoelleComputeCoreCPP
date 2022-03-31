@@ -1,4 +1,4 @@
-#include "Core.h"
+ï»¿#include "Core.h"
 #include <ctime>
 #include <iostream>
 #define LOOPCOUNT 100000000;
@@ -6,33 +6,26 @@ using namespace std;
 using namespace Core;
 void testAttr();
 void testBaseObject();
+uint64_t FBNQ(uint64_t);
 void main() {
-	//char* m = new char[1];
-	//Attr* base = new Attr(1, 1, 1);
-	//BaseObject* c = new BaseObject();
-	//BaseObject* d = new BaseObject();
-
-	//Attr* other = new Attr(1, 1, 1);
-	////other->SetData(1);
-	//clock_t start = clock();
-	//uint32_t key = (2 << 8) | 11;
-	////cout << 1;
-	//c->SetAttr(key, base);
-
-	//for (size_t i = 0; i < 100000000; i++)
-	//{
-	//	//d->Add(c);
-	//	d->Clean();
-
-	//}
-	////cout << 2;
-	//double result = d->GetAttr(key)->LastValue();
-	//clock_t end = clock();
-	//cout << "1ÒÚ´Î3ÊôÐÔÀÛ¼Ó½á¹û:" << result << "C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
-	//
 	testAttr();
 	testBaseObject();
 	system("pause");
+}
+uint64_t FBNQ(uint64_t n) {
+	{
+
+		if (n == 0)
+			return 0;
+		else if (n == 1)
+			return 1;
+		else {
+			//uint64_t temp = FBNQ(n - 1) + FBNQ(n - 2);
+			return FBNQ(n - 1) + FBNQ(n - 2);
+			//return temp;
+		}
+
+	}
 }
 void testAttr() {
 	Attr* a = new Attr(1, 1, 1);
@@ -47,8 +40,9 @@ void testAttr() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡Attrç›¸åŠ :C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
-	cout << LoopCount <<"´ÎAttrÏà¼Ó:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
 	start = clock();
 	while (LoopCount--)
 	{
@@ -56,7 +50,8 @@ void testAttr() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎAttrÇå¿Õ:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡Attræ¸…ç©º:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
 	start = clock();
 	while (LoopCount--)
@@ -65,7 +60,8 @@ void testAttr() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎAttr¿½±´:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡Attræ‹·è´:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
 	start = clock();
 	while (LoopCount--)
@@ -74,10 +70,12 @@ void testAttr() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎAttr¼ÆËã:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡Attrè®¡ç®—:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
 }
 void testBaseObject() {
+	Attr** list = new Attr * [26];
 	BaseObject* a = new BaseObject();
 	BaseObject* b = new BaseObject();
 	Attr* c = new Attr(1, 1, 1);
@@ -93,8 +91,9 @@ void testBaseObject() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡BaseObjectç›¸åŠ :C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
-	cout << LoopCount << "´ÎBaseObjectÏà¼Ó:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
 	start = clock();
 	while (LoopCount--)
 	{
@@ -102,7 +101,8 @@ void testBaseObject() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎBaseObjectÇå¿Õ:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡BaseObjectæ¸…ç©º:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
 	start = clock();
 	while (LoopCount--)
@@ -111,7 +111,8 @@ void testBaseObject() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎBaseObject»ñÈ¡ÊôÐÔ:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡BaseObjectèŽ·å–å±žæ€§:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
 	start = clock();
 	while (LoopCount--)
@@ -120,8 +121,9 @@ void testBaseObject() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎBaseObjectÉèÖÃÊôÐÔ:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
-	
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡BaseObjectè®¾ç½®å±žæ€§:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
+
 	start = clock();
 	while (LoopCount--)
 	{
@@ -129,8 +131,9 @@ void testBaseObject() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎBaseObject¿½±´:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
-	
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡BaseObjectæ‹·è´:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
+
 	start = clock();
 	while (LoopCount--)
 	{
@@ -138,6 +141,7 @@ void testBaseObject() {
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
-	cout << LoopCount << "´ÎBaseObject¼ÆËã:C++ÓÃÊ±:" << ((double)(end - start) / 1000) << "Ãë" << endl;
+	cout << a->LastValue() << endl;
+	cout << LoopCount << "æ¬¡BaseObjectè®¡ç®—:C++ç”¨æ—¶:" << ((double)(end - start) / 1000) << "ç§’" << endl;
 
 }
