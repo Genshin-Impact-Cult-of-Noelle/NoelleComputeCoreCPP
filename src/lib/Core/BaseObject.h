@@ -43,6 +43,7 @@ namespace Core {
 		};
 		//
 		BaseObject(Attr** datas);
+		BaseObject(BaseObject* datas);
 		BaseObject();
 		//整体累加
 		BaseObject* Add(BaseObject*);

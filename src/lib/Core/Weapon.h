@@ -1,10 +1,10 @@
 ﻿#pragma once
 #include "BaseObject.h"
-#include "Skill.h"
+#include "Character.h"
 namespace Core {
 #pragma region 武器类
 
-	class Weapon {
+	class Weapon :public BaseObject {
 	public:
 
 		Weapon();

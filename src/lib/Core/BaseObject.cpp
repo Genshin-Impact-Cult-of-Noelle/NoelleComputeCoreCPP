@@ -151,7 +151,9 @@ namespace Core {
 		result = new Result();
 		changed = false;
 	}
-
+	BaseObject::BaseObject(BaseObject* datas) {
+		Copy(datas);
+	}
 	BaseObject* BaseObject::Add(BaseObject* data) {
 		changed = true;
 		Atk->Add(data->Atk);

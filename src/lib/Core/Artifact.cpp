@@ -10,7 +10,9 @@ namespace Core {
 #pragma endregion
 
 #pragma region 圣遗物组类实现
+	ArtifactGroup::ArtifactGroup() {
 
+	}
 
 
 #pragma endregion

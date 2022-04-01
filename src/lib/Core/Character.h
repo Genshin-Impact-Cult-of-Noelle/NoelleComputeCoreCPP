@@ -6,12 +6,12 @@ namespace Core {
 
 #pragma region 人物类
 
-	class Character : BaseObject {
+	class Character : public BaseObject {
 
 	public:
 
-		//性别
-		Character(Attr**, CharacterGender, CharacterGroup, ElementType, WeaponType);
+		Character();
+		Character(BaseObject*, CharacterGender, CharacterGroup, ElementType, WeaponType);
 
 		//性别
 		CharacterGender gender;

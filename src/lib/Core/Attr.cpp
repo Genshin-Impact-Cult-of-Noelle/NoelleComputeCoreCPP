@@ -2,7 +2,13 @@
 namespace Core {
 
 #pragma region 基础属性
-	//白字，额外倍率，额外值
+
+	/// <summary>
+	/// 原子属性
+	/// </summary>
+	/// <param name="Base">基础</param>
+	/// <param name="Rate">倍率</param>
+	/// <param name="Extra">额外</param>
 	Attr::Attr(double Base, double Rate, double Extra) {
 		base = Base;
 		rate = Rate;
@@ -18,6 +24,11 @@ namespace Core {
 		rate = data.rate;
 		extra = data.extra;
 	}
+	Attr::Attr() {
+		base = 0;
+		rate = 0;
+		extra = 0;
+	}
 	Attr* Attr::Zero() {
 		return new Attr(DOUBLEZERO, DOUBLEZERO, DOUBLEZERO);
 	}
@@ -28,9 +39,9 @@ namespace Core {
 		return this;
 	}
 	Attr* Attr::Copy(Attr* data) {
-		base = data->base;
-		rate = data->rate;
-		extra = data->extra;
+		base = 0 + data->base;
+		rate = 0 + data->rate;
+		extra = 0 + data->extra;
 		return this;
 	}
 	void Attr::Clean() {

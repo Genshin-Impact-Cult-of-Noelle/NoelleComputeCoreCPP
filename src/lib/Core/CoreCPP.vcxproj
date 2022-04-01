@@ -147,9 +147,9 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Damage.h" />
+    <ClInclude Include="DB\Role\Land\诺艾尔.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Role.h" />
-    <ClInclude Include="Skill.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
@@ -162,10 +162,10 @@
       <FavorSizeOrSpeed Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Speed</FavorSizeOrSpeed>
     </ClCompile>
     <ClCompile Include="Damage.cpp" />
+    <ClCompile Include="DB\Role\Land\诺艾尔.cpp" />
     <ClCompile Include="Enum.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Role.cpp" />
-    <ClCompile Include="Skill.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

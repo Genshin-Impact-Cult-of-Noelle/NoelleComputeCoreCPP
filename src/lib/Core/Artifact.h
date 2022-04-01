@@ -3,7 +3,7 @@
 namespace Core {
 #pragma region 圣遗物类
 
-	class Artifact : BaseObject {
+	class Artifact : public BaseObject {
 	public:
 		Artifact(Attr**);
 	};
@@ -11,7 +11,7 @@ namespace Core {
 #pragma endregion
 
 #pragma region 圣遗物组类
-	class ArtifactGroup : BaseObject {
+	class ArtifactGroup : public BaseObject {
 	public:
 		ArtifactGroup();
 		//void	(*update) (uint32_t);

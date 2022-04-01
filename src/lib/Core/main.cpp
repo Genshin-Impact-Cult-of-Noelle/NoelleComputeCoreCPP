@@ -2,30 +2,33 @@
 #include <ctime>
 #include <map>
 #include <iostream>
+#include "DB/Role/Land/诺艾尔.h"
 #define LOOPCOUNT 100000000;
 using namespace std;
 using namespace Core;
-void testAttr();
-void testBaseObject();
-double FBNQ(double);
-int LoopMapFindTest();
-Attr* LoopSwitchFindTest();
-void LoopRand();
+//using namespace Role;
+//void testAttr();
+//void testBaseObject();
+//double FBNQ(double);
+//int LoopMapFindTest();
+//Attr* LoopSwitchFindTest();
+//void LoopRand();
 void main() {
+	Role* x = new 诺艾尔();
+	cout << x;
 	//testAttr();
 	//testBaseObject();
 
-	clock_t start, end;
+	//clock_t start, end;
 
-	start = clock();
-	LoopMapFindTest();
-	LoopSwitchFindTest();
-	LoopRand();
+	//LoopMapFindTest();
+	//LoopSwitchFindTest();
+	//LoopRand();
 	//cout << FBNQ(45);
 	//testAttr();
 	//testBaseObject();
-	end = clock();
-	std::cout << endl << "RUN::" << ((double)(end - start) / 1000) << "秒" << endl;
+	//end = clock();
+	//std::cout << endl << "RUN::" << ((double)(end - start) / 1000) << "秒" << endl;
 	system("pause");
 }
 void LoopRand() {

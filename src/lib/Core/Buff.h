@@ -2,21 +2,35 @@
 #include "BaseObject.h"
 namespace Core {
 #pragma region 增益类
-	//增益
-	class Buff : BaseObject {
+	/// <summary>
+	/// 增益
+	/// </summary>
+	class Buff : public  BaseObject {
+	public:
 		Buff(Attr**, uint32_t);
-		//角色指令监听
-		void	(*Action)();
-		//伤害修饰
-		void	(*DamageModify)();
-		//帧刷新
-		void	(*update) (uint32_t, Buff);
+		void (*Action)();
+		void (*DamageModify)();
+		bool Update(uint32_t);
+	private:
+
 	};
-	//增益组
+	/// <summary>
+	/// buff池子
+	/// </summary>
 	class BuffPool {
 	public:
 		BuffPool();
 		void Update(uint32_t);
+		void PushBuff(Buff*);
+		BaseObject* LastValue();
+	private:
+		BaseObject* result;
+		bool changed;
+		struct BuffNode {
+			Buff* data;
+			BuffNode* next;
+		};
+		BuffNode* buffStart;
 	};
 #pragma endregion
 }
