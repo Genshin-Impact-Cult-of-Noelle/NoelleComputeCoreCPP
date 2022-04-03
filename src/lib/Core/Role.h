@@ -6,38 +6,85 @@
 #include "Damage.h"
 namespace Core {
 	class Damage;
+	/// <summary>
+	/// 高级角色类、真实角色的下一层
+	/// </summary>
 	class Role {
 	public:
 		Role();
-		Role(BaseObject*, CharacterGender, CharacterGroup, ElementType, WeaponType);
-		//添加buff
+		/// <summary>
+		/// 添加buff
+		/// </summary>
+		/// <param name=""></param>
+		/// <returns></returns>
 		Role* AddBuff(Buff*);
-		//设置武器
+		/// <summary>
+		/// 设置武器
+		/// </summary>
+		/// <param name=""></param>
+		/// <returns></returns>
 		Role* SetWeapon(Weapon*);
-		//设置圣遗物
+		/// <summary>
+		/// 设置圣遗物
+		/// </summary>
+		/// <param name=""></param>
+		/// <returns></returns>
 		Role* SetArtifact(Artifact*);
-		//设置圣遗物套装
+		/// <summary>
+		/// 设置圣遗物套装
+		/// </summary>
+		/// <returns></returns>
 		Role* SetArtifactSet();
-		//获取当前面板
+		/// <summary>
+		/// 当前最终面板
+		/// </summary>
 		void GetLastData();
-		//帧更新
+		/// <summary>
+		/// 帧更新
+		/// </summary>
 		void Update();
+		/// <summary>
+		/// 受伤
+		/// </summary>
+		/// <param name="data">伤害实例</param>
 		void Hit(Damage*);
-		CharacterGroup group;
+		/// <summary>
+		/// 普攻模组
+		/// </summary>
+		/// <param name="target">目标角色</param>
+		/// <param name="Value">|1111(某类型)|1111(某段)|1111(技能等级)</param>
 		void A(Role*, uint32_t);
+		/// <summary>
+		/// 元素战技模组
+		/// </summary>
+		/// <param name="target">目标角色</param>
+		/// <param name="Value">|1111(某类型)|1111(某段)|1111(技能等级)</param>
 		void E(Role*, uint32_t);
+		/// <summary>
+		/// 元素爆发模组
+		/// </summary>
+		/// <param name="target">目标角色</param>
+		/// <param name="Value">|1111(某类型)|1111(某段)|1111(技能等级)</param>
 		void Q(Role*, uint32_t);
-
-	private:
-		//数据改变标识
+		/// <summary>
+		/// 改变标记
+		/// </summary>		
 		bool Changed;
-		//內部圣遗物组
+		/// <summary>
+		/// 圣遗物组
+		/// </summary>
 		ArtifactGroup* rawArtifactGroup;
-		//内部角色数据
+		/// <summary>
+		/// 角色基
+		/// </summary>
 		Character* rawCharacter;
-		//内部武器数据
+		/// <summary>
+		/// 武器钩
+		/// </summary>
 		Weapon* rawWeapon;
-		//内部Buff池
+		/// <summary>
+		/// buff池子
+		/// </summary>
 		BuffPool* rawBuffPool;
 	};
 }

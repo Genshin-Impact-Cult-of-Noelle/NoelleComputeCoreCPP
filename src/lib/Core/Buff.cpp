@@ -1,7 +1,6 @@
 ﻿#include "Buff.h"
 namespace Core {
-	Buff::Buff(Attr** dataInit, uint32_t startFrame) {
-		BaseObject::BaseObject(dataInit);
+	Buff::Buff(uint32_t startFrame) {
 	};
 	bool  Buff::Update(uint32_t frame) {
 

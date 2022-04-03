@@ -3,7 +3,9 @@
 #include "Character.h"
 namespace Core {
 #pragma region 武器类
-
+	/// <summary>
+	/// 武器类
+	/// </summary>
 	class Weapon :public BaseObject {
 	public:
 

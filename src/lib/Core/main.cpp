@@ -37,10 +37,9 @@ void LoopRand() {
 	LoopCount = LOOPCOUNT;
 	int cache;
 	start = clock();
-
 	while (LoopCount--)
 	{
-		cache = rand() % 10;
+		cache += 1;
 	}
 	end = clock();
 	LoopCount = LOOPCOUNT;
