@@ -3,7 +3,7 @@
 #include <map>
 #include <iostream>
 #include "DB/Role/Land/诺艾尔.h"
-#define LOOPCOUNT 100000000;
+#define LOOPCOUNT 1000;
 using namespace std;
 using namespace Core;
 //using namespace Role;
@@ -17,19 +17,20 @@ void main() {
 	Role* x;
 	int LoopCount;
 	LoopCount = LOOPCOUNT;
+	clock_t start, end;
+	start = clock();
 	while (LoopCount--)
 	{
 		x = new 诺艾尔();
-		cout << LoopCount << endl;
+		//cout << LoopCount << endl;
 
 		delete x;
 
 	}
-	cout << x;
+	//cout << x;
 	//testAttr();
 	//testBaseObject();
 
-	//clock_t start, end;
 
 	//LoopMapFindTest();
 	//LoopSwitchFindTest();
@@ -37,8 +38,8 @@ void main() {
 	//cout << FBNQ(45);
 	//testAttr();
 	//testBaseObject();
-	//end = clock();
-	//std::cout << endl << "RUN::" << ((double)(end - start) / 1000) << "秒" << endl;
+	end = clock();
+	std::cout << endl << "RUN::" << ((double)(end - start) / 1000) << "秒" << endl;
 	//system("pause");
 };
 void LoopRand() {

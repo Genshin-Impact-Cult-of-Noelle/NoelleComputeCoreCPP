@@ -65,7 +65,7 @@ namespace Core {
 		Result* LastValue();
 		//清空
 		void Clean();
-	private:
+	protected:
 		Attr* GetAttrCur(uint32_t);
 		bool changed;
 		Result* result;

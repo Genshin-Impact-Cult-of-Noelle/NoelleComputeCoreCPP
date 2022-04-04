@@ -19,25 +19,25 @@ namespace Core {
 		virtual void DamageModify(Damage*) = 0;
 		virtual void BuffUpdate(uint32_t) = 0;
 		bool Update(uint32_t);
-	private:
-
+	protected:
+		uint32_t deadFrame;
 	};
 	/// <summary>
 	/// buff池子
 	/// </summary>
-	class BuffPool {
+	class BuffPool :public BaseObject {
 	public:
-		~BuffPool();
+		~BuffPool() {
+			delete buffStart;
+		};
 		BuffPool();
 		void Update(uint32_t);
 		void PushBuff(Buff*);
 		BaseObject::Result* LastValue();
 	private:
-		BaseObject::Result* result;
-		bool changed;
 		struct BuffNode {
-			BuffNode() {
-				data = nullptr;
+			BuffNode(Buff* buff) {
+				data = buff;
 				next = nullptr;
 			};
 			~BuffNode() {

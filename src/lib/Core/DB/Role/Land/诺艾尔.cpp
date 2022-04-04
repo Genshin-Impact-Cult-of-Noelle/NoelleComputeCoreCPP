@@ -7,7 +7,8 @@
 诺艾尔::诺艾尔() {
 
 	BaseObject* baseData = new BaseObject();
-	static Attr* HelathAttr = new Attr(12071., 0., 0.),
+	static Attr
+		* HelathAttr = new Attr(12071., 0., 0.),
 		* AtkAttr = new Attr(191., 0., 0.),
 		* DefAttr = new Attr(799., 0.3, 0.),
 		* CritRateAttr = new Attr(0.05, 0., 0.),

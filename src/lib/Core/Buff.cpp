@@ -3,19 +3,14 @@ namespace Core {
 	Buff::Buff(uint32_t startFrame) {
 	};
 	bool  Buff::Update(uint32_t frame) {
-
+		BuffUpdate(frame);
 	}
 
 
 #pragma region Buff池子
-	BuffPool::~BuffPool() {
-		delete result;
-		// delete this;
-	}
-	BuffPool::BuffPool() {
+
+	BuffPool::BuffPool() :BaseObject() {
 		buffStart = nullptr;
-		changed = false;
-		result = new BaseObject::Result();
 	};
 	/// <summary>
 	/// 刷新buff状态
@@ -23,21 +18,23 @@ namespace Core {
 	/// <param name="frame">帧位</param>
 	void BuffPool::Update(uint32_t frame) {
 		BuffNode* cur = buffStart;
-		BuffNode* pre = buffStart;
+		BuffNode* pre = nullptr;
 		while (cur)
 		{
-			if (!cur->data->Update(frame)) {
-				if (cur->next) {
-					pre->next = cur->next;
-				}
-				cur = cur->next;
-				pre->next = cur;
+			if (cur->data->Update(frame)) {
+				pre = cur;
 			}
 			else {
-				pre = cur;
-				cur = cur->next;
+				if (cur->next) {
+					if (pre) {
+						pre->next = cur->next;
+					}
+					else {
+						buffStart = cur->next;
+					}
+				}
 			}
-
+			cur = cur->next;
 		}
 	};
 	/// <summary>
@@ -46,15 +43,15 @@ namespace Core {
 	/// <returns></returns>
 	BaseObject::Result* BuffPool::LastValue() {
 		if (changed) {
-			result->Clean();
+			Clean();
 			BuffNode* cur = buffStart;
 			while (cur)
 			{
-				result->Merge(cur->data->LastValue());
+				Add(cur->data);
 				cur = cur->next;
 			}
 		}
-		return result;
+		return BaseObject::LastValue();
 	};
 	/// <summary>
 	/// 传入buff
@@ -62,8 +59,7 @@ namespace Core {
 	/// <param name="buff">buff指针</param>
 	void BuffPool::PushBuff(Buff* buff) {
 		changed = true;
-		BuffNode* buffCur = new BuffNode();
-		buffCur->data = buff;
+		BuffNode* buffCur = new BuffNode(buff);
 		buffCur->next = buffStart;
 		buffStart = buffCur;
 	}
