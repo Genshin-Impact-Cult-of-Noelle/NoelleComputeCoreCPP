@@ -8,12 +8,14 @@ namespace Core {
 
 
 #pragma region Buff池子
-
+	BuffPool::~BuffPool() {
+		delete result;
+		// delete this;
+	}
 	BuffPool::BuffPool() {
 		buffStart = nullptr;
 		changed = false;
-		result = new BaseObject();
-
+		result = new BaseObject::Result();
 	};
 	/// <summary>
 	/// 刷新buff状态
@@ -42,13 +44,13 @@ namespace Core {
 	/// 取最终的BaseObject
 	/// </summary>
 	/// <returns></returns>
-	BaseObject* BuffPool::LastValue() {
+	BaseObject::Result* BuffPool::LastValue() {
 		if (changed) {
 			result->Clean();
 			BuffNode* cur = buffStart;
 			while (cur)
 			{
-				result->Add(cur->data);
+				result->Merge(cur->data->LastValue());
 				cur = cur->next;
 			}
 		}
@@ -65,7 +67,6 @@ namespace Core {
 		buffCur->next = buffStart;
 		buffStart = buffCur;
 	}
-
 #pragma endregion
 
 

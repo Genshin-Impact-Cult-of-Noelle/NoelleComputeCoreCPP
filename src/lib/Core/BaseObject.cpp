@@ -52,6 +52,8 @@ namespace Core {
 			return isDef ? (EPhysicalDef) : (EPhysicalDmg);
 		}
 	}
+	BaseObject::Result::~Result() {
+	}
 	BaseObject::Result::Result() {
 		Atk = DOUBLEZERO;
 		Def = DOUBLEZERO;
@@ -83,6 +85,71 @@ namespace Core {
 		ELandDmg = DOUBLEZERO;
 		EWindDmg = DOUBLEZERO;
 		EPhysicalDmg = DOUBLEZERO;
+	}
+	void BaseObject::Result::Clean() {
+		Atk = DOUBLEZERO;
+		Def = DOUBLEZERO;
+		Helath = DOUBLEZERO;
+
+		ElementMaster = DOUBLEZERO;
+		CritRate = DOUBLEZERO;
+		CritDamage = DOUBLEZERO;
+		CureRate = DOUBLEZERO;
+		BeCureRate = DOUBLEZERO;
+		ChargeRate = DOUBLEZERO;
+		ColdDownRate = DOUBLEZERO;
+		ArmorRate = DOUBLEZERO;
+
+		EWaterDef = DOUBLEZERO;
+		EFireDef = DOUBLEZERO;
+		EIceDef = DOUBLEZERO;
+		EElectricDef = DOUBLEZERO;
+		EGrassDef = DOUBLEZERO;
+		ELandDef = DOUBLEZERO;
+		EWindDef = DOUBLEZERO;
+		EPhysicalDef = DOUBLEZERO;
+
+		EWaterDmg = DOUBLEZERO;
+		EFireDmg = DOUBLEZERO;
+		EIceDmg = DOUBLEZERO;
+		EElectricDmg = DOUBLEZERO;
+		EGrassDmg = DOUBLEZERO;
+		ELandDmg = DOUBLEZERO;
+		EWindDmg = DOUBLEZERO;
+		EPhysicalDmg = DOUBLEZERO;
+	}
+	BaseObject::Result* BaseObject::Result::Merge(BaseObject::Result* data) {
+		Atk += data->Atk;
+		Def += data->Def;
+		Helath += data->Helath;
+		ElementMaster += data->ElementMaster;
+		CritRate += data->CritRate;
+		CritDamage += data->CritDamage;
+		CureRate += data->CureRate;
+		BeCureRate += data->BeCureRate;
+		ChargeRate += data->ChargeRate;
+		ColdDownRate += data->ColdDownRate;
+		ArmorRate += data->ArmorRate;
+
+		EWaterDmg += data->EWaterDmg;
+		EFireDmg += data->EFireDmg;
+		EIceDmg += data->EIceDmg;
+		EElectricDmg += data->EElectricDmg;
+		EGrassDmg += data->EGrassDmg;
+		ELandDmg += data->ELandDmg;
+		EWindDmg += data->EWindDmg;
+		EPhysicalDmg += data->EPhysicalDmg;
+
+		EWaterDef += data->EWaterDef;
+		EFireDef += data->EFireDef;
+		EIceDef += data->EIceDef;
+		EElectricDef += data->EElectricDef;
+		EGrassDef += data->EGrassDef;
+		ELandDef += data->ELandDef;
+		EWindDef += data->EWindDef;
+		EPhysicalDef += data->EPhysicalDef;
+
+		return this;
 	}
 	BaseObject::BaseObject() {
 		Atk = Attr::Zero();
@@ -117,6 +184,38 @@ namespace Core {
 		EPhysicalDmg = Attr::Zero();
 
 		result = new Result();
+		changed = false;
+
+	}
+	BaseObject::~BaseObject() {
+		delete Atk;
+		delete Def;
+		delete Helath;
+		delete ElementMaster;
+		delete CritRate;
+		delete CritDamage;
+		delete CureRate;
+		delete BeCureRate;
+		delete ChargeRate;
+		delete ColdDownRate;
+		delete ArmorRate;
+		delete EWaterDef;
+		delete EFireDef;
+		delete EIceDef;
+		delete EElectricDef;
+		delete EGrassDef;
+		delete ELandDef;
+		delete EWindDef;
+		delete EPhysicalDef;
+		delete EWaterDmg;
+		delete EFireDmg;
+		delete EIceDmg;
+		delete EElectricDmg;
+		delete EGrassDmg;
+		delete ELandDmg;
+		delete EWindDmg;
+		delete EPhysicalDmg;
+		delete result;
 		changed = false;
 
 	}
@@ -206,8 +305,6 @@ namespace Core {
 	}
 	Attr* BaseObject::GetAttr(uint32_t key) {
 		AttrType  typeKey = AttrType(key & 0xFF);
-
-
 		switch (typeKey)
 		{
 		case AttrType::Atk:

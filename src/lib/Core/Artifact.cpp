@@ -13,6 +13,9 @@ namespace Core {
 	ArtifactGroup::ArtifactGroup() {
 
 	}
+	ArtifactGroup::~ArtifactGroup() {
+		// delete this;
+	}
 
 
 #pragma endregion

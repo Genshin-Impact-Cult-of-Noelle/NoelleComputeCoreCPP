@@ -14,7 +14,17 @@ using namespace Core;
 //Attr* LoopSwitchFindTest();
 //void LoopRand();
 void main() {
-	Role* x = new 诺艾尔();
+	Role* x;
+	int LoopCount;
+	LoopCount = LOOPCOUNT;
+	while (LoopCount--)
+	{
+		x = new 诺艾尔();
+		cout << LoopCount << endl;
+
+		delete x;
+
+	}
 	cout << x;
 	//testAttr();
 	//testBaseObject();
@@ -29,8 +39,8 @@ void main() {
 	//testBaseObject();
 	//end = clock();
 	//std::cout << endl << "RUN::" << ((double)(end - start) / 1000) << "秒" << endl;
-	system("pause");
-}
+	//system("pause");
+};
 void LoopRand() {
 	clock_t start, end;
 	int LoopCount;
@@ -109,53 +119,7 @@ double FBNQ(double n) {
 
 	}
 }
-void testAttr() {
-	Attr* a = new Attr(1, 1, 1);
-	Attr* b = new Attr(a);
-	clock_t start, end;
-	int LoopCount;
-	LoopCount = LOOPCOUNT;
-	start = clock();
-	while (LoopCount--)
-	{
-		a->Add(b);
-	}
-	end = clock();
-	LoopCount = LOOPCOUNT;
-	cout << a->LastValue() << endl;
-	cout << LoopCount << "次Attr相加:C++用时:" << ((double)(end - start) / 1000) << "秒" << endl;
 
-	start = clock();
-	while (LoopCount--)
-	{
-		a->Clean();
-	}
-	end = clock();
-	LoopCount = LOOPCOUNT;
-	cout << a->LastValue() << endl;
-	cout << LoopCount << "次Attr清空:C++用时:" << ((double)(end - start) / 1000) << "秒" << endl;
-
-	start = clock();
-	while (LoopCount--)
-	{
-		a->Copy(b);
-	}
-	end = clock();
-	LoopCount = LOOPCOUNT;
-	cout << a->LastValue() << endl;
-	cout << LoopCount << "次Attr拷贝:C++用时:" << ((double)(end - start) / 1000) << "秒" << endl;
-
-	start = clock();
-	while (LoopCount--)
-	{
-		a->LastValue();
-	}
-	end = clock();
-	LoopCount = LOOPCOUNT;
-	cout << a->LastValue() << endl;
-	cout << LoopCount << "次Attr计算:C++用时:" << ((double)(end - start) / 1000) << "秒" << endl;
-
-}
 void testBaseObject() {
 	Attr** list = new Attr * [26];
 	BaseObject* a = new BaseObject();

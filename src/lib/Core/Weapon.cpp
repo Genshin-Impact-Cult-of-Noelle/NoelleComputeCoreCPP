@@ -1,6 +1,8 @@
 ﻿#include "Weapon.h"
 namespace Core {
-	Weapon::Weapon() {
-		BaseObject::BaseObject();
+	Weapon::Weapon() :BaseObject() {
+	}
+	Weapon::~Weapon() {
+		// delete this;
 	}
 }

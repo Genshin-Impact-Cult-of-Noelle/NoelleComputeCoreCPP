@@ -8,11 +8,13 @@ namespace Core {
 		godEye = Element;
 		weaponType = Weapon;
 	}
-	Character::Character() {
-		BaseObject::BaseObject();
+	Character::Character() :BaseObject() {
 		gender = CharacterGender::Unknow;
 		group = CharacterGroup::Unknow;
 		godEye = ElementType::OtherElement;
 		weaponType = WeaponType::Sword;
+	}
+	Character::~Character() {
+		// delete this;
 	}
 }

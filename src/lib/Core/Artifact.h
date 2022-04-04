@@ -14,6 +14,7 @@ namespace Core {
 	class ArtifactGroup : public BaseObject {
 	public:
 		ArtifactGroup();
+		~ArtifactGroup();
 		//void	(*update) (uint32_t);
 
 

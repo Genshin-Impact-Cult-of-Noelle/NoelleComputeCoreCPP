@@ -2,6 +2,7 @@
 #include "BaseObject.h"
 
 namespace Core {
+	class Damage;
 	class Role;
 #pragma region 增益类
 
@@ -26,14 +27,23 @@ namespace Core {
 	/// </summary>
 	class BuffPool {
 	public:
+		~BuffPool();
 		BuffPool();
 		void Update(uint32_t);
 		void PushBuff(Buff*);
-		BaseObject* LastValue();
+		BaseObject::Result* LastValue();
 	private:
-		BaseObject* result;
+		BaseObject::Result* result;
 		bool changed;
 		struct BuffNode {
+			BuffNode() {
+				data = nullptr;
+				next = nullptr;
+			};
+			~BuffNode() {
+				delete data;
+				delete next;
+			};
 			Buff* data;
 			BuffNode* next;
 		};

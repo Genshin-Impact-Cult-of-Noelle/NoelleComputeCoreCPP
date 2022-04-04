@@ -8,7 +8,7 @@ namespace Core {
 	/// </summary>
 	class Weapon :public BaseObject {
 	public:
-
+		~Weapon();
 		Weapon();
 		//void (*skill)(Character*, Character*, uint32_t);
 	};

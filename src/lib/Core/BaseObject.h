@@ -9,7 +9,10 @@ namespace Core {
 	public:
 		class Result {
 		public:
+			~Result();
 			Result();
+			void Clean();
+			Result* Merge(Result*);
 			double Atk;
 			double Def;
 			double Helath;
@@ -45,6 +48,7 @@ namespace Core {
 		BaseObject(Attr** datas);
 		BaseObject(BaseObject* datas);
 		BaseObject();
+		~BaseObject();
 		//整体累加
 		BaseObject* Add(BaseObject*);
 		//[key]属性相加

@@ -29,6 +29,9 @@ namespace Core {
 		rate = 0;
 		extra = 0;
 	}
+	Attr::~Attr() {
+		// delete this;
+	}
 	Attr* Attr::Zero() {
 		return new Attr(DOUBLEZERO, DOUBLEZERO, DOUBLEZERO);
 	}
@@ -39,9 +42,9 @@ namespace Core {
 		return this;
 	}
 	Attr* Attr::Copy(Attr* data) {
-		base = 0 + data->base;
-		rate = 0 + data->rate;
-		extra = 0 + data->extra;
+		base = data->base;
+		rate = data->rate;
+		extra = data->extra;
 		return this;
 	}
 	void Attr::Clean() {

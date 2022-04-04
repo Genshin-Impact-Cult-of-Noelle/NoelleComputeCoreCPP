@@ -23,6 +23,7 @@ namespace Core {
 		Attr(Attr*);
 		Attr(Attr&);
 		Attr();
+		~Attr();
 		static Attr* Zero();
 		Attr* Add(Attr* data);
 		Attr* Copy(Attr* data);

@@ -11,6 +11,7 @@ namespace Core {
 	public:
 
 		Character();
+		~Character();
 		Character(BaseObject*, CharacterGender, CharacterGroup, ElementType, WeaponType);
 
 		//性别

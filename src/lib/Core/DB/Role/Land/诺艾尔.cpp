@@ -1,39 +1,50 @@
 ﻿#include "诺艾尔.h"
 
 
+诺艾尔::~诺艾尔() {
+
+}
 诺艾尔::诺艾尔() {
 
 	BaseObject* baseData = new BaseObject();
-	baseData->SetAttr((uint32_t)AttrType::Helath, new Attr(12071., 0., 0.));
-	baseData->SetAttr((uint32_t)AttrType::Atk, new Attr(191., 0., 0.));
-	baseData->SetAttr((uint32_t)AttrType::Def, new Attr(799., 0.3, 0.));
-	baseData->SetAttr((uint32_t)AttrType::CritRate, new Attr(0.05, 0., 0.));
-	baseData->SetAttr((uint32_t)AttrType::CritDamage, new Attr(0.5, 0., 0.));
-
+	static Attr* HelathAttr = new Attr(12071., 0., 0.),
+		* AtkAttr = new Attr(191., 0., 0.),
+		* DefAttr = new Attr(799., 0.3, 0.),
+		* CritRateAttr = new Attr(0.05, 0., 0.),
+		* CritDamageAttr = new Attr(0.5, 0., 0.);
+	baseData->SetAttr((uint32_t)AttrType::Helath, HelathAttr);
+	baseData->SetAttr((uint32_t)AttrType::Atk, AtkAttr);
+	baseData->SetAttr((uint32_t)AttrType::Def, DefAttr);
+	baseData->SetAttr((uint32_t)AttrType::CritRate, CritRateAttr);
+	baseData->SetAttr((uint32_t)AttrType::CritDamage, CritDamageAttr);
 	//Role::Role(baseData, CharacterGender::Gril, CharacterGroup::Tivat, ElementType::Land, WeaponType::Claymore);
 	delete this->rawCharacter;
 	this->rawCharacter = new Character(baseData, CharacterGender::Gril, CharacterGroup::Tivat, ElementType::Land, WeaponType::Claymore);
+	delete baseData;
 };
+//p
+const static double* A1 = new double[13]{};
+const static double* A2 = new double[13]{};
+const static double* A3 = new double[13]{};
+const static double* A4 = new double[13]{};
 /// <summary>
-/// 普攻第一段
+/// ww
 /// </summary>
-const double* A1 = new double[13]{};
-const double* A2 = new double[13]{};
-const double* A3 = new double[13]{};
-const double* A4 = new double[13]{};
-void 诺艾尔::A(Role* role, uint32_t cmd) {
+/// <param name="role"></param>
+/// <param name="cmd"></param>
+void 诺艾尔::A(Role* role, uint8_t* cmd) {
 	if (role->rawCharacter->group != rawCharacter->group) {
 		try
 		{
 			Damage* readly = new Damage(this, role);
-			switch ((cmd & 0xF00) >> 8)
+			switch (cmd[0])
 			{
 			case 0:
-				switch ((cmd & 0xF0) >> 4)
+				switch (cmd[2])
 				{
 				case 0:
 					//role->Hit(readly);
-					role->Hit(readly);
+					//role->Hit(readly);
 					break;
 				case 1:
 					break;
@@ -55,7 +66,14 @@ void 诺艾尔::A(Role* role, uint32_t cmd) {
 		}
 	}
 
+
 };
+void 诺艾尔::Q(Role* role, uint8_t* cmd) {
+
+}
+void 诺艾尔::E(Role* role, uint8_t* cmd) {
+
+}
 //一个继承Buff的类
 class 大扫除 :public Buff {
 public:

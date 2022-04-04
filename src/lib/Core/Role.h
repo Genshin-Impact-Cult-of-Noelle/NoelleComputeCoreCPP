@@ -11,6 +11,14 @@ namespace Core {
 	/// </summary>
 	class Role {
 	public:
+		~Role() {
+			delete rawWeapon;
+			delete rawBuffPool;
+			delete rawCharacter;
+			delete rawArtifactGroup;
+			delete result;
+			// delete this;
+		};
 		Role();
 		/// <summary>
 		/// 添加buff
@@ -38,7 +46,7 @@ namespace Core {
 		/// <summary>
 		/// 当前最终面板
 		/// </summary>
-		void GetLastData();
+		BaseObject::Result* GetLastData();
 		/// <summary>
 		/// 帧更新
 		/// </summary>
@@ -52,20 +60,29 @@ namespace Core {
 		/// 普攻模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
-		/// <param name="Value">|1111(某类型)|1111(某段)|1111(技能等级)</param>
-		void A(Role*, uint32_t);
+		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
+		virtual	void A(Role*, uint8_t*) = 0;
 		/// <summary>
 		/// 元素战技模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
-		/// <param name="Value">|1111(某类型)|1111(某段)|1111(技能等级)</param>
-		void E(Role*, uint32_t);
+		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
+
+		virtual	void E(Role*, uint8_t*) = 0;
 		/// <summary>
 		/// 元素爆发模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
-		/// <param name="Value">|1111(某类型)|1111(某段)|1111(技能等级)</param>
-		void Q(Role*, uint32_t);
+		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
+
+		virtual	void Q(Role*, uint8_t*) = 0;
+
+		/// <summary>
+		/// 结果
+		/// </summary>
+		BaseObject::Result* result;
+
+
 		/// <summary>
 		/// 改变标记
 		/// </summary>		
