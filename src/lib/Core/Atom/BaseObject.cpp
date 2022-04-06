@@ -1,5 +1,4 @@
 ﻿#include "BaseObject.h"
-#include <stdlib.h>
 using namespace Atom::Enum;
 namespace Atom {
 
@@ -52,6 +51,7 @@ namespace Atom {
 		case ElementType::Physical:
 			return isDef ? (EPhysicalDef) : (EPhysicalDmg);
 		}
+		throw new Err::SkillErr();
 	}
 	BaseObject::Result::~Result() {
 	}
