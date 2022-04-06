@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include "BaseObject.h"
-#include "Character.h"
-namespace Core {
+#include "Advanced.h"
+using namespace Atom;
+namespace Advanced {
 #pragma region 武器类
 	/// <summary>
 	/// 武器类
@@ -10,7 +10,9 @@ namespace Core {
 	public:
 		~Weapon();
 		Weapon();
-		//void (*skill)(Character*, Character*, uint32_t);
+		virtual void init() = 0;
+		void SetRole();
+		//void (*skill)(Character*, Character*, u32);
 	};
 #pragma endregion
 }

@@ -1,5 +1,5 @@
 ﻿#include "Damage.h"
-namespace Core {
+namespace Advanced {
 	Damage::Damage(Role* fromCur, Role* toCur) {
 		from = fromCur;
 		to = toCur;

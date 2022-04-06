@@ -1,12 +1,11 @@
 ﻿#include "Role.h"
-namespace Core {
+namespace Advanced {
 
 	Role::Role() {
-		//cout << "无参构造" << this << endl;
 		Changed = false;
-		rawWeapon = new Weapon();
+		rawWeapon = nullptr;
+		rawCharacter = nullptr;
 		rawBuffPool = new BuffPool();
-		rawCharacter = new Character();
 		rawArtifactGroup = new ArtifactGroup();
 		result = new BaseObject::Result();
 	}
@@ -18,8 +17,19 @@ namespace Core {
 				->Merge(rawArtifactGroup->LastValue())
 				->Merge(rawBuffPool->LastValue());
 		}
-		else {
-			return result;
-		}
+		return result;
+	}
+	Role* Role::AddBuff(Buff* data) {
+		rawBuffPool->PushBuff(data);
+		return this;
+	}
+	Role* Role::SetArtifactSet(u32 SetID) {
+		//TODO:设置圣遗物套装
+
+		return this;
+	}
+
+	void Role::Update(u32 frame) {
+		rawBuffPool->Update(frame);
 	}
 }

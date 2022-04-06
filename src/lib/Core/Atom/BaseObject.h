@@ -1,8 +1,7 @@
 ﻿#pragma once
-#include "Attr.h"
-
-namespace Core {
-
+#include "Atom.h"
+namespace Atom {
+	class Attr;
 #pragma region 实例基类
 	const char BaseObjectAttrSize = 26;
 	class  BaseObject {
@@ -49,37 +48,42 @@ namespace Core {
 		BaseObject(BaseObject* datas);
 		BaseObject();
 		~BaseObject();
-		//整体累加
 		BaseObject* Add(BaseObject*);
-		//[key]属性相加
-		BaseObject* Add(uint32_t, Attr*);
-		//[key]属性相加
-		BaseObject* Add(uint32_t, BaseObject*);
-		//设置[key]属性
-		BaseObject* SetAttr(uint32_t, Attr*);
-		//取出[key]属性指针
-		Attr* GetAttr(uint32_t);
-		//从参数拷贝一个BaseObject
+		BaseObject* Add(u32, Attr*);
+		BaseObject* Add(u32, BaseObject*);
+		BaseObject* SetAttr(u32, Attr*);
+		Attr* GetAttr(u32);
 		BaseObject* Copy(BaseObject*);
-		//取回结果指针
 		Result* LastValue();
-		//清空
 		void Clean();
 	protected:
-		Attr* GetAttrCur(uint32_t);
-		bool changed;
-		Result* result;
-		Attr* Atk;
-		Attr* Def;
-		Attr* Helath;
 
+		Attr* GetAttrCur(u32);
+		//变更
+		bool changed;
+		//计算结果<u32,double>
+		Result* result;
+		//攻击力
+		Attr* Atk;
+		//防御力
+		Attr* Def;
+		//生命值
+		Attr* Helath;
+		//元素精通
 		Attr* ElementMaster;
+		//暴击率
 		Attr* CritRate;
+		//暴击伤害
 		Attr* CritDamage;
+		//治疗加成
 		Attr* CureRate;
+		//被治疗加成
 		Attr* BeCureRate;
+		//元素充能效率
 		Attr* ChargeRate;
+		//冷却缩减
 		Attr* ColdDownRate;
+		//护盾强效
 		Attr* ArmorRate;
 
 		Attr* EWaterDef;

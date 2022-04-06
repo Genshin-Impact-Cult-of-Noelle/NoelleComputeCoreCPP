@@ -1,9 +1,8 @@
 ﻿#include "Artifact.h"
-namespace Core {
+namespace Advanced {
 #pragma region 圣遗物类实现
 
-	Artifact::Artifact(Attr** Data) {
-		BaseObject::BaseObject(Data);
+	Artifact::Artifact(Attr** Data) :BaseObject(Data) {
 
 	}
 

@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include "BaseObject.h"
-#include "Role.h"
-namespace Core {
+#include "Advanced.h"
+using namespace Atom;
+namespace Advanced {
 	class Role;
 	class Damage {
 	public:

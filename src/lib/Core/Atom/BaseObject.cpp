@@ -1,9 +1,10 @@
 ﻿#include "BaseObject.h"
-using namespace Core::Enum;
-namespace Core {
+#include <stdlib.h>
+using namespace Atom::Enum;
+namespace Atom {
 
 #pragma region 实例基类
-	Attr* BaseObject::GetAttrCur(uint32_t key) {
+	Attr* BaseObject::GetAttrCur(u32 key) {
 		AttrType  typeKey = AttrType(key & 0xFF);
 		switch (typeKey)
 		{
@@ -289,21 +290,21 @@ namespace Core {
 
 	}
 
-	BaseObject* BaseObject::Add(uint32_t key, Attr* data) {
+	BaseObject* BaseObject::Add(u32 key, Attr* data) {
 		SetAttr(key, data);
 		return this;
 	}
 
-	BaseObject* BaseObject::Add(uint32_t key, BaseObject* data) {
+	BaseObject* BaseObject::Add(u32 key, BaseObject* data) {
 		SetAttr(key, data->GetAttr(key));
 		return this;
 	}
-	BaseObject* BaseObject::SetAttr(uint32_t key, Attr* data) {
+	BaseObject* BaseObject::SetAttr(u32 key, Attr* data) {
 		changed = true;
 		GetAttr(key)->Copy(data);
 		return this;
 	}
-	Attr* BaseObject::GetAttr(uint32_t key) {
+	Attr* BaseObject::GetAttr(u32 key) {
 		AttrType  typeKey = AttrType(key & 0xFF);
 		switch (typeKey)
 		{
@@ -354,7 +355,7 @@ namespace Core {
 		case ElementType::Physical:
 			return isDef ? EPhysicalDef : EPhysicalDmg;
 		}
-		throw new exception("没有这个Key");
+		throw;
 	}
 	void BaseObject::Clean() {
 		changed = true;

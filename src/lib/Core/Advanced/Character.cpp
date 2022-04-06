@@ -1,6 +1,5 @@
 ﻿#include "Character.h"
-using namespace Core::Enum;
-namespace Core {
+namespace Advanced {
 	Character::Character(BaseObject* Data, CharacterGender Gender, CharacterGroup Group, ElementType Element, WeaponType Weapon) {
 		Copy(Data);
 		gender = Gender;

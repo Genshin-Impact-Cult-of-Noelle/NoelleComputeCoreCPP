@@ -1,8 +1,6 @@
 ﻿#pragma once
-#include "Enum.h"
-using namespace std;
-using namespace Core::Enum;
-namespace Core {
+#include "Atom.h"
+namespace Atom {
 
 
 #pragma region 枚举

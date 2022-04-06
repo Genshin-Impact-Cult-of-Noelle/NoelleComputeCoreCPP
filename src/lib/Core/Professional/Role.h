@@ -1,10 +1,7 @@
 ﻿#pragma once
-#include "Character.h"
-#include "Buff.h"
-#include "Weapon.h"
-#include "Artifact.h"
-#include "Damage.h"
-namespace Core {
+#include "Professional.h"
+using namespace Atom;
+namespace Advanced {
 	class Damage;
 	/// <summary>
 	/// 高级角色类、真实角色的下一层
@@ -42,7 +39,7 @@ namespace Core {
 		/// 设置圣遗物套装
 		/// </summary>
 		/// <returns></returns>
-		Role* SetArtifactSet();
+		Role* SetArtifactSet(u32);
 		/// <summary>
 		/// 当前最终面板
 		/// </summary>
@@ -50,7 +47,7 @@ namespace Core {
 		/// <summary>
 		/// 帧更新
 		/// </summary>
-		void Update();
+		void Update(u32);
 		/// <summary>
 		/// 受伤
 		/// </summary>
@@ -61,28 +58,26 @@ namespace Core {
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
-		virtual	void A(Role*, uint8_t*) = 0;
+		virtual	void A(Role*, u8*) = 0;
 		/// <summary>
 		/// 元素战技模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
 
-		virtual	void E(Role*, uint8_t*) = 0;
+		virtual	void E(Role*, u8*) = 0;
 		/// <summary>
 		/// 元素爆发模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
 
-		virtual	void Q(Role*, uint8_t*) = 0;
+		virtual	void Q(Role*, u8*) = 0;
 
 		/// <summary>
 		/// 结果
 		/// </summary>
 		BaseObject::Result* result;
-
-
 		/// <summary>
 		/// 改变标记
 		/// </summary>		

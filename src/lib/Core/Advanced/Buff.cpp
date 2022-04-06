@@ -1,9 +1,12 @@
 ﻿#include "Buff.h"
-namespace Core {
-	Buff::Buff(uint32_t startFrame) {
+namespace Advanced {
+	Buff::Buff(Role* role, u32 startFrame) {
+		from = role;
+		deadFrame = startFrame;
 	};
-	bool  Buff::Update(uint32_t frame) {
+	bool  Buff::Update(u32 frame) {
 		BuffUpdate(frame);
+		return frame > deadFrame;
 	}
 
 
@@ -16,7 +19,7 @@ namespace Core {
 	/// 刷新buff状态
 	/// </summary>
 	/// <param name="frame">帧位</param>
-	void BuffPool::Update(uint32_t frame) {
+	void BuffPool::Update(u32 frame) {
 		BuffNode* cur = buffStart;
 		BuffNode* pre = nullptr;
 		while (cur)
@@ -24,14 +27,12 @@ namespace Core {
 			if (cur->data->Update(frame)) {
 				pre = cur;
 			}
-			else {
-				if (cur->next) {
-					if (pre) {
-						pre->next = cur->next;
-					}
-					else {
-						buffStart = cur->next;
-					}
+			else if (cur->next) {
+				if (pre) {
+					pre->next = cur->next;
+				}
+				else {
+					buffStart = cur->next;
 				}
 			}
 			cur = cur->next;

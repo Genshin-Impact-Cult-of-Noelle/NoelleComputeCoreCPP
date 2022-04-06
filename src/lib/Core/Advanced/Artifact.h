@@ -1,6 +1,7 @@
 ﻿#pragma once
-#include "BaseObject.h"
-namespace Core {
+#include "Advanced.h"
+using namespace Atom;
+namespace Advanced {
 #pragma region 圣遗物类
 
 	class Artifact : public BaseObject {
@@ -15,7 +16,7 @@ namespace Core {
 	public:
 		ArtifactGroup();
 		~ArtifactGroup();
-		//void	(*update) (uint32_t);
+		//void	(*update) (u32);
 
 
 	};

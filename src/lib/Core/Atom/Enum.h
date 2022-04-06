@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include <iostream>
-namespace Core {
+#include "Atom.h"
+namespace Atom {
 	namespace Enum {
 
 		enum class CharacterGender {

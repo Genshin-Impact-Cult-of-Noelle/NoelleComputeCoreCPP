@@ -1,26 +1,25 @@
 ﻿#pragma once
-#include "BaseObject.h"
-
-namespace Core {
+#include "Advanced.h"
+using namespace Atom;
+namespace Advanced {
 	class Damage;
 	class Role;
 #pragma region 增益类
-
-
 	/// 增益类
-	/// 注意实现
-	/// void Action(uint32_t)
+	/// 注意实现3个虚函数
+	/// void Action(u32)
 	/// void DamageModify(Damage*)
-	/// void BuffUpdate(uint32_t)
+	/// void BuffUpdate(u32)
 	class Buff : public  BaseObject {
 	public:
-		Buff(uint32_t);
-		virtual	void Action(uint32_t) = 0;
+		Buff(Role*, u32 = 0);
+		virtual	void Action(u32) = 0;
 		virtual void DamageModify(Damage*) = 0;
-		virtual void BuffUpdate(uint32_t) = 0;
-		bool Update(uint32_t);
+		virtual void BuffUpdate(u32) = 0;
+		bool Update(u32);
 	protected:
-		uint32_t deadFrame;
+		u32 deadFrame;
+		Role* from;
 	};
 	/// <summary>
 	/// buff池子
@@ -31,7 +30,7 @@ namespace Core {
 			delete buffStart;
 		};
 		BuffPool();
-		void Update(uint32_t);
+		void Update(u32);
 		void PushBuff(Buff*);
 		BaseObject::Result* LastValue();
 	private:

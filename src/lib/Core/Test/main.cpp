@@ -1,8 +1,7 @@
-﻿#include "Atom.h"
+﻿
 #include <ctime>
-#include <map>
 #include <iostream>
-#include "DB/Role/Land/诺艾尔.h"
+#include "../DB/Role/Land/诺艾尔.h"
 #define LOOPCOUNT 1000;
 using namespace std;
 using namespace Advanced;

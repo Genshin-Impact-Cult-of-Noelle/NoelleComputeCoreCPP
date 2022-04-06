@@ -1,6 +1,8 @@
 ﻿#pragma once
-#include "BaseObject.h"
-namespace Core {
+#include "Advanced.h"
+using namespace Atom;
+using namespace Atom::Enum;
+namespace Advanced {
 
 
 

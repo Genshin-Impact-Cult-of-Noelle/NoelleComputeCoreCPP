@@ -1,5 +1,5 @@
 ﻿#include "Attr.h"
-namespace Core {
+namespace Atom {
 
 #pragma region 基础属性
 

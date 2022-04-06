@@ -13,13 +13,11 @@
 		* DefAttr = new Attr(799., 0.3, 0.),
 		* CritRateAttr = new Attr(0.05, 0., 0.),
 		* CritDamageAttr = new Attr(0.5, 0., 0.);
-	baseData->SetAttr((uint32_t)AttrType::Helath, HelathAttr);
-	baseData->SetAttr((uint32_t)AttrType::Atk, AtkAttr);
-	baseData->SetAttr((uint32_t)AttrType::Def, DefAttr);
-	baseData->SetAttr((uint32_t)AttrType::CritRate, CritRateAttr);
-	baseData->SetAttr((uint32_t)AttrType::CritDamage, CritDamageAttr);
-	//Role::Role(baseData, CharacterGender::Gril, CharacterGroup::Tivat, ElementType::Land, WeaponType::Claymore);
-	delete this->rawCharacter;
+	baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
+	baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
+	baseData->SetAttr((u32)AttrType::Def, DefAttr);
+	baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
+	baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
 	this->rawCharacter = new Character(baseData, CharacterGender::Gril, CharacterGroup::Tivat, ElementType::Land, WeaponType::Claymore);
 	delete baseData;
 };
@@ -33,62 +31,53 @@ const static double* A4 = new double[13]{};
 /// </summary>
 /// <param name="role"></param>
 /// <param name="cmd"></param>
-void 诺艾尔::A(Role* role, uint8_t* cmd) {
+void 诺艾尔::A(Role* role, u8* cmd) {
 	if (role->rawCharacter->group != rawCharacter->group) {
-		try
+		Damage* readly = new Damage(this, role);
+		switch (cmd[0])
 		{
-			Damage* readly = new Damage(this, role);
-			switch (cmd[0])
+		case 0:
+			switch (cmd[2])
 			{
 			case 0:
-				switch (cmd[2])
-				{
-				case 0:
-					//role->Hit(readly);
-					//role->Hit(readly);
-					break;
-				case 1:
-					break;
-				default:
-					throw new exception("不受支持的指令");
-				};
+				//role->Hit(readly);
+				//role->Hit(readly);
 				break;
 			case 1:
 				break;
-			case 2:
-				break;
 			default:
-				throw new exception("不受支持的指令");
-			}
-		}
-		catch (const std::exception& err)
-		{
-			throw err;
+				throw new Err::SkillErr();
+			};
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		default:
+			throw new Err::SkillErr();
 		}
 	}
-
-
 };
-void 诺艾尔::Q(Role* role, uint8_t* cmd) {
+void 诺艾尔::Q(Role* role, u8* cmd) {
 
 }
-void 诺艾尔::E(Role* role, uint8_t* cmd) {
+void 诺艾尔::E(Role* role, u8* cmd) {
 
 }
 //一个继承Buff的类
 class 大扫除 :public Buff {
 public:
-	大扫除(uint32_t endTime) :Buff(endTime) {
+	大扫除(诺艾尔* role, u32 endTime) :Buff(role, endTime) {
 		//set
 	};
-	void  Action(uint32_t data) {
+	void  Action(u32 data) {
 
 	};
 	void DamageModify() {
 
 	};
 	//每帧刷新buff
-	void BuffUpdate(uint32_t frame) {
+	void BuffUpdate(u32 frame) {
 
 	};
 
@@ -97,10 +86,10 @@ public:
 
 class 护心铠 :public Buff {
 public:
-	护心铠(uint32_t endTime) :Buff(endTime) {
+	护心铠(诺艾尔* role, u32 endTime) :Buff(role, endTime) {
 		//set
 	};
-	void  Action(uint32_t data) {
+	void  Action(u32 data) {
 
 	};
 	void DamageModify() {

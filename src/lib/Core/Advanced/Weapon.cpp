@@ -1,5 +1,5 @@
 ﻿#include "Weapon.h"
-namespace Core {
+namespace Advanced {
 	Weapon::Weapon() :BaseObject() {
 	}
 	Weapon::~Weapon() {
