@@ -22,20 +22,24 @@ namespace Advanced {
 	void BuffPool::Update(u32 frame) {
 		BuffNode* cur = buffStart;
 		BuffNode* pre = nullptr;
+		BuffNode* DeleteCur = nullptr;
 		while (cur)
 		{
 			if (cur->data->Update(frame)) {
 				pre = cur;
+				cur = cur->next;
 			}
 			else if (cur->next) {
+				DeleteCur = cur;
 				if (pre) {
 					pre->next = cur->next;
 				}
 				else {
 					buffStart = cur->next;
 				}
+				cur = cur->next;
+				delete DeleteCur;
 			}
-			cur = cur->next;
 		}
 	};
 	/// <summary>
