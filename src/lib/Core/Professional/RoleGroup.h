@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Professional.h"
-namespace Advanced {
-	class Role;
+using namespace Advanced;
+namespace Professional {
 	class RoleGroup
 	{
 	public:

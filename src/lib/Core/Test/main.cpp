@@ -1,10 +1,8 @@
-﻿
-#include <ctime>
+﻿#include <ctime>
 #include <iostream>
-#include "../DB/Role/Land/诺艾尔.h"
+#include "../DB/DB.h"
 #define LOOPCOUNT 1000;
 using namespace std;
-using namespace Advanced;
 //using namespace Role;
 //void testAttr();
 //void testBaseObject();

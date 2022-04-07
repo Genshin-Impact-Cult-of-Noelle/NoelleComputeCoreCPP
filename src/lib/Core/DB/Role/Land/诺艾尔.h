@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "../../../professional/Professional.h"
-using namespace Advanced;
+#include "../../DB.h"
+using namespace Professional;
 class 诺艾尔 : public Role
 {
 public:

@@ -18,9 +18,15 @@
     <ClCompile Include="role\land\诺艾尔.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DB.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="role\land\诺艾尔.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

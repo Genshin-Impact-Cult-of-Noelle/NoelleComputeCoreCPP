@@ -100,12 +100,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Role.cpp" />
     <ClCompile Include="RoleGroup.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Professional.h" />
-    <ClInclude Include="Role.h" />
     <ClInclude Include="RoleGroup.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

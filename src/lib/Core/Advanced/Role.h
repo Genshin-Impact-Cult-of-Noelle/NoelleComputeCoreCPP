@@ -1,8 +1,15 @@
 ﻿#pragma once
-#include "Professional.h"
+#include "Advanced.h"
 using namespace Atom;
 namespace Advanced {
 	class Damage;
+	class ArtifactGroup;
+	class Artifact;
+	class Weapon;
+	class BuffPool;
+	class Character;
+	class Character;
+	class Buff;
 	/// <summary>
 	/// 高级角色类、真实角色的下一层
 	/// </summary>
@@ -99,4 +106,5 @@ namespace Advanced {
 		/// </summary>
 		BuffPool* rawBuffPool;
 	};
+
 }

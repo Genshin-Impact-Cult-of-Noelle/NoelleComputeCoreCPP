@@ -1,4 +1,5 @@
 ﻿#pragma once
+
 #include "Advanced.h"
 using namespace Atom;
 namespace Advanced {
