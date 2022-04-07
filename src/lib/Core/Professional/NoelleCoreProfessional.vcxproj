@@ -99,7 +99,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="RoleGroup.cpp" />
   </ItemGroup>
   <ItemGroup>

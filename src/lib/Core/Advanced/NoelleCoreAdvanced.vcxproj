@@ -103,7 +103,6 @@
     <ClCompile Include="Buff.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Damage.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Role.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>

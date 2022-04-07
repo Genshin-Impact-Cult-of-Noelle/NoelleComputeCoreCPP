@@ -1,4 +1,0 @@
-﻿#include "Atom.h"
-int main() {
-	return 0;
-}

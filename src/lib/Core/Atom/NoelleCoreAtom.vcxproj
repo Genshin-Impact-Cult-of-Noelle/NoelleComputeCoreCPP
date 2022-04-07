@@ -102,8 +102,6 @@
     <ClCompile Include="Attr.cpp" />
     <ClCompile Include="BaseObject.cpp" />
     <ClCompile Include="Enum.cpp" />
-    <ClCompile Include="Err.cpp" />
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Atom.h" />

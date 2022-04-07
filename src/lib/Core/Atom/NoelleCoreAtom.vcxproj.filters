@@ -24,12 +24,6 @@
     <ClCompile Include="Enum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Err.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Atom.h">
