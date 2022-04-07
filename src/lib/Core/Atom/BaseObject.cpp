@@ -44,9 +44,9 @@ namespace Atom {
 			return isDef ? (EElectricDef) : (EElectricDmg);
 		case ElementType::Grass:
 			return isDef ? (EGrassDef) : (EGrassDmg);
-		case ElementType::Land:
+		case ElementType::Geo:
 			return isDef ? (ELandDef) : (ELandDmg);
-		case ElementType::Wind:
+		case ElementType::Anemo:
 			return isDef ? (EWindDef) : (EWindDmg);
 		case ElementType::Physical:
 			return isDef ? (EPhysicalDef) : (EPhysicalDmg);
@@ -348,9 +348,9 @@ namespace Atom {
 			return isDef ? EElectricDef : EElectricDmg;
 		case ElementType::Grass:
 			return isDef ? EGrassDef : EGrassDmg;
-		case ElementType::Land:
+		case ElementType::Geo:
 			return isDef ? ELandDef : ELandDmg;
-		case ElementType::Wind:
+		case ElementType::Anemo:
 			return isDef ? EWindDef : EWindDmg;
 		case ElementType::Physical:
 			return isDef ? EPhysicalDef : EPhysicalDmg;

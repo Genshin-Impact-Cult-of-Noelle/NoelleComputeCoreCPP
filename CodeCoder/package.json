@@ -1,0 +1,46 @@
+{
+  "name": "noelle-core",
+  "version": "0.4.8-beta",
+  "description": "诺艾尔神教-九章机-内核",
+  "main": "main/index.js",
+  "types": "main/types/index.d.ts",
+  "keywords": [
+    "noelle",
+    "原神",
+    "typescript",
+    "诺艾尔神教",
+    "Genshin"
+  ],
+  "files": [
+    "main",
+    "package.json",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/U1405/noelleComputeCore"
+  },
+  "scripts": {
+    "test": "npm run build && node main",
+    "build": "webpack && tsc --declarationDir ./main/types",
+    "update": "npm run build  && npm publish",
+    "upbeta": "npm run build  && npm publish --tag=beta",
+    "ftest": "node main"
+  },
+  "author": "yueao7",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "@types/webpack-env": "^1.16.3",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.6.2"
+  },
+  "tsd": {
+    "compilerOptions": {
+      "esModuleInterop": true
+    }
+  },
+  "dependencies": {
+    "genshin-db": "^4.1.1"
+  }
+}

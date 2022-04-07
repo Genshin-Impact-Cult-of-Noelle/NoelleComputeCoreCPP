@@ -13,21 +13,63 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="角色">
+      <UniqueIdentifier>{d4c2862a-c0e7-4b1c-bdf6-9c47b5c5c5d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="角色\岩">
+      <UniqueIdentifier>{1036ff87-f3bc-44e3-b53f-f0dcfb585166}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="role\land\诺艾尔.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Role\Geo\云堇.cpp">
+      <Filter>角色\岩</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Geo\五郎.cpp">
+      <Filter>角色\岩</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Geo\凝光.cpp">
+      <Filter>角色\岩</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Geo\荒泷一斗.cpp">
+      <Filter>角色\岩</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Geo\诺艾尔.cpp">
+      <Filter>角色\岩</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Geo\钟离.cpp">
+      <Filter>角色\岩</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Geo\阿贝多.cpp">
+      <Filter>角色\岩</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="role\land\诺艾尔.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DB.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Geo\云堇.h">
+      <Filter>角色\岩</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Geo\五郎.h">
+      <Filter>角色\岩</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Geo\凝光.h">
+      <Filter>角色\岩</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Geo\荒泷一斗.h">
+      <Filter>角色\岩</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Geo\诺艾尔.h">
+      <Filter>角色\岩</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Geo\钟离.h">
+      <Filter>角色\岩</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Geo\阿贝多.h">
+      <Filter>角色\岩</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

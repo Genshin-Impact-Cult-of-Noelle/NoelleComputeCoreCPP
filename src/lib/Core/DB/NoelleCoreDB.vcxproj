@@ -100,11 +100,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DB.cpp" />
-    <ClCompile Include="role\land\诺艾尔.cpp" />
+    <ClCompile Include="Role\Geo\云堇.cpp" />
+    <ClCompile Include="Role\Geo\五郎.cpp" />
+    <ClCompile Include="Role\Geo\凝光.cpp" />
+    <ClCompile Include="Role\Geo\荒泷一斗.cpp" />
+    <ClCompile Include="Role\Geo\诺艾尔.cpp" />
+    <ClCompile Include="Role\Geo\钟离.cpp" />
+    <ClCompile Include="Role\Geo\阿贝多.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB.h" />
-    <ClInclude Include="role\land\诺艾尔.h" />
+    <ClInclude Include="Role\Geo\云堇.h" />
+    <ClInclude Include="Role\Geo\五郎.h" />
+    <ClInclude Include="Role\Geo\凝光.h" />
+    <ClInclude Include="Role\Geo\荒泷一斗.h" />
+    <ClInclude Include="Role\Geo\诺艾尔.h" />
+    <ClInclude Include="Role\Geo\钟离.h" />
+    <ClInclude Include="Role\Geo\阿贝多.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Professional\NoelleCoreProfessional.vcxproj">

@@ -4,10 +4,10 @@ namespace Atom {
 	namespace Enum {
 
 		enum class CharacterGender {
-			//女
-			Gril,
 			//男
-			Boy,
+			Male,
+			//女
+			Female,
 			//未知
 			Unknow
 		};
@@ -45,9 +45,9 @@ namespace Atom {
 			//草
 			Grass,
 			//岩
-			Land,
+			Geo,
 			//风
-			Wind,
+			Anemo,
 			//物理
 			Physical
 		};
