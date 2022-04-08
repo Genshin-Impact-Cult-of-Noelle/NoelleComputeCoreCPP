@@ -1,7 +1,7 @@
 ﻿#include <ctime>
 #include <iostream>
 #include "../DB/DB.h"
-#define LOOPCOUNT 1000000;
+#define LOOPCOUNT 10000000;
 using namespace std;
 using namespace Advanced;
 using namespace DB::RoleConstruct;
@@ -13,6 +13,13 @@ using namespace DB::RoleConstruct;
 //Attr* LoopSwitchFindTest();
 //void LoopRand();
 void main() {
+	//指针->隐->实例（可以)
+	//实例->隐->指针（不可以）
+
+	Attr* c = new Attr(10, 20, 30);
+	Attr a = c;
+	Attr* y = new Attr[5]{ c };
+	cout << c->LastValue() << endl << a.LastValue() << endl << (*y).LastValue() << endl;
 	Advanced::Role* x = nullptr;
 	int LoopCount;
 	LoopCount = LOOPCOUNT;
