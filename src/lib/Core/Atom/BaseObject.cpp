@@ -3,56 +3,6 @@ using namespace Atom::Enum;
 namespace Atom {
 
 #pragma region 实例基类
-	Attr* BaseObject::GetAttrCur(u32 key) {
-		AttrType  typeKey = AttrType(key & 0xFF);
-		switch (typeKey)
-		{
-		case AttrType::Atk:
-			return Atk;
-		case AttrType::Def:
-			return Def;
-		case AttrType::Helath:
-			return Helath;
-		case AttrType::ElementMaster:
-			return ElementMaster;
-		case AttrType::CritRate:
-			return CritRate;
-		case AttrType::CritDamage:
-			return CritDamage;
-		case AttrType::CureRate:
-			return CureRate;
-		case AttrType::BeCureRate:
-			return BeCureRate;
-		case AttrType::ChargeRate:
-			return ChargeRate;
-		case AttrType::ColdDownRate:
-			return ColdDownRate;
-		case AttrType::ArmorRate:
-			return ArmorRate;
-		}
-		bool isDef = typeKey == AttrType::ElementDef;
-		ElementType element = ElementType((key & 0xFF00) >> 8);
-		switch (element)
-		{
-		case ElementType::Hydro:
-			return isDef ? (EWaterDef) : (EWaterDmg);
-		case ElementType::Pyro:
-			return isDef ? (EFireDef) : (EFireDmg);
-		case ElementType::Cryo:
-			return isDef ? (EIceDef) : (EIceDmg);
-		case ElementType::Electro:
-			return isDef ? (EElectricDef) : (EElectricDmg);
-		case ElementType::Grass:
-			return isDef ? (EGrassDef) : (EGrassDmg);
-		case ElementType::Geo:
-			return isDef ? (ELandDef) : (ELandDmg);
-		case ElementType::Anemo:
-			return isDef ? (EWindDef) : (EWindDmg);
-		case ElementType::Physical:
-			return isDef ? (EPhysicalDef) : (EPhysicalDmg);
-		}
-		throw new Err::SkillErr();
-	}
 	BaseObject::Result::~Result() {
 	}
 	BaseObject::Result::Result() {
@@ -166,22 +116,22 @@ namespace Atom {
 		ColdDownRate = Attr::Zero();
 		ArmorRate = Attr::Zero();
 
-		EWaterDef = Attr::Zero();
-		EFireDef = Attr::Zero();
-		EIceDef = Attr::Zero();
-		EElectricDef = Attr::Zero();
-		EGrassDef = Attr::Zero();
-		ELandDef = Attr::Zero();
-		EWindDef = Attr::Zero();
+		EHydroDef = Attr::Zero();
+		EPyroDef = Attr::Zero();
+		ECryoDef = Attr::Zero();
+		EElectroDef = Attr::Zero();
+		EDendroDef = Attr::Zero();
+		EGeoDef = Attr::Zero();
+		EAnemoDef = Attr::Zero();
 		EPhysicalDef = Attr::Zero();
 
-		EWaterDmg = Attr::Zero();
-		EFireDmg = Attr::Zero();
-		EIceDmg = Attr::Zero();
-		EElectricDmg = Attr::Zero();
-		EGrassDmg = Attr::Zero();
-		ELandDmg = Attr::Zero();
-		EWindDmg = Attr::Zero();
+		EHydroDmg = Attr::Zero();
+		EPyroDmg = Attr::Zero();
+		ECryoDmg = Attr::Zero();
+		EElectroDmg = Attr::Zero();
+		EDendroDmg = Attr::Zero();
+		EGeoDmg = Attr::Zero();
+		EAnemoDmg = Attr::Zero();
 		EPhysicalDmg = Attr::Zero();
 
 		result = new Result();
@@ -200,25 +150,23 @@ namespace Atom {
 		delete ChargeRate;
 		delete ColdDownRate;
 		delete ArmorRate;
-		delete EWaterDef;
-		delete EFireDef;
-		delete EIceDef;
-		delete EElectricDef;
-		delete EGrassDef;
-		delete ELandDef;
-		delete EWindDef;
+		delete EHydroDef;
+		delete EPyroDef;
+		delete ECryoDef;
+		delete EElectroDef;
+		delete EDendroDef;
+		delete EGeoDef;
+		delete EAnemoDef;
 		delete EPhysicalDef;
-		delete EWaterDmg;
-		delete EFireDmg;
-		delete EIceDmg;
-		delete EElectricDmg;
-		delete EGrassDmg;
-		delete ELandDmg;
-		delete EWindDmg;
+		delete EHydroDmg;
+		delete EPyroDmg;
+		delete ECryoDmg;
+		delete EElectroDmg;
+		delete EDendroDmg;
+		delete EGeoDmg;
+		delete EAnemoDmg;
 		delete EPhysicalDmg;
 		delete result;
-		changed = false;
-
 	}
 	BaseObject::BaseObject(Attr** datas) {
 		Atk = datas[0];
@@ -232,21 +180,21 @@ namespace Atom {
 		ChargeRate = datas[8];
 		ColdDownRate = datas[9];
 		ArmorRate = datas[10];
-		EWaterDef = datas[11];
-		EFireDef = datas[12];
-		EIceDef = datas[13];
-		EElectricDef = datas[14];
-		EGrassDef = datas[15];
-		ELandDef = datas[16];
-		EWindDef = datas[17];
+		EHydroDef = datas[11];
+		EPyroDef = datas[12];
+		ECryoDef = datas[13];
+		EElectroDef = datas[14];
+		EDendroDef = datas[15];
+		EGeoDef = datas[16];
+		EAnemoDef = datas[17];
 		EPhysicalDef = datas[18];
-		EWaterDmg = datas[19];
-		EFireDmg = datas[20];
-		EIceDmg = datas[21];
-		EElectricDmg = datas[22];
-		EGrassDmg = datas[23];
-		ELandDmg = datas[24];
-		EWindDmg = datas[25];
+		EHydroDmg = datas[19];
+		EPyroDmg = datas[20];
+		ECryoDmg = datas[21];
+		EElectroDmg = datas[22];
+		EDendroDmg = datas[23];
+		EGeoDmg = datas[24];
+		EAnemoDmg = datas[25];
 		EPhysicalDmg = datas[26];
 		result = new Result();
 		changed = false;
@@ -269,34 +217,36 @@ namespace Atom {
 		ColdDownRate->Add(data->ColdDownRate);
 		ArmorRate->Add(data->ArmorRate);
 
-		EWaterDef->Add(data->EWaterDef);
-		EFireDef->Add(data->EFireDef);
-		EIceDef->Add(data->EIceDef);
-		EElectricDef->Add(data->EElectricDef);
-		EGrassDef->Add(data->EGrassDef);
-		ELandDef->Add(data->ELandDef);
-		EWindDef->Add(data->EWindDef);
+		EHydroDef->Add(data->EHydroDef);
+		EPyroDef->Add(data->EPyroDef);
+		ECryoDef->Add(data->ECryoDef);
+		EElectroDef->Add(data->EElectroDef);
+		EDendroDef->Add(data->EDendroDef);
+		EGeoDef->Add(data->EGeoDef);
+		EAnemoDef->Add(data->EAnemoDef);
 		EPhysicalDef->Add(data->EPhysicalDef);
 
-		EWaterDmg->Add(data->EWaterDmg);
-		EFireDmg->Add(data->EFireDmg);
-		EIceDmg->Add(data->EIceDmg);
-		EElectricDmg->Add(data->EElectricDmg);
-		EGrassDmg->Add(data->EGrassDmg);
-		ELandDmg->Add(data->ELandDmg);
-		EWindDmg->Add(data->EWindDmg);
+		EHydroDmg->Add(data->EHydroDmg);
+		EPyroDmg->Add(data->EPyroDmg);
+		ECryoDmg->Add(data->ECryoDmg);
+		EElectroDmg->Add(data->EElectroDmg);
+		EDendroDmg->Add(data->EDendroDmg);
+		EGeoDmg->Add(data->EGeoDmg);
+		EAnemoDmg->Add(data->EAnemoDmg);
 		EPhysicalDmg->Add(data->EPhysicalDmg);
 		return this;
 
 	}
 
 	BaseObject* BaseObject::Add(u32 key, Attr* data) {
-		SetAttr(key, data);
+		changed = true;
+		GetAttr(key)->Add(data);
 		return this;
 	}
 
 	BaseObject* BaseObject::Add(u32 key, BaseObject* data) {
-		SetAttr(key, data->GetAttr(key));
+		changed = true;
+		GetAttr(key)->Add(data->GetAttr(key));
 		return this;
 	}
 	BaseObject* BaseObject::SetAttr(u32 key, Attr* data) {
@@ -339,19 +289,19 @@ namespace Atom {
 		switch (element)
 		{
 		case ElementType::Hydro:
-			return isDef ? EWaterDef : EWaterDmg;
+			return isDef ? EHydroDef : EHydroDmg;
 		case ElementType::Pyro:
-			return isDef ? EFireDef : EFireDmg;
+			return isDef ? EPyroDef : EPyroDmg;
 		case ElementType::Cryo:
-			return isDef ? EIceDef : EIceDmg;
+			return isDef ? ECryoDef : ECryoDmg;
 		case ElementType::Electro:
-			return isDef ? EElectricDef : EElectricDmg;
-		case ElementType::Grass:
-			return isDef ? EGrassDef : EGrassDmg;
+			return isDef ? EElectroDef : EElectroDmg;
+		case ElementType::Dendro:
+			return isDef ? EDendroDef : EDendroDmg;
 		case ElementType::Geo:
-			return isDef ? ELandDef : ELandDmg;
+			return isDef ? EGeoDef : EGeoDmg;
 		case ElementType::Anemo:
-			return isDef ? EWindDef : EWindDmg;
+			return isDef ? EAnemoDef : EAnemoDmg;
 		case ElementType::Physical:
 			return isDef ? EPhysicalDef : EPhysicalDmg;
 		}
@@ -370,20 +320,20 @@ namespace Atom {
 		ChargeRate->Clean();
 		ColdDownRate->Clean();
 		ArmorRate->Clean();
-		EWaterDef->Clean();
-		EWaterDmg->Clean();
-		EFireDef->Clean();
-		EFireDmg->Clean();
-		EIceDef->Clean();
-		EIceDmg->Clean();
-		EElectricDef->Clean();
-		EElectricDmg->Clean();
-		EGrassDef->Clean();
-		EGrassDmg->Clean();
-		ELandDef->Clean();
-		ELandDmg->Clean();
-		EWindDef->Clean();
-		EWindDmg->Clean();
+		EHydroDef->Clean();
+		EHydroDmg->Clean();
+		EPyroDef->Clean();
+		EPyroDmg->Clean();
+		ECryoDef->Clean();
+		ECryoDmg->Clean();
+		EElectroDef->Clean();
+		EElectroDmg->Clean();
+		EDendroDef->Clean();
+		EDendroDmg->Clean();
+		EGeoDef->Clean();
+		EGeoDmg->Clean();
+		EAnemoDef->Clean();
+		EAnemoDmg->Clean();
 		EPhysicalDef->Clean();
 		EPhysicalDmg->Clean();
 	}
@@ -400,20 +350,20 @@ namespace Atom {
 		ChargeRate->Copy(other->ChargeRate);
 		ColdDownRate->Copy(other->ColdDownRate);
 		ArmorRate->Copy(other->ArmorRate);
-		EWaterDef->Copy(other->EWaterDef);
-		EWaterDmg->Copy(other->EWaterDmg);
-		EFireDef->Copy(other->EFireDef);
-		EFireDmg->Copy(other->EFireDmg);
-		EIceDef->Copy(other->EIceDef);
-		EIceDmg->Copy(other->EIceDmg);
-		EElectricDef->Copy(other->EElectricDef);
-		EElectricDmg->Copy(other->EElectricDmg);
-		EGrassDef->Copy(other->EGrassDef);
-		EGrassDmg->Copy(other->EGrassDmg);
-		ELandDef->Copy(other->ELandDef);
-		ELandDmg->Copy(other->ELandDmg);
-		EWindDef->Copy(other->EWindDef);
-		EWindDmg->Copy(other->EWindDmg);
+		EHydroDef->Copy(other->EHydroDef);
+		EHydroDmg->Copy(other->EHydroDmg);
+		EPyroDef->Copy(other->EPyroDef);
+		EPyroDmg->Copy(other->EPyroDmg);
+		ECryoDef->Copy(other->ECryoDef);
+		ECryoDmg->Copy(other->ECryoDmg);
+		EElectroDef->Copy(other->EElectroDef);
+		EElectroDmg->Copy(other->EElectroDmg);
+		EDendroDef->Copy(other->EDendroDef);
+		EDendroDmg->Copy(other->EDendroDmg);
+		EGeoDef->Copy(other->EGeoDef);
+		EGeoDmg->Copy(other->EGeoDmg);
+		EAnemoDef->Copy(other->EAnemoDef);
+		EAnemoDmg->Copy(other->EAnemoDmg);
 		EPhysicalDef->Copy(other->EPhysicalDef);
 		EPhysicalDmg->Copy(other->EPhysicalDmg);
 		return this;
@@ -433,20 +383,20 @@ namespace Atom {
 		result->ChargeRate = ChargeRate->LastValue();
 		result->ColdDownRate = ColdDownRate->LastValue();
 		result->ArmorRate = ArmorRate->LastValue();
-		result->EWaterDef = EWaterDef->LastValue();
-		result->EWaterDmg = EWaterDmg->LastValue();
-		result->EFireDef = EFireDef->LastValue();
-		result->EFireDmg = EFireDmg->LastValue();
-		result->EIceDef = EIceDef->LastValue();
-		result->EIceDmg = EIceDmg->LastValue();
-		result->EElectricDef = EElectricDef->LastValue();
-		result->EElectricDmg = EElectricDmg->LastValue();
-		result->EGrassDef = EGrassDef->LastValue();
-		result->EGrassDmg = EGrassDmg->LastValue();
-		result->ELandDef = ELandDef->LastValue();
-		result->ELandDmg = ELandDmg->LastValue();
-		result->EWindDef = EWindDef->LastValue();
-		result->EWindDmg = EWindDmg->LastValue();
+		result->EWaterDef = EHydroDef->LastValue();
+		result->EWaterDmg = EHydroDmg->LastValue();
+		result->EFireDef = EPyroDef->LastValue();
+		result->EFireDmg = EPyroDmg->LastValue();
+		result->EIceDef = ECryoDef->LastValue();
+		result->EIceDmg = ECryoDmg->LastValue();
+		result->EElectricDef = EElectroDef->LastValue();
+		result->EElectricDmg = EElectroDmg->LastValue();
+		result->EGrassDef = EDendroDef->LastValue();
+		result->EGrassDmg = EDendroDmg->LastValue();
+		result->ELandDef = EGeoDef->LastValue();
+		result->ELandDmg = EGeoDmg->LastValue();
+		result->EWindDef = EAnemoDef->LastValue();
+		result->EWindDmg = EAnemoDmg->LastValue();
 		result->EPhysicalDef = EPhysicalDef->LastValue();
 		result->EPhysicalDmg = EPhysicalDmg->LastValue();
 		changed = false;

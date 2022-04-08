@@ -43,7 +43,7 @@ namespace Atom {
 			//电
 			Electro,
 			//草
-			Grass,
+			Dendro,
 			//岩
 			Geo,
 			//风

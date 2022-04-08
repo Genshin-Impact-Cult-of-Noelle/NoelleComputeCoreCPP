@@ -57,8 +57,6 @@ namespace Atom {
 		Result* LastValue();
 		void Clean();
 	protected:
-
-		Attr* GetAttrCur(u32);
 		//变更
 		bool changed;
 		//计算结果<u32,double>
@@ -86,22 +84,22 @@ namespace Atom {
 		//护盾强效
 		Attr* ArmorRate;
 
-		Attr* EWaterDef;
-		Attr* EFireDef;
-		Attr* EIceDef;
-		Attr* EElectricDef;
-		Attr* EGrassDef;
-		Attr* ELandDef;
-		Attr* EWindDef;
+		Attr* EHydroDef;
+		Attr* EPyroDef;
+		Attr* ECryoDef;
+		Attr* EElectroDef;
+		Attr* EDendroDef;
+		Attr* EGeoDef;
+		Attr* EAnemoDef;
 		Attr* EPhysicalDef;
 
-		Attr* EWaterDmg;
-		Attr* EFireDmg;
-		Attr* EIceDmg;
-		Attr* EElectricDmg;
-		Attr* EGrassDmg;
-		Attr* ELandDmg;
-		Attr* EWindDmg;
+		Attr* EHydroDmg;
+		Attr* EPyroDmg;
+		Attr* ECryoDmg;
+		Attr* EElectroDmg;
+		Attr* EDendroDmg;
+		Attr* EGeoDmg;
+		Attr* EAnemoDmg;
 		Attr* EPhysicalDmg;
 	};
 #pragma endregion
