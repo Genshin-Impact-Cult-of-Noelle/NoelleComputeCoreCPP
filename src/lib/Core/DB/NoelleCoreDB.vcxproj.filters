@@ -19,11 +19,23 @@
     <Filter Include="角色\岩">
       <UniqueIdentifier>{1036ff87-f3bc-44e3-b53f-f0dcfb585166}</UniqueIdentifier>
     </Filter>
+    <Filter Include="角色\水">
+      <UniqueIdentifier>{89708909-ce2e-40a7-8837-09a7627b1432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="角色\火">
+      <UniqueIdentifier>{16af34bc-9f5c-499e-bcc5-8ffef03520f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="角色\风">
+      <UniqueIdentifier>{d890b726-d0ad-46f3-a5b9-4e7012265a0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="角色\雷">
+      <UniqueIdentifier>{8a902155-e119-41d9-8f40-a3dead387c03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="角色\冰">
+      <UniqueIdentifier>{c3585eb5-f255-4a26-b45f-362e8044facc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Role\Geo\云堇.cpp">
       <Filter>角色\岩</Filter>
     </ClCompile>
@@ -44,6 +56,129 @@
     </ClCompile>
     <ClCompile Include="Role\Geo\阿贝多.cpp">
       <Filter>角色\岩</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\丽莎.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\九条裟罗.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\八重神子.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\刻晴.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\北斗.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\菲谢尔.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\雷泽.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Electro\雷电将军.cpp">
+      <Filter>角色\雷</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\七七.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\优菈.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\凯亚.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\埃洛伊.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\甘雨.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\申鹤.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\神里绫华.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\罗莎莉亚.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\迪奥娜.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Cryo\重云.cpp">
+      <Filter>角色\冰</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Anemo\早柚.cpp">
+      <Filter>角色\风</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Anemo\枫原万叶.cpp">
+      <Filter>角色\风</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Anemo\温迪.cpp">
+      <Filter>角色\风</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Anemo\琴.cpp">
+      <Filter>角色\风</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Anemo\砂糖.cpp">
+      <Filter>角色\风</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Anemo\魈.cpp">
+      <Filter>角色\风</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Hydro\珊瑚宫心海.cpp">
+      <Filter>角色\水</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Hydro\神里绫人.cpp">
+      <Filter>角色\水</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Hydro\芭芭拉.cpp">
+      <Filter>角色\水</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Hydro\莫娜.cpp">
+      <Filter>角色\水</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Hydro\行秋.cpp">
+      <Filter>角色\水</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Hydro\达达利亚.cpp">
+      <Filter>角色\水</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\可莉.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\安柏.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\宵宫.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\托马.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\烟绯.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\班尼特.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\胡桃.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\辛焱.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\迪卢克.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Pyro\香菱.cpp">
+      <Filter>角色\火</Filter>
+    </ClCompile>
+    <ClCompile Include="Role\Role.cpp">
+      <Filter>角色</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +205,129 @@
     </ClInclude>
     <ClInclude Include="Role\Geo\阿贝多.h">
       <Filter>角色\岩</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Role.h">
+      <Filter>角色</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\丽莎.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\九条裟罗.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\八重神子.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\刻晴.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\北斗.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\菲谢尔.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\雷泽.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Electro\雷电将军.h">
+      <Filter>角色\雷</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\七七.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\优菈.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\凯亚.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\埃洛伊.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\甘雨.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\申鹤.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\神里绫华.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\罗莎莉亚.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\迪奥娜.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Cryo\重云.h">
+      <Filter>角色\冰</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Anemo\早柚.h">
+      <Filter>角色\风</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Anemo\枫原万叶.h">
+      <Filter>角色\风</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Anemo\温迪.h">
+      <Filter>角色\风</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Anemo\琴.h">
+      <Filter>角色\风</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Anemo\砂糖.h">
+      <Filter>角色\风</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Anemo\魈.h">
+      <Filter>角色\风</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Hydro\珊瑚宫心海.h">
+      <Filter>角色\水</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Hydro\神里绫人.h">
+      <Filter>角色\水</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Hydro\芭芭拉.h">
+      <Filter>角色\水</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Hydro\莫娜.h">
+      <Filter>角色\水</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Hydro\行秋.h">
+      <Filter>角色\水</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Hydro\达达利亚.h">
+      <Filter>角色\水</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\可莉.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\安柏.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\宵宫.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\托马.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\烟绯.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\班尼特.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\胡桃.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\辛焱.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\迪卢克.h">
+      <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Role\Pyro\香菱.h">
+      <Filter>角色\火</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,7 +1,10 @@
 import * as genshindb from "genshin-db"
 import * as fs from "fs"
-const RolePath = "E:\\work\\noelleCoreCPP\\src\\lib\\Core\\DB\\Role\\"
+const RolePath = "..\\src\\lib\\Core\\DB\\Role\\"
 const ElementMap: any = {}
+const SkillDefName = ['A','E','Q','SP']
+let RoleNames:any[] = [];
+
 genshindb.characters('names', { matchCategories: true }).map(name => {
     let character = genshindb.characters(name)
     let characterC = genshindb.characters(name, { resultLanguage: genshindb.Languages.ChineseSimplified })
@@ -12,37 +15,40 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
     if (data && character && star) {
         let { gender: 性别, element: 属性, weapontype: 武器, substat: 突破属性 } = character;
         let 技能表 = [data.combat1, data.combat2, data.combat3];
-        data.combatsp && 技能表.push(data.combatsp)
+        
         let 被动表 = [data.passive1, data.passive2]
         data.passive3 && 被动表.push(data.passive3)
         data.passive4 && 被动表.push(data.passive4)
+        data.combatsp && 被动表.push(data.combatsp)
         let stat = character.stats(90);
         let 命座 = [star.c1, star.c2, star.c3, star.c4, star.c5, star.c6]
         let 名字 = data.name;
         ElementMap[属性] = ""
         let H =
-            `\uFEFF
-        #pragma once
+            `\uFEFF#pragma once
         #include "../Role.h"
         using namespace Professional;
-        namespace  ${属性}{
-        class ${名字} : public Role
-        {
-        public:
-            ~${名字}();
-            ${名字}();
-            void A(Role*, u8*);
-            void E(Role*, u8*);
-            void Q(Role*, u8*);
-        private:
+        namespace DB {
+            namespace RoleConstruct {        
+                class ${名字} : public Role
+                {
+                public:
+                    ~${名字}();
+                    ${名字}();
+                    void A(Role*, u32);
+                    void E(Role*, u32);
+                    void Q(Role*, u32);
+                    void SP(Role*,u32);
+                private:
         
-        };
+                };
+            }
         }
         `;
         let CPP =
-            `\uFEFF
+            `\uFEFF#pragma once
         #include "${名字}.h"
-        using namespace Role;
+        using namespace DB::RoleConstruct;
         //TODO:AUTO${名字}.cpp
         const double HP =  ${stat.hp || 0};
         const double ATK =  ${stat.attack || 0};
@@ -50,7 +56,6 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
         //${characterC?.substat}
         const double OTHER = ${stat.specialized || 0};
         
-        namespace ${属性}{
         ${名字}::~${名字}() {
         }
         ${名字}::${名字}() {
@@ -62,8 +67,8 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
 			* CritRateAttr = new Attr(0.05, 0., 0.),
 			* CritDamageAttr = new Attr(0.5, 0., 0.);
             baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
-		    baseData->SetAttr((u32)AttrType::Atk, DefAttr);
-		    baseData->SetAttr((u32)AttrType::Def, AtkAttr);
+		    baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
+		    baseData->SetAttr((u32)AttrType::Def, DefAttr);
 		    baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
 		    baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
             this->rawCharacter = new Character(baseData, CharacterGender::${性别}, CharacterGroup::Tivat, ElementType::${属性}, WeaponType::${武器});
@@ -91,14 +96,19 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
             ${label}`
                 }).join("")}
             */
-
-            ${Object.keys(技能.attributes.parameters).map((参数键, 参数序号) => {
-
-                    return `
-                    const static double* Skill_${序号 + 1}_${参数序号 + 1} = new double[15]{ ${技能.attributes.parameters[参数键].join(",")} };`
-
-                }).join("")}`
-            }).join("\n")}
+            void ${名字}::${SkillDefName[序号]}(Role* role, u32 cmd) {
+                const static double** SkillPrama = new const double* [15]{${
+                        [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14].map(index=>{
+                        return `
+                        new const double[${Object.keys(技能.attributes.parameters).length}]{ ${Object.keys(技能.attributes.parameters).map((参数键, 参数序号) => {
+                            return 技能.attributes.parameters[参数键][index]
+                        }).join(",")
+                    }}`
+                    })}                    
+                };  
+                const double* curData = SkillPrama[cmd && 0xFF];
+                ////////下面是技能实现   
+            };`}).join("\n\n")}
         /*****${star.name}
         ${命座.map((命, 序号) => {
                 return `
@@ -110,13 +120,7 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
             `
             }).join("")}
         */
-        void ${名字}::A(Role* role, u8* cmd) {
-        };
-        void ${名字}::Q(Role* role, u8* cmd) {        
-        };
-        void ${名字}::E(Role* role, u8* cmd) {        
-        };    
-        }
+         
         `
         let CPPPath = RolePath + `${属性}/${名字}.cpp`
         let HPath = RolePath + `${属性}/${名字}.h`
@@ -131,30 +135,51 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
                     fs.writeFile(HPath, H, () => { })
                 }
 
+            }else{
+                fs.writeFileSync(CPPPath, CPP)
+                fs.writeFile(HPath, H, () => { })
             }
         })
-
         // console.log(CPPPath,HPath);       
-
+        RoleNames.push({名字,属性})
 
     }
 
 });
-const RoleH = `
+const RoleH = `\uFEFF#pragma once
 #include "../DB.h"
-namespace Role{
-   ${Object.keys(ElementMap).map(i => {
-    return `
-    namespace ${i}{};`
-}).join("")} 
+
+namespace DB {
+	namespace RoleConstruct {
+        enum class RoleName
+		{${RoleNames.map(i=>`
+            ${i.名字},`).join("")}
+		};
+		Role* Create(RoleName name);
+	}    
+}
+${RoleNames.map(i=>{
+    return `#include "${i.属性}/${i.名字}.h"\n`
+}).join("")}
+`
+const RoleCPP = 
+`\uFEFF#pragma once
+#include "Role.h"
+Role* DB::RoleConstruct::Create(RoleName name) {
+    switch (name)
+    {${RoleNames.map(i=>`
+    case RoleName::${i.名字}:
+        return new ${i.名字}();`).join("")}
+    default:
+        throw "";
+    }
 }
 `
-let coder = new TextEncoder()
-let decoder = new TextDecoder()
-console.log(RoleH, RolePath + "Role.h");
+// console.log(RoleH, RolePath + "Role.h");
 
 
 fs.writeFile(RolePath + "Role.h", RoleH, () => { })
+fs.writeFile(RolePath + "Role.cpp", RoleCPP, () => { })
 
 
 // genshindb.weapons('names', { matchCategories: true }).map(name=>{
@@ -164,4 +189,3 @@ fs.writeFile(RolePath + "Role.h", RoleH, () => { })
 
 
 // })
-

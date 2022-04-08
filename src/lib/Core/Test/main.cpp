@@ -3,6 +3,8 @@
 #include "../DB/DB.h"
 #define LOOPCOUNT 1000000;
 using namespace std;
+using namespace Advanced;
+using namespace DB::RoleConstruct;
 //using namespace Role;
 //void testAttr();
 //void testBaseObject();
@@ -11,14 +13,15 @@ using namespace std;
 //Attr* LoopSwitchFindTest();
 //void LoopRand();
 void main() {
-	Role* x = nullptr;
+	Advanced::Role* x = nullptr;
 	int LoopCount;
 	LoopCount = LOOPCOUNT;
 	clock_t start, end;
 	start = clock();
 	while (LoopCount--)
 	{
-		x = new 诺艾尔();
+		x = Create(RoleName::五郎);
+		//cout << x;
 		delete x;
 	}
 	//cout << x;

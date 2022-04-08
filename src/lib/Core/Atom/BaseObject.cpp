@@ -34,13 +34,13 @@ namespace Atom {
 		ElementType element = ElementType((key & 0xFF00) >> 8);
 		switch (element)
 		{
-		case ElementType::Water:
+		case ElementType::Hydro:
 			return isDef ? (EWaterDef) : (EWaterDmg);
-		case ElementType::Fire:
+		case ElementType::Pyro:
 			return isDef ? (EFireDef) : (EFireDmg);
-		case ElementType::Ice:
+		case ElementType::Cryo:
 			return isDef ? (EIceDef) : (EIceDmg);
-		case ElementType::Electric:
+		case ElementType::Electro:
 			return isDef ? (EElectricDef) : (EElectricDmg);
 		case ElementType::Grass:
 			return isDef ? (EGrassDef) : (EGrassDmg);
@@ -338,13 +338,13 @@ namespace Atom {
 
 		switch (element)
 		{
-		case ElementType::Water:
+		case ElementType::Hydro:
 			return isDef ? EWaterDef : EWaterDmg;
-		case ElementType::Fire:
+		case ElementType::Pyro:
 			return isDef ? EFireDef : EFireDmg;
-		case ElementType::Ice:
+		case ElementType::Cryo:
 			return isDef ? EIceDef : EIceDmg;
-		case ElementType::Electric:
+		case ElementType::Electro:
 			return isDef ? EElectricDef : EElectricDmg;
 		case ElementType::Grass:
 			return isDef ? EGrassDef : EGrassDmg;

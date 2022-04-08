@@ -35,13 +35,13 @@ namespace Atom {
 			//其他属性
 			OtherElement,
 			//水
-			Water,
+			Hydro,
 			//冰
-			Ice,
+			Cryo,
 			//火
-			Fire,
+			Pyro,
 			//电
-			Electric,
+			Electro,
 			//草
 			Grass,
 			//岩

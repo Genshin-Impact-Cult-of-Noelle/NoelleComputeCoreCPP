@@ -21,17 +21,14 @@
     "url": "https://gitee.com/U1405/noelleComputeCore"
   },
   "scripts": {
-    "test": "npm run build && node main",
-    "build": "webpack && tsc --declarationDir ./main/types",
-    "update": "npm run build  && npm publish",
-    "upbeta": "npm run build  && npm publish --tag=beta",
-    "ftest": "node main"
+    "test": "npm run build && node dist",
+    "build": "tsc",
+    "ftest": "node dist"
   },
   "author": "yueao7",
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^16.11.6",
-    "@types/webpack-env": "^1.16.3",
     "ts-loader": "^9.2.6",
     "typescript": "^4.6.2"
   },

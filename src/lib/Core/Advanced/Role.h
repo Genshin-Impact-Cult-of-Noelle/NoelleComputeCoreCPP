@@ -65,21 +65,21 @@ namespace Advanced {
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
-		virtual	void A(Role*, u8*) = 0;
+		virtual	void A(Role*, u32) = 0;
 		/// <summary>
 		/// 元素战技模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
 
-		virtual	void E(Role*, u8*) = 0;
+		virtual	void E(Role*, u32) = 0;
 		/// <summary>
 		/// 元素爆发模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
 
-		virtual	void Q(Role*, u8*) = 0;
+		virtual	void Q(Role*, u32) = 0;
 
 		/// <summary>
 		/// 结果

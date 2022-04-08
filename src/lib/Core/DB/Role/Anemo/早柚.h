@@ -1,18 +1,20 @@
-﻿
-        #pragma once
+﻿#pragma once
         #include "../Role.h"
         using namespace Professional;
-        namespace  Anemo{
-        class 早柚 : public Role
-        {
-        public:
-            ~早柚();
-            早柚();
-            void A(Role*, u8*);
-            void E(Role*, u8*);
-            void Q(Role*, u8*);
-        private:
+        namespace DB {
+            namespace RoleConstruct {        
+                class 早柚 : public Role
+                {
+                public:
+                    ~早柚();
+                    早柚();
+                    void A(Role*, u32);
+                    void E(Role*, u32);
+                    void Q(Role*, u32);
+                    void SP(Role*,u32);
+                private:
         
-        };
+                };
+            }
         }
         

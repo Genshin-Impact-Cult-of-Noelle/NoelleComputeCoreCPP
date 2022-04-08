@@ -1,18 +1,20 @@
-﻿
-        #pragma once
+﻿#pragma once
         #include "../Role.h"
         using namespace Professional;
-        namespace  Electro{
-        class 菲谢尔 : public Role
-        {
-        public:
-            ~菲谢尔();
-            菲谢尔();
-            void A(Role*, u8*);
-            void E(Role*, u8*);
-            void Q(Role*, u8*);
-        private:
+        namespace DB {
+            namespace RoleConstruct {        
+                class 菲谢尔 : public Role
+                {
+                public:
+                    ~菲谢尔();
+                    菲谢尔();
+                    void A(Role*, u32);
+                    void E(Role*, u32);
+                    void Q(Role*, u32);
+                    void SP(Role*,u32);
+                private:
         
-        };
+                };
+            }
         }
         

@@ -99,7 +99,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DB.cpp" />
+    <ClCompile Include="Role\Anemo\早柚.cpp" />
+    <ClCompile Include="Role\Anemo\枫原万叶.cpp" />
+    <ClCompile Include="Role\Anemo\温迪.cpp" />
+    <ClCompile Include="Role\Anemo\琴.cpp" />
+    <ClCompile Include="Role\Anemo\砂糖.cpp" />
+    <ClCompile Include="Role\Anemo\魈.cpp" />
+    <ClCompile Include="Role\Cryo\七七.cpp" />
+    <ClCompile Include="Role\Cryo\优菈.cpp" />
+    <ClCompile Include="Role\Cryo\凯亚.cpp" />
+    <ClCompile Include="Role\Cryo\埃洛伊.cpp" />
+    <ClCompile Include="Role\Cryo\甘雨.cpp" />
+    <ClCompile Include="Role\Cryo\申鹤.cpp" />
+    <ClCompile Include="Role\Cryo\神里绫华.cpp" />
+    <ClCompile Include="Role\Cryo\罗莎莉亚.cpp" />
+    <ClCompile Include="Role\Cryo\迪奥娜.cpp" />
+    <ClCompile Include="Role\Cryo\重云.cpp" />
+    <ClCompile Include="Role\Electro\丽莎.cpp" />
+    <ClCompile Include="Role\Electro\九条裟罗.cpp" />
+    <ClCompile Include="Role\Electro\八重神子.cpp" />
+    <ClCompile Include="Role\Electro\刻晴.cpp" />
+    <ClCompile Include="Role\Electro\北斗.cpp" />
+    <ClCompile Include="Role\Electro\菲谢尔.cpp" />
+    <ClCompile Include="Role\Electro\雷泽.cpp" />
+    <ClCompile Include="Role\Electro\雷电将军.cpp" />
     <ClCompile Include="Role\Geo\云堇.cpp" />
     <ClCompile Include="Role\Geo\五郎.cpp" />
     <ClCompile Include="Role\Geo\凝光.cpp" />
@@ -107,9 +130,50 @@
     <ClCompile Include="Role\Geo\诺艾尔.cpp" />
     <ClCompile Include="Role\Geo\钟离.cpp" />
     <ClCompile Include="Role\Geo\阿贝多.cpp" />
+    <ClCompile Include="Role\Hydro\珊瑚宫心海.cpp" />
+    <ClCompile Include="Role\Hydro\神里绫人.cpp" />
+    <ClCompile Include="Role\Hydro\芭芭拉.cpp" />
+    <ClCompile Include="Role\Hydro\莫娜.cpp" />
+    <ClCompile Include="Role\Hydro\行秋.cpp" />
+    <ClCompile Include="Role\Hydro\达达利亚.cpp" />
+    <ClCompile Include="Role\Pyro\可莉.cpp" />
+    <ClCompile Include="Role\Pyro\安柏.cpp" />
+    <ClCompile Include="Role\Pyro\宵宫.cpp" />
+    <ClCompile Include="Role\Pyro\托马.cpp" />
+    <ClCompile Include="Role\Pyro\烟绯.cpp" />
+    <ClCompile Include="Role\Pyro\班尼特.cpp" />
+    <ClCompile Include="Role\Pyro\胡桃.cpp" />
+    <ClCompile Include="Role\Pyro\辛焱.cpp" />
+    <ClCompile Include="Role\Pyro\迪卢克.cpp" />
+    <ClCompile Include="Role\Pyro\香菱.cpp" />
+    <ClCompile Include="Role\Role.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB.h" />
+    <ClInclude Include="Role\Anemo\早柚.h" />
+    <ClInclude Include="Role\Anemo\枫原万叶.h" />
+    <ClInclude Include="Role\Anemo\温迪.h" />
+    <ClInclude Include="Role\Anemo\琴.h" />
+    <ClInclude Include="Role\Anemo\砂糖.h" />
+    <ClInclude Include="Role\Anemo\魈.h" />
+    <ClInclude Include="Role\Cryo\七七.h" />
+    <ClInclude Include="Role\Cryo\优菈.h" />
+    <ClInclude Include="Role\Cryo\凯亚.h" />
+    <ClInclude Include="Role\Cryo\埃洛伊.h" />
+    <ClInclude Include="Role\Cryo\甘雨.h" />
+    <ClInclude Include="Role\Cryo\申鹤.h" />
+    <ClInclude Include="Role\Cryo\神里绫华.h" />
+    <ClInclude Include="Role\Cryo\罗莎莉亚.h" />
+    <ClInclude Include="Role\Cryo\迪奥娜.h" />
+    <ClInclude Include="Role\Cryo\重云.h" />
+    <ClInclude Include="Role\Electro\丽莎.h" />
+    <ClInclude Include="Role\Electro\九条裟罗.h" />
+    <ClInclude Include="Role\Electro\八重神子.h" />
+    <ClInclude Include="Role\Electro\刻晴.h" />
+    <ClInclude Include="Role\Electro\北斗.h" />
+    <ClInclude Include="Role\Electro\菲谢尔.h" />
+    <ClInclude Include="Role\Electro\雷泽.h" />
+    <ClInclude Include="Role\Electro\雷电将军.h" />
     <ClInclude Include="Role\Geo\云堇.h" />
     <ClInclude Include="Role\Geo\五郎.h" />
     <ClInclude Include="Role\Geo\凝光.h" />
@@ -117,6 +181,23 @@
     <ClInclude Include="Role\Geo\诺艾尔.h" />
     <ClInclude Include="Role\Geo\钟离.h" />
     <ClInclude Include="Role\Geo\阿贝多.h" />
+    <ClInclude Include="Role\Hydro\珊瑚宫心海.h" />
+    <ClInclude Include="Role\Hydro\神里绫人.h" />
+    <ClInclude Include="Role\Hydro\芭芭拉.h" />
+    <ClInclude Include="Role\Hydro\莫娜.h" />
+    <ClInclude Include="Role\Hydro\行秋.h" />
+    <ClInclude Include="Role\Hydro\达达利亚.h" />
+    <ClInclude Include="Role\Pyro\可莉.h" />
+    <ClInclude Include="Role\Pyro\安柏.h" />
+    <ClInclude Include="Role\Pyro\宵宫.h" />
+    <ClInclude Include="Role\Pyro\托马.h" />
+    <ClInclude Include="Role\Pyro\烟绯.h" />
+    <ClInclude Include="Role\Pyro\班尼特.h" />
+    <ClInclude Include="Role\Pyro\胡桃.h" />
+    <ClInclude Include="Role\Pyro\辛焱.h" />
+    <ClInclude Include="Role\Pyro\迪卢克.h" />
+    <ClInclude Include="Role\Pyro\香菱.h" />
+    <ClInclude Include="Role\Role.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Professional\NoelleCoreProfessional.vcxproj">
