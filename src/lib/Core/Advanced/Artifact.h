@@ -1,18 +1,17 @@
 ﻿#pragma once
 #include "Advanced.h"
-using namespace Atom;
 namespace Advanced {
 #pragma region 圣遗物类
 
-	class Artifact : public BaseObject {
+	class Artifact : public Atom::BaseObject {
 	public:
-		Artifact(Attr**);
+		Artifact(Atom::Attr**);
 	};
 
 #pragma endregion
 
 #pragma region 圣遗物组类
-	class ArtifactGroup : public BaseObject {
+	class ArtifactGroup : public Atom::BaseObject {
 	public:
 		ArtifactGroup();
 		~ArtifactGroup();

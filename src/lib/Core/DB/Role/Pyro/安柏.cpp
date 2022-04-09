@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "安柏.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO安柏.cpp
         const double HP =  9461.175943635753;
         const double ATK =  223.01705909465636;
@@ -10,7 +14,8 @@
         
         安柏::~安柏() {
         }
-        安柏::安柏() {
+        安柏::安柏(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

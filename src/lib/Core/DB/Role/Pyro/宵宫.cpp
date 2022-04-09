@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "宵宫.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO宵宫.cpp
         const double HP =  10164.106317266356;
         const double ATK =  322.890810348541;
@@ -10,7 +14,8 @@
         
         宵宫::~宵宫() {
         }
-        宵宫::宵宫() {
+        宵宫::宵宫(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

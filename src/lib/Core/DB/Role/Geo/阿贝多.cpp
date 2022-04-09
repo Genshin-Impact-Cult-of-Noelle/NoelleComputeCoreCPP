@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "阿贝多.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO阿贝多.cpp
         const double HP =  13225.583793659927;
         const double ATK =  251.13731313623066;
@@ -10,7 +14,8 @@
         
         阿贝多::~阿贝多() {
         }
-        阿贝多::阿贝多() {
+        阿贝多::阿贝多(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

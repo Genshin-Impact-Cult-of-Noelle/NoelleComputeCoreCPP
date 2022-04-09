@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "埃洛伊.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO埃洛伊.cpp
         const double HP =  10898.860644005588;
         const double ATK =  233.916461193734;
@@ -10,7 +14,8 @@
         
         埃洛伊::~埃洛伊() {
         }
-        埃洛伊::埃洛伊() {
+        埃洛伊::埃洛伊(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

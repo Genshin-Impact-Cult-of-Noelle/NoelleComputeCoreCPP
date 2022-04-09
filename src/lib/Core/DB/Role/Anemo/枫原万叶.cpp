@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "枫原万叶.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO枫原万叶.cpp
         const double HP =  13348.04289632407;
         const double ATK =  296.581200862729;
@@ -10,7 +14,8 @@
         
         枫原万叶::~枫原万叶() {
         }
-        枫原万叶::枫原万叶() {
+        枫原万叶::枫原万叶(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

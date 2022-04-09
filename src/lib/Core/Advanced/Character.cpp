@@ -1,4 +1,7 @@
 ﻿#include "Character.h"
+using namespace Atom;
+using namespace Atom::Enum;
+
 namespace Advanced {
 	Character::Character(BaseObject* Data, CharacterGender Gender, CharacterGroup Group, ElementType Element, WeaponType Weapon) {
 		Copy(Data);

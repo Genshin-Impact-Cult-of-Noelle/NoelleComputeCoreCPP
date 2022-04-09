@@ -16,10 +16,14 @@ void main() {
 	//指针->隐->实例（可以)
 	//实例->隐->指针（不可以）
 
-	Attr* c = new Attr(10, 20, 30);
+
+
+	/*Attr* c = new Attr(10, 20, 30);
 	Attr a = c;
 	Attr* y = new Attr[5]{ c };
-	cout << c->LastValue() << endl << a.LastValue() << endl << (*y).LastValue() << endl;
+	cout << c->LastValue() << endl << a.LastValue() << endl << (*y).LastValue() << endl;*/
+	u32* mm = new u32[1];
+	*mm = 15;
 	Advanced::Role* x = nullptr;
 	int LoopCount;
 	LoopCount = LOOPCOUNT;
@@ -27,7 +31,7 @@ void main() {
 	start = clock();
 	while (LoopCount--)
 	{
-		x = Create(RoleName::五郎);
+		x = Create(RoleName::五郎, mm);
 		//cout << x;
 		delete x;
 	}

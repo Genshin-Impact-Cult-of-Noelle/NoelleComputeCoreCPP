@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "七七.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO七七.cpp
         const double HP =  12368.370364256552;
         const double ATK =  287.0140617423858;
@@ -10,7 +14,8 @@
         
         七七::~七七() {
         }
-        七七::七七() {
+        七七::七七(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

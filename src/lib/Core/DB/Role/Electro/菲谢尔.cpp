@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "菲谢尔.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO菲谢尔.cpp
         const double HP =  9189.302834416274;
         const double ATK =  244.256775675296;
@@ -10,7 +14,8 @@
         
         菲谢尔::~菲谢尔() {
         }
-        菲谢尔::菲谢尔() {
+        菲谢尔::菲谢尔(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

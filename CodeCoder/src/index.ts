@@ -27,20 +27,21 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
         let H =
             `\uFEFF#pragma once
         #include "../Role.h"
-        using namespace Professional;
         namespace DB {
             namespace RoleConstruct {        
-                class ${名字} : public Role
+                class ${名字} : public Advanced::Role
                 {
                 public:
                     ~${名字}();
-                    ${名字}();
+                    ${名字}(u32*);
                     void A(Role*, u32);
                     void E(Role*, u32);
                     void Q(Role*, u32);
-                    void SP(Role*,u32);
+                    u32 GetFrameCur(){
+                        return *_framCur;
+                    };
                 private:
-        
+                    u32* _framCur;
                 };
             }
         }
@@ -49,6 +50,10 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
             `\uFEFF#pragma once
         #include "${名字}.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO${名字}.cpp
         const double HP =  ${stat.hp || 0};
         const double ATK =  ${stat.attack || 0};
@@ -58,7 +63,8 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
         
         ${名字}::~${名字}() {
         }
-        ${名字}::${名字}() {
+        ${名字}::${名字}(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -155,7 +161,7 @@ namespace DB {
 		{${RoleNames.map(i=>`
             ${i.名字},`).join("")}
 		};
-		Role* Create(RoleName name);
+		Advanced::Role* Create(RoleName, u32*);
 	}    
 }
 ${RoleNames.map(i=>{
@@ -165,11 +171,12 @@ ${RoleNames.map(i=>{
 const RoleCPP = 
 `\uFEFF#pragma once
 #include "Role.h"
-Role* DB::RoleConstruct::Create(RoleName name) {
+using namespace Advanced;
+Role* DB::RoleConstruct::Create(RoleName name, u32* frameCur) {
     switch (name)
     {${RoleNames.map(i=>`
     case RoleName::${i.名字}:
-        return new ${i.名字}();`).join("")}
+        return new ${i.名字}(frameCur);`).join("")}
     default:
         throw "";
     }

@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "可莉.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO可莉.cpp
         const double HP =  10286.565419930499;
         const double ATK =  310.93189668962077;
@@ -10,7 +14,8 @@
         
         可莉::~可莉() {
         }
-        可莉::可莉() {
+        可莉::可莉(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

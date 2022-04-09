@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "凯亚.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO凯亚.cpp
         const double HP =  11636.159044503409;
         const double ATK =  223.01705909465636;
@@ -10,7 +14,8 @@
         
         凯亚::~凯亚() {
         }
-        凯亚::凯亚() {
+        凯亚::凯亚(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

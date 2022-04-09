@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "莫娜.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO莫娜.cpp
         const double HP =  10409.024522594642;
         const double ATK =  287.0140617423858;
@@ -10,7 +14,8 @@
         
         莫娜::~莫娜() {
         }
-        莫娜::莫娜() {
+        莫娜::莫娜(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

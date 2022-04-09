@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "胡桃.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO胡桃.cpp
         const double HP =  15552.307232559891;
         const double ATK =  106.43438284689182;
@@ -10,7 +14,8 @@
         
         胡桃::~胡桃() {
         }
-        胡桃::胡桃() {
+        胡桃::胡桃(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

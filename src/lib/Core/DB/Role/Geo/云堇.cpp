@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "云堇.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO云堇.cpp
         const double HP =  10657.416653864551;
         const double ATK =  191.15747659430235;
@@ -10,7 +14,8 @@
         
         云堇::~云堇() {
         }
-        云堇::云堇() {
+        云堇::云堇(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

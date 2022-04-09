@@ -1,7 +1,6 @@
 ﻿#include "BaseObject.h"
-using namespace Atom::Enum;
 namespace Atom {
-
+	using namespace Enum;
 #pragma region 实例基类
 	BaseObject::Result::~Result() {
 	}

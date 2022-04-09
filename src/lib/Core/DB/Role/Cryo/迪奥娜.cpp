@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "迪奥娜.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO迪奥娜.cpp
         const double HP =  9569.92523615167;
         const double ATK =  212.39719698963927;
@@ -10,7 +14,8 @@
         
         迪奥娜::~迪奥娜() {
         }
-        迪奥娜::迪奥娜() {
+        迪奥娜::迪奥娜(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

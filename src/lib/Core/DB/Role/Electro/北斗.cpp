@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "北斗.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO北斗.cpp
         const double HP =  13049.897586040897;
         const double ATK =  225.14102222725342;
@@ -10,7 +14,8 @@
         
         北斗::~北斗() {
         }
-        北斗::北斗() {
+        北斗::北斗(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

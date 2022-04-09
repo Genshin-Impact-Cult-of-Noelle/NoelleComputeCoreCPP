@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "Advanced.h"
-using namespace Atom;
 namespace Advanced {
 	class Damage;
 	class ArtifactGroup;
@@ -50,7 +49,7 @@ namespace Advanced {
 		/// <summary>
 		/// 当前最终面板
 		/// </summary>
-		BaseObject::Result* GetLastData();
+		Atom::BaseObject::Result* GetLastData();
 		/// <summary>
 		/// 帧更新
 		/// </summary>
@@ -84,7 +83,7 @@ namespace Advanced {
 		/// <summary>
 		/// 结果
 		/// </summary>
-		BaseObject::Result* result;
+		Atom::BaseObject::Result* result;
 		/// <summary>
 		/// 改变标记
 		/// </summary>		

@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "烟绯.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO烟绯.cpp
         const double HP =  9352.426895260462;
         const double ATK =  240.00881822685915;
@@ -10,7 +14,8 @@
         
         烟绯::~烟绯() {
         }
-        烟绯::烟绯() {
+        烟绯::烟绯(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

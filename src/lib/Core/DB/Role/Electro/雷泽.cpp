@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "雷泽.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO雷泽.cpp
         const double HP =  11962.406412468641;
         const double ATK =  233.63691357027892;
@@ -10,7 +14,8 @@
         
         雷泽::~雷泽() {
         }
-        雷泽::雷泽() {
+        雷泽::雷泽(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

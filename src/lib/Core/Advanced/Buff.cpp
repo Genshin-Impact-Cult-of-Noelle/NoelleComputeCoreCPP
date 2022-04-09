@@ -1,7 +1,9 @@
 ﻿#include "Buff.h"
+using namespace Atom;
 namespace Advanced {
-	Buff::Buff(Role* role, u32 startFrame) {
+	Buff::Buff(Role* role, Role* target, u32 startFrame) {
 		from = role;
+		to = target;
 		deadFrame = startFrame;
 	};
 	bool  Buff::Update(u32 frame) {

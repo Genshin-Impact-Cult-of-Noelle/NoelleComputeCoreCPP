@@ -53,7 +53,7 @@ namespace DB {
             云堇,
             钟离,
 		};
-		Role* Create(RoleName name);
+		Advanced::Role* Create(RoleName, u32*);
 	}    
 }
 #include "Geo/阿贝多.h"

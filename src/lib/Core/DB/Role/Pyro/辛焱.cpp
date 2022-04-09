@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "辛焱.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO辛焱.cpp
         const double HP =  11201.162118580367;
         const double ATK =  248.50470956988465;
@@ -10,7 +14,8 @@
         
         辛焱::~辛焱() {
         }
-        辛焱::辛焱() {
+        辛焱::辛焱(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

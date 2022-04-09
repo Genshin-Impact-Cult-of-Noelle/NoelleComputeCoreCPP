@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "行秋.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO行秋.cpp
         const double HP =  10222.420237524027;
         const double ATK =  201.77733869931944;
@@ -10,7 +14,8 @@
         
         行秋::~行秋() {
         }
-        行秋::行秋() {
+        行秋::行秋(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

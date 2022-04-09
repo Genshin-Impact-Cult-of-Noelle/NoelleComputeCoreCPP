@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "温迪.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO温迪.cpp
         const double HP =  10531.48386939941;
         const double ATK =  263.09622679515087;
@@ -10,7 +14,8 @@
         
         温迪::~温迪() {
         }
-        温迪::温迪() {
+        温迪::温迪(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

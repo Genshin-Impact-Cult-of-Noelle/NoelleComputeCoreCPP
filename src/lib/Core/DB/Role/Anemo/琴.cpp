@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "琴.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO琴.cpp
         const double HP =  14695.093513910891;
         const double ATK =  239.17839184791592;
@@ -10,7 +14,8 @@
         
         琴::~琴() {
         }
-        琴::琴() {
+        琴::琴(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

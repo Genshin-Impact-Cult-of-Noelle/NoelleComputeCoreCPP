@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "砂糖.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO砂糖.cpp
         const double HP =  9243.677602744545;
         const double ATK =  169.91775205143585;
@@ -10,7 +14,8 @@
         
         砂糖::~砂糖() {
         }
-        砂糖::砂糖() {
+        砂糖::砂糖(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

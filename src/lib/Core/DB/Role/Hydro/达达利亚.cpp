@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "达达利亚.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO达达利亚.cpp
         const double HP =  13103.125224382035;
         const double ATK =  301.3647742375979;
@@ -10,7 +14,8 @@
         
         达达利亚::~达达利亚() {
         }
-        达达利亚::达达利亚() {
+        达达利亚::达达利亚(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

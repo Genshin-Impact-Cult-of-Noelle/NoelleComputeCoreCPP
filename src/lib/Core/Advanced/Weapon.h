@@ -1,12 +1,11 @@
 ﻿#pragma once
 #include "Advanced.h"
-using namespace Atom;
 namespace Advanced {
 #pragma region 武器类
 	/// <summary>
 	/// 武器类
 	/// </summary>
-	class Weapon :public BaseObject {
+	class Weapon :public Atom::BaseObject {
 	public:
 		~Weapon();
 		Weapon();

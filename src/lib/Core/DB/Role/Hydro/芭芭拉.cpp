@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "芭芭拉.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO芭芭拉.cpp
         const double HP =  9787.423311600985;
         const double ATK =  159.29789376111603;
@@ -10,7 +14,8 @@
         
         芭芭拉::~芭芭拉() {
         }
-        芭芭拉::芭芭拉() {
+        芭芭拉::芭芭拉(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

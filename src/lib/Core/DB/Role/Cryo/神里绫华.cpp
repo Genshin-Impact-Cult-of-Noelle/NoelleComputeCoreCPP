@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "神里绫华.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO神里绫华.cpp
         const double HP =  12858.207019053749;
         const double ATK =  342.0250962186219;
@@ -10,7 +14,8 @@
         
         神里绫华::~神里绫华() {
         }
-        神里绫华::神里绫华() {
+        神里绫华::神里绫华(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

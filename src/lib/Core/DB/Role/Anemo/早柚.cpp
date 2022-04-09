@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "早柚.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO早柚.cpp
         const double HP =  11853.657119952724;
         const double ATK =  244.256775675296;
@@ -10,7 +14,8 @@
         
         早柚::~早柚() {
         }
-        早柚::早柚() {
+        早柚::早柚(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

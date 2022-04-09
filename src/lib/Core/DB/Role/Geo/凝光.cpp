@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "凝光.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO凝光.cpp
         const double HP =  9787.423311600985;
         const double ATK =  212.39719698963927;
@@ -10,7 +14,8 @@
         
         凝光::~凝光() {
         }
-        凝光::凝光() {
+        凝光::凝光(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

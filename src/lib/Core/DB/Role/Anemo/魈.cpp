@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "魈.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO魈.cpp
         const double HP =  12735.747672248981;
         const double ATK =  349.2004441320678;
@@ -10,7 +14,8 @@
         
         魈::~魈() {
         }
-        魈::魈() {
+        魈::魈(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

@@ -1,32 +1,30 @@
 ﻿#pragma once
 #include "Advanced.h"
-using namespace Atom;
-using namespace Atom::Enum;
 namespace Advanced {
 
 
 
 #pragma region 人物类
 
-	class Character : public BaseObject {
+	class Character : public Atom::BaseObject {
 
 	public:
 
 		Character();
 		~Character();
-		Character(BaseObject*, CharacterGender, CharacterGroup, ElementType, WeaponType);
+		Character(Atom::BaseObject*, Atom::Enum::CharacterGender, Atom::Enum::CharacterGroup, Atom::Enum::ElementType, Atom::Enum::WeaponType);
 
 		//性别
-		CharacterGender gender;
+		Atom::Enum::CharacterGender gender;
 
 		//势力
-		CharacterGroup group;
+		Atom::Enum::CharacterGroup group;
 
 		//神之眼
-		ElementType godEye;
+		Atom::Enum::ElementType godEye;
 
 		//武器类型
-		WeaponType weaponType;
+		Atom::Enum::WeaponType weaponType;
 
 		//命之座
 		//

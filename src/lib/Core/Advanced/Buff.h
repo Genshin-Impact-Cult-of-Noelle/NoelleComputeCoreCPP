@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 #include "Advanced.h"
-using namespace Atom;
 namespace Advanced {
 	class Damage;
 	class Role;
@@ -11,9 +10,9 @@ namespace Advanced {
 	/// void Action(u32)
 	/// void DamageModify(Damage*)
 	/// void BuffUpdate(u32)
-	class Buff : public  BaseObject {
+	class Buff : public  Atom::BaseObject {
 	public:
-		Buff(Role*, u32 = 0);
+		Buff(Role*, Role*, u32 = 0);
 		virtual	void Action(u32) = 0;
 		virtual void DamageModify(Damage*) = 0;
 		virtual void BuffUpdate(u32) = 0;
@@ -21,11 +20,12 @@ namespace Advanced {
 	protected:
 		u32 deadFrame;
 		Role* from;
+		Role* to;
 	};
 	/// <summary>
 	/// buff池子
 	/// </summary>
-	class BuffPool :public BaseObject {
+	class BuffPool :public Atom::BaseObject {
 	public:
 		~BuffPool() {
 			delete buffStart;
@@ -33,7 +33,7 @@ namespace Advanced {
 		BuffPool();
 		void Update(u32);
 		void PushBuff(Buff*);
-		BaseObject::Result* LastValue();
+		Atom::BaseObject::Result* LastValue();
 	private:
 		struct BuffNode {
 			BuffNode(Buff* buff) {

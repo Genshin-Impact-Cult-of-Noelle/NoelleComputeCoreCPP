@@ -1,13 +1,12 @@
 ﻿#pragma once
 #include "Professional.h"
-using namespace Advanced;
 namespace Professional {
 	class RoleGroup
 	{
 	public:
 		RoleGroup();
-		Role* nowRole;
-		Role** Role;
+		Advanced::Role* nowRole;
+		Advanced::Role** Role;
 		void DO(u32);
 	};
 }

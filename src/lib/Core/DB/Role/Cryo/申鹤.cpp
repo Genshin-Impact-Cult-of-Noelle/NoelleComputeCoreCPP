@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "申鹤.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO申鹤.cpp
         const double HP =  12992.911632338306;
         const double ATK =  303.7565487761749;
@@ -10,7 +14,8 @@
         
         申鹤::~申鹤() {
         }
-        申鹤::申鹤() {
+        申鹤::申鹤(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

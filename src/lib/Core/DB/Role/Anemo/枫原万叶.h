@@ -1,19 +1,20 @@
 ﻿#pragma once
         #include "../Role.h"
-        using namespace Professional;
         namespace DB {
             namespace RoleConstruct {        
-                class 枫原万叶 : public Role
+                class 枫原万叶 : public Advanced::Role
                 {
                 public:
                     ~枫原万叶();
-                    枫原万叶();
+                    枫原万叶(u32*);
                     void A(Role*, u32);
                     void E(Role*, u32);
                     void Q(Role*, u32);
-                    void SP(Role*,u32);
+                    u32 GetFrameCur(){
+                        return *_framCur;
+                    };
                 private:
-        
+                    u32* _framCur;
                 };
             }
         }

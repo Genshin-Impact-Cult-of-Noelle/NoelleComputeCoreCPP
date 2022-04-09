@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "迪卢克.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO迪卢克.cpp
         const double HP =  12980.666121717892;
         const double ATK =  334.84974830517604;
@@ -10,7 +14,8 @@
         
         迪卢克::~迪卢克() {
         }
-        迪卢克::迪卢克() {
+        迪卢克::迪卢克(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

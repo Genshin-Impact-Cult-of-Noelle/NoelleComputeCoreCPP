@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "钟离.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO钟离.cpp
         const double HP =  14695.093513910891;
         const double ATK =  251.1372978774416;
@@ -10,7 +14,8 @@
         
         钟离::~钟离() {
         }
-        钟离::钟离() {
+        钟离::钟离(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

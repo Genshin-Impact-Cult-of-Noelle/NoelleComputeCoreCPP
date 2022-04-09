@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "荒泷一斗.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO荒泷一斗.cpp
         const double HP =  12858.207019053749;
         const double ATK =  227.2194615206754;
@@ -10,7 +14,8 @@
         
         荒泷一斗::~荒泷一斗() {
         }
-        荒泷一斗::荒泷一斗() {
+        荒泷一斗::荒泷一斗(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

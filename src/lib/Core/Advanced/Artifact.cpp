@@ -1,4 +1,5 @@
 ﻿#include "Artifact.h"
+using namespace Atom;
 namespace Advanced {
 #pragma region 圣遗物类实现
 

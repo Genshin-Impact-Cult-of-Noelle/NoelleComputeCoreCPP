@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "丽莎.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO丽莎.cpp
         const double HP =  9569.92523615167;
         const double ATK =  231.51294280828733;
@@ -10,7 +14,8 @@
         
         丽莎::~丽莎() {
         }
-        丽莎::丽莎() {
+        丽莎::丽莎(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

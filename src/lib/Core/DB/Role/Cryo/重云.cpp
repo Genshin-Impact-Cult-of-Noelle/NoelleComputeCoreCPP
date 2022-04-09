@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "重云.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO重云.cpp
         const double HP =  10983.664287271677;
         const double ATK =  223.01705909465636;
@@ -10,7 +14,8 @@
         
         重云::~重云() {
         }
-        重云::重云() {
+        重云::重云(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

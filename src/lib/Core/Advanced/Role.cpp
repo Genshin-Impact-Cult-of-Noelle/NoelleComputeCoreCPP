@@ -1,5 +1,5 @@
 ﻿#include "Role.h"
-#include "Role.h"
+using namespace Atom;
 namespace Advanced {
 
 	Role::Role() {

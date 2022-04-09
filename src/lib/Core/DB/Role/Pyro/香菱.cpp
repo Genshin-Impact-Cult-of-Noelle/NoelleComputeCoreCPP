@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "香菱.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO香菱.cpp
         const double HP =  10874.91499475576;
         const double ATK =  225.14102222725342;
@@ -10,7 +14,8 @@
         
         香菱::~香菱() {
         }
-        香菱::香菱() {
+        香菱::香菱(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),

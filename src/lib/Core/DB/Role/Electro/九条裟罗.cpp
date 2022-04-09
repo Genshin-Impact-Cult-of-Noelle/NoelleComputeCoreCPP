@@ -1,6 +1,10 @@
 ﻿#pragma once
         #include "九条裟罗.h"
         using namespace DB::RoleConstruct;
+        using namespace Atom;
+        using namespace Atom::Enum;
+        using namespace Advanced;
+        using namespace Professional;
         //TODO:AUTO九条裟罗.cpp
         const double HP =  9569.92523615167;
         const double ATK =  195.40541430358826;
@@ -10,7 +14,8 @@
         
         九条裟罗::~九条裟罗() {
         }
-        九条裟罗::九条裟罗() {
+        九条裟罗::九条裟罗(u32* frameCur) {
+            _framCur = frameCur;
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
