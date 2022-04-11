@@ -14,8 +14,7 @@
         
         神里绫华::~神里绫华() {
         }
-        神里绫华::神里绫华(u32* frameCur) {
-            _framCur = frameCur;
+        神里绫华::神里绫华(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -76,15 +75,25 @@
         */
         
             /*******普通攻击·神里流·倾
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}*3
-            五段伤害|{param7:F1P}
-            重击伤害|{param8:F1P}*3
-            重击体力消耗|{param9:F1}点
-            下坠期间伤害|{param10:P}
-            低空/高空坠地冲击伤害|{param11:P}/{param12:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，在居合中放出连续的剑风。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}*3
+             * 五段伤害|{param7:F1P}
+             * 重击伤害|{param8:F1P}*3
+             * 重击体力消耗|{param9:F1}点
+             * 下坠期间伤害|{param10:P}
+             * 低空/高空坠地冲击伤害|{param11:P}/{param12:P}
             */
             void 神里绫华::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -110,8 +119,11 @@
 
 
             /*******神里流·冰华
-            技能伤害|{param1:P}
-            冷却时间|{param2:F1}秒
+             * 
+             * 唤起盛开的冰之华，击飞身边的敌人并造成冰元素范围伤害。
+             * 
+             * 技能伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
             */
             void 神里绫华::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -137,11 +149,18 @@
 
 
             /*******神里流·霜灭
-            切割伤害|{param1:P}
-            绽放伤害|{param2:P}
-            持续时间|{param3:F1}秒
-            冷却时间|{param4:F1}秒
-            元素能量|{param5:I}
+             * 
+             * 以倾奇之姿汇聚寒霜，放出持续行进的霜见雪关扉。
+             * 
+             * **霜见雪关扉**
+             * ·以刀锋般尖锐的霜风持续切割触及的敌人，造成冰元素伤害；
+             * ·持续时间结束时绽放，造成冰元素范围伤害。
+             * 
+             * 切割伤害|{param1:P}
+             * 绽放伤害|{param2:P}
+             * 持续时间|{param3:F1}秒
+             * 冷却时间|{param4:F1}秒
+             * 元素能量|{param5:I}
             */
             void 神里绫华::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

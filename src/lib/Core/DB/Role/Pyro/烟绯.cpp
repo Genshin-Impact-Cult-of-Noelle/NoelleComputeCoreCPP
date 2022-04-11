@@ -14,8 +14,7 @@
         
         烟绯::~烟绯() {
         }
-        烟绯::烟绯(u32* frameCur) {
-            _framCur = frameCur;
+        烟绯::烟绯(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,28 @@
         */
         
             /*******普通攻击·火漆制印
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            重击伤害|{param4:P}/{param5:P}/{param6:P}/{param7:P}/{param8:P}
-            重击体力消耗|{param14:F1}点
-            丹火印降低体力消耗|每枚{param15:F1P}
-            丹火印持续时间|{param19:F1}秒
-            下坠期间伤害|{param16:F1P}
-            低空/高空坠地冲击伤害|{param17:P}/{param18:P}
+             * 
+             * **普通攻击**
+             * 连续发射火球，造成最多三段的火元素伤害。
+             * 普通攻击命中敌人时，会赋予烟绯一枚丹火印。初始最多持有三枚丹火印，每次触发都会刷新已有的丹火印持续时间。
+             * 每枚丹火印都会降低烟绯的体力消耗，并会在烟绯退场时消失。
+             * 
+             * **重击**
+             * 消耗体力，短暂咏唱后，消耗所有的丹火印，在前方造成火元素范围伤害。
+             * 根据被消耗的丹火印数量，强化这次重击的范围与伤害。
+             * 
+             * **下落攻击**
+             * 凝聚火元素的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成火元素范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 重击伤害|{param4:P}/{param5:P}/{param6:P}/{param7:P}/{param8:P}
+             * 重击体力消耗|{param14:F1}点
+             * 丹火印降低体力消耗|每枚{param15:F1P}
+             * 丹火印持续时间|{param19:F1}秒
+             * 下坠期间伤害|{param16:F1P}
+             * 低空/高空坠地冲击伤害|{param17:P}/{param18:P}
             */
             void 烟绯::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,8 +106,12 @@
 
 
             /*******丹书立约
-            技能伤害|{param1:P}
-            冷却时间|{param2:F1}秒
+             * 
+             * 唤出烈焰，造成火元素范围伤害。
+             * 命中敌人后，会为烟绯赋予最大数量的丹火印。
+             * 
+             * 技能伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
             */
             void 烟绯::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -121,12 +137,21 @@
 
 
             /*******凭此结契
-            技能伤害|{param1:P}
-            丹火印赋予间隔|{param4:F1}秒
-            重击伤害提升|{param2:P}
-            持续时间|{param3:F1}秒
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 引发喷薄爆发的烈火，冲击周围的敌人，造成火元素范围伤害，并为烟绯自己赋予最大数量的丹火印与灼灼效果。
+             * 
+             * **灼灼**
+             * 具有如下效果：
+             * ·每间隔一段时间，为烟绯赋予一枚丹火印；
+             * ·提高重击造成的伤害。
+             * 灼灼效果会在烟绯退场与倒下时移除。
+             * 
+             * 技能伤害|{param1:P}
+             * 丹火印赋予间隔|{param4:F1}秒
+             * 重击伤害提升|{param2:P}
+             * 持续时间|{param3:F1}秒
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 烟绯::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

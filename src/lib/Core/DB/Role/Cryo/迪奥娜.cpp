@@ -14,8 +14,7 @@
         
         迪奥娜::~迪奥娜() {
         }
-        迪奥娜::迪奥娜(u32* frameCur) {
-            _framCur = frameCur;
+        迪奥娜::迪奥娜(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,26 @@
         */
         
             /*******普通攻击·猎人射术
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            瞄准射击|{param7:F1P}
-            满蓄力瞄准射击|{param8:P}
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续弓箭射击。
+             * 
+             * **重击**
+             * 进行伤害更高、更为精准的**瞄准射击**。
+             * 瞄准时，冰霜散发的寒气会凭附在箭矢上。聚满了寒气的箭矢会造成冰元素伤害。
+             * 
+             * **下落攻击**
+             * 从空中射出箭雨，并迅速下坠冲击地面，在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 瞄准射击|{param7:F1P}
+             * 满蓄力瞄准射击|{param8:P}
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 迪奥娜::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,11 +104,24 @@
 
 
             /*******猫爪冻冻
-            猫爪伤害|每个{param1:F1P}
-            护盾基础吸收量|{param2:F1P}最大生命值+{param3:I}
-            持续时间|每个猫爪{param6:F1}秒
-            点按冷却时间|{param4:F1}秒
-            长按冷却时间|{param5:F1}秒
+             * 
+             * 发射冻冻猫猫爪，对敌人造成冰元素伤害，并在命中时形成护盾。
+             * 护盾的伤害吸收量受益于迪奥娜的生命值上限，持续时间基于命中的冻冻猫猫爪数目。
+             * 
+             * **点按**
+             * 快速发射二枚冻冻猫猫爪。
+             * 
+             * **长按**
+             * 迅速后撤，并发射五枚冻冻猫猫爪。
+             * 通过长按产生的护盾获得75%伤害吸收量加成。
+             * 
+             * 护盾对冰元素伤害有250%的吸收效果，并会在形成时，为当前角色施加短暂的冰元素附着。
+             * 
+             * 猫爪伤害|每个{param1:F1P}
+             * 护盾基础吸收量|{param2:F1P}最大生命值+{param3:I}
+             * 持续时间|每个猫爪{param6:F1}秒
+             * 点按冷却时间|{param4:F1}秒
+             * 长按冷却时间|{param5:F1}秒
             */
             void 迪奥娜::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -124,12 +147,19 @@
 
 
             /*******最烈特调
-            技能伤害|{param1:P}
-            领域持续伤害|{param2:F1P}
-            持续治疗量|{param3:F2P}生命值上限+{param4:I}
-            持续时间|{param7:F1}秒
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 抛出特别调制的冰酿烈调，造成冰元素范围伤害，并产生冰气酒雾领域。
+             * 
+             * **冰气酒雾领域**
+             * ·对其中的敌人持续造成冰元素伤害；
+             * ·为其中的角色持续恢复生命值。
+             * 
+             * 技能伤害|{param1:P}
+             * 领域持续伤害|{param2:F1P}
+             * 持续治疗量|{param3:F2P}生命值上限+{param4:I}
+             * 持续时间|{param7:F1}秒
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 迪奥娜::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

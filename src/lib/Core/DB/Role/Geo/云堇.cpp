@@ -14,8 +14,7 @@
         
         云堇::~云堇() {
         }
-        云堇::云堇(u32* frameCur) {
-            _framCur = frameCur;
+        云堇::云堇(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,25 @@
         */
         
             /*******普通攻击·拂云出手
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}+{param4:F1P}
-            四段伤害|{param5:F1P}+{param6:F1P}
-            五段伤害|{param7:F1P}
-            重击伤害|{param8:F1P}
-            重击体力消耗|{param9:F1}点
-            下坠期间伤害|{param10:F1P}
-            低空/高空坠地冲击伤害|{param11:P}/{param12:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续枪击。
+             * 
+             * **重击**
+             * 消耗一定体力，向前方突进，对路径上的敌人造成伤害。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}+{param4:F1P}
+             * 四段伤害|{param5:F1P}+{param6:F1P}
+             * 五段伤害|{param7:F1P}
+             * 重击伤害|{param8:F1P}
+             * 重击体力消耗|{param9:F1}点
+             * 下坠期间伤害|{param10:F1P}
+             * 低空/高空坠地冲击伤害|{param11:P}/{param12:P}
             */
             void 云堇::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,11 +103,22 @@
 
 
             /*******旋云开相
-            点按伤害|{param3:F1P}防御力
-            一段蓄力伤害|{param4:F1P}防御力
-            二段蓄力伤害|{param5:F1P}防御力
-            护盾吸收量|{param1:P}生命值上限+{param2:I}
-            冷却时间|{param6:F1}秒
+             * 
+             * 云先生的武戏架势，是真能御敌的。
+             * 
+             * **点按**
+             * 以拨云之势旋舞长枪，造成岩元素伤害。
+             * 
+             * **长按**
+             * 摆出旋云开相之架势蓄力，形成护盾，伤害吸收量受益于云堇的生命值上限，对所有元素伤害与物理伤害有150%的吸收效果。护盾持续至元素战技施放完毕。
+             * 松开技能、持续时间结束时，或护盾被破坏时，会挥舞长枪释放积攒的力量进行攻击，造成岩元素伤害。
+             * 依据蓄力的时间，释放时的状态将分为一段蓄力与二段蓄力。
+             * 
+             * 点按伤害|{param3:F1P}防御力
+             * 一段蓄力伤害|{param4:F1P}防御力
+             * 二段蓄力伤害|{param5:F1P}防御力
+             * 护盾吸收量|{param1:P}生命值上限+{param2:I}
+             * 冷却时间|{param6:F1}秒
             */
             void 云堇::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -124,12 +144,21 @@
 
 
             /*******破嶂见旌仪
-            技能伤害|{param1:P}
-            伤害值提升|{param2:P}防御力
-            持续时间|{param3:F1}秒
-            生效次数|{param6:I}次
-            冷却时间|{param4:F1}秒
-            元素能量|{param5:I}
+             * 
+             * 造成岩元素范围伤害，并为附近的队伍中所有角色赋予「飞云旗阵」。
+             * 
+             * **飞云旗阵**
+             * 对敌人造成普通攻击伤害时，基于云堇自己当前的防御力，提高造成的伤害。
+             * 
+             * 「飞云旗阵」效果会在持续时间结束或生效一定次数后消失。
+             * 一次普通攻击同时命中多名敌人时，会依据命中敌人的数量消耗生效次数；队伍中具有「飞云旗阵」的角色，其生效次数单独计算。
+             * 
+             * 技能伤害|{param1:P}
+             * 伤害值提升|{param2:P}防御力
+             * 持续时间|{param3:F1}秒
+             * 生效次数|{param6:I}次
+             * 冷却时间|{param4:F1}秒
+             * 元素能量|{param5:I}
             */
             void 云堇::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

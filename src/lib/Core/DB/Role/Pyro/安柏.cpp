@@ -14,8 +14,7 @@
         
         安柏::~安柏() {
         }
-        安柏::安柏(u32* frameCur) {
-            _framCur = frameCur;
+        安柏::安柏(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -61,15 +60,26 @@
         */
         
             /*******普通攻击·神射手
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            瞄准射击|{param6:F1P}
-            满蓄力瞄准射击|{param7:P}
-            下坠期间伤害|{param8:F1P}
-            低空/高空坠地冲击伤害|{param9:P}/{param10:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续弓箭射击。
+             * 
+             * **重击**
+             * 进行伤害更高、更为精准的**瞄准射击**。
+             * 瞄准时，烈焰会在箭矢上持续积聚。聚满了烈焰的箭矢会造成火元素伤害。
+             * 
+             * **下落攻击**
+             * 从空中射出箭雨，并迅速下坠冲击地面，在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 瞄准射击|{param6:F1P}
+             * 满蓄力瞄准射击|{param7:P}
+             * 下坠期间伤害|{param8:F1P}
+             * 低空/高空坠地冲击伤害|{param9:P}/{param10:P}
             */
             void 安柏::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -95,9 +105,21 @@
 
 
             /*******爆弹玩偶
-            继承生命|{param1:F1P}
-            爆炸伤害|{param2:P}
-            冷却时间|{param4:F1}秒
+             * 
+             * 请可靠的兔兔伯爵上阵。
+             * 
+             * **兔兔伯爵**
+             * ·持续嘲讽周围的敌人，吸引火力；
+             * ·耐久度按比例继承安柏的生命值上限；
+             * ·被摧毁或持续时间结束时，会发生剧烈的爆炸，造成火元素范围伤害。
+             * 
+             * **长按**
+             * 调整投掷方向。
+             * 投掷距离随长按时间增加。
+             * 
+             * 继承生命|{param1:F1P}
+             * 爆炸伤害|{param2:P}
+             * 冷却时间|{param4:F1}秒
             */
             void 安柏::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,11 +145,14 @@
 
 
             /*******箭雨
-            箭雨单次伤害|{param1:F1P}
-            箭雨总伤害|{param4:P}
-            持续时间|{param5:F1}秒
-            冷却时间|{param2:F1}秒
-            元素能量|{param3:I}
+             * 
+             * 射出火焰箭雨，持续造成火元素范围伤害。
+             * 
+             * 箭雨单次伤害|{param1:F1P}
+             * 箭雨总伤害|{param4:P}
+             * 持续时间|{param5:F1}秒
+             * 冷却时间|{param2:F1}秒
+             * 元素能量|{param3:I}
             */
             void 安柏::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

@@ -14,8 +14,7 @@
         
         七七::~七七() {
         }
-        七七::七七(u32* frameCur) {
-            _framCur = frameCur;
+        七七::七七(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,25 @@
         */
         
             /*******普通攻击·云来古剑法
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}+{param3:F1P}
-            四段伤害|{param4:F1P}+{param4:F1P}
-            五段伤害|{param5:F1P}
-            重击伤害|{param6:F1P}+{param6:F1P}
-            重击体力消耗|{param7:F1}点
-            下坠期间伤害|{param8:F1P}
-            低空/高空坠地冲击伤害|{param9:P}/{param10:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，瞬间向前方挥出两剑。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}+{param3:F1P}
+             * 四段伤害|{param4:F1P}+{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 重击伤害|{param6:F1P}+{param6:F1P}
+             * 重击体力消耗|{param7:F1}点
+             * 下坠期间伤害|{param8:F1P}
+             * 低空/高空坠地冲击伤害|{param9:P}/{param10:P}
             */
             void 七七::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,12 +103,20 @@
 
 
             /*******仙法·寒病鬼差
-            技能伤害|{param8:P}
-            命中治疗量|{param1:F2P}攻击力+{param2:I}
-            持续治疗量|{param3:F2P}攻击力+{param4:I}
-            寒病鬼差伤害|{param5:F1P}
-            持续时间|{param6:F1}秒
-            冷却时间|{param7:F1}秒
+             * 
+             * 冰血化符，召唤寒病鬼差，并对周围的敌人造成冰元素伤害。
+             * 
+             * **寒病鬼差**
+             * ·七七的普通攻击与重击命中时，为队伍中自己的角色，以及附近的友方角色恢复生命值，回复量受益于七七的攻击力；
+             * ·每隔一段时间，为当前场上自己的角色恢复生命值；
+             * ·跟随角色行动，对路径上的敌人造成冰元素伤害。
+             * 
+             * 技能伤害|{param8:P}
+             * 命中治疗量|{param1:F2P}攻击力+{param2:I}
+             * 持续治疗量|{param3:F2P}攻击力+{param4:I}
+             * 寒病鬼差伤害|{param5:F1P}
+             * 持续时间|{param6:F1}秒
+             * 冷却时间|{param7:F1}秒
             */
             void 七七::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -125,11 +142,17 @@
 
 
             /*******仙法·救苦度厄
-            技能伤害|{param3:P}
-            治疗量|{param1:F1P}攻击力+{param2:I}
-            持续时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 七七释放体内封印的仙力，以度厄真符标记附近的敌人，并造成冰元素伤害。
+             * 
+             * **度厄真符**
+             * 处于度厄真符影响下的敌人受到伤害时，为造成伤害的角色恢复生命值。
+             * 
+             * 技能伤害|{param3:P}
+             * 治疗量|{param1:F1P}攻击力+{param2:I}
+             * 持续时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 七七::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

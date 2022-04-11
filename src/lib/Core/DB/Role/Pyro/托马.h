@@ -10,11 +10,6 @@
                     void A(Role*, u32);
                     void E(Role*, u32);
                     void Q(Role*, u32);
-                    u32 GetFrameCur(){
-                        return *_framCur;
-                    };
-                private:
-                    u32* _framCur;
                 };
             }
         }

@@ -14,8 +14,7 @@
         
         凯亚::~凯亚() {
         }
-        凯亚::凯亚(u32* frameCur) {
-            _framCur = frameCur;
+        凯亚::凯亚(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -62,15 +61,25 @@
         */
         
             /*******普通攻击·仪典剑术
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            重击伤害|{param6:F1P}+{param7:F1P}
-            重击体力消耗|{param8:F1}点
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，瞬间向前方挥出两剑。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 重击伤害|{param6:F1P}+{param7:F1P}
+             * 重击体力消耗|{param8:F1}点
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 凯亚::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -96,8 +105,11 @@
 
 
             /*******霜袭
-            技能伤害|{param1:P}
-            冷却时间|{param2:F1}秒
+             * 
+             * 瞬间放出急冻的寒气，对前方的敌人造成冰元素伤害。
+             * 
+             * 技能伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
             */
             void 凯亚::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,10 +135,14 @@
 
 
             /*******凛冽轮舞
-            技能伤害|{param1:F1P}
-            冷却时间|{param2:F1}秒
-            持续时间|{param3:F1}秒
-            元素能量|{param4:I}
+             * 
+             * 凝聚空气中的寒霜，召唤3枚围绕自身旋转的寒冰之棱。
+             * 存在期间内，寒冰之棱会跟随角色运动，对路径上的敌人造成冰元素伤害。
+             * 
+             * 技能伤害|{param1:F1P}
+             * 冷却时间|{param2:F1}秒
+             * 持续时间|{param3:F1}秒
+             * 元素能量|{param4:I}
             */
             void 凯亚::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

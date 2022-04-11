@@ -14,8 +14,7 @@
         
         魈::~魈() {
         }
-        魈::魈(u32* frameCur) {
-            _framCur = frameCur;
+        魈::魈(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -63,16 +62,27 @@
         */
         
             /*******普通攻击·卷积微尘
-            一段伤害|{param1:F1P}+{param2:F1P}
-            二段伤害|{param3:F1P}
-            三段伤害|{param4:F1P}
-            四段伤害|{param5:F1P}+{param6:F1P}
-            五段伤害|{param7:F1P}
-            六段伤害|{param8:F1P}
-            重击伤害|{param9:P}
-            重击体力消耗|{param10:F1}点
-            下坠期间伤害|{param11:P}
-            低空/高空坠地冲击伤害|{param12:P}/{param13:P}
+             * 
+             * **普通攻击**
+             * 进行至多六段的连续枪击。
+             * 
+             * **重击**
+             * 消耗一定体力，进行上挑攻击。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 魈进行下落攻击时，不会承受坠落伤害。
+             * 
+             * 一段伤害|{param1:F1P}+{param2:F1P}
+             * 二段伤害|{param3:F1P}
+             * 三段伤害|{param4:F1P}
+             * 四段伤害|{param5:F1P}+{param6:F1P}
+             * 五段伤害|{param7:F1P}
+             * 六段伤害|{param8:F1P}
+             * 重击伤害|{param9:P}
+             * 重击体力消耗|{param10:F1}点
+             * 下坠期间伤害|{param11:P}
+             * 低空/高空坠地冲击伤害|{param12:P}/{param13:P}
             */
             void 魈::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -98,8 +108,13 @@
 
 
             /*******风轮两立
-            技能伤害|{param1:P}
-            冷却时间|{param2:F1}秒
+             * 
+             * 疾速突进，对路径上的敌人造成风元素伤害。
+             * 可以在空中施放。
+             * 初始拥有2次可使用次数。
+             * 
+             * 技能伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
             */
             void 魈::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -125,11 +140,22 @@
 
 
             /*******靖妖傩舞
-            普通攻击/重击/下落攻击伤害提升|{param1:F1P}
-            生命流失|每秒{param2:F1P}当前生命值
-            持续时间|{param3:F1}秒
-            冷却时间|{param4:F1}秒
-            元素能量|{param5:I}
+             * 
+             * 展现数千年前令神魔精妖睹之胆颤的夜叉傩面。
+             * 
+             * **夜叉傩面**
+             * ·大幅提升魈的跳跃能力；
+             * ·提高攻击范围与攻击伤害；
+             * ·将攻击伤害转为风元素伤害，该元素转化无法被附魔覆盖。
+             * 
+             * 在这个状态下，魈会持续损失生命值。
+             * 效果将在魈退场时解除。
+             * 
+             * 普通攻击/重击/下落攻击伤害提升|{param1:F1P}
+             * 生命流失|每秒{param2:F1P}当前生命值
+             * 持续时间|{param3:F1}秒
+             * 冷却时间|{param4:F1}秒
+             * 元素能量|{param5:I}
             */
             void 魈::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

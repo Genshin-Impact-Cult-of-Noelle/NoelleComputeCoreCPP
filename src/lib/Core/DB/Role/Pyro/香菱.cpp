@@ -14,8 +14,7 @@
         
         香菱::~香菱() {
         }
-        香菱::香菱(u32* frameCur) {
-            _framCur = frameCur;
+        香菱::香菱(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,25 @@
         */
         
             /*******普通攻击·白案功夫
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}+{param3:F1P}
-            四段伤害|{param4:F1P}*4
-            五段伤害|{param5:F1P}
-            重击伤害|{param6:P}
-            重击体力消耗|{param7:F1}点
-            下坠期间伤害|{param8:F1P}
-            低空/高空坠地冲击伤害|{param9:P}/{param10:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续枪击。
+             * 
+             * **重击**
+             * 消耗一定体力，向前方突进，对路径上的敌人造成伤害。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}+{param3:F1P}
+             * 四段伤害|{param4:F1P}*4
+             * 五段伤害|{param5:F1P}
+             * 重击伤害|{param6:P}
+             * 重击体力消耗|{param7:F1}点
+             * 下坠期间伤害|{param8:F1P}
+             * 低空/高空坠地冲击伤害|{param9:P}/{param10:P}
             */
             void 香菱::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,8 +103,11 @@
 
 
             /*******锅巴出击
-            喷火伤害|{param1:P}
-            冷却时间|{param2:F1}秒
+             * 
+             * 唤出喷火的锅巴，存在期间内，不断对敌人喷火，造成火元素范围伤害。
+             * 
+             * 喷火伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
             */
             void 香菱::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -121,13 +133,17 @@
 
 
             /*******旋火轮
-            一段挥舞伤害|{param1:F1P}
-            二段挥舞伤害|{param2:F1P}
-            三段挥舞伤害|{param3:P}
-            旋火轮伤害|{param4:P}
-            持续时间|{param5:F1}秒
-            冷却时间|{param6:F1}秒
-            元素能量|{param7:I}
+             * 
+             * 以控制火候与枪术的精湛技巧，甩出围绕自己快速旋转的旋火轮。
+             * 存在期间内，旋火轮会跟随角色运动，对路径上的敌人造成火元素伤害。
+             * 
+             * 一段挥舞伤害|{param1:F1P}
+             * 二段挥舞伤害|{param2:F1P}
+             * 三段挥舞伤害|{param3:P}
+             * 旋火轮伤害|{param4:P}
+             * 持续时间|{param5:F1}秒
+             * 冷却时间|{param6:F1}秒
+             * 元素能量|{param7:I}
             */
             void 香菱::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

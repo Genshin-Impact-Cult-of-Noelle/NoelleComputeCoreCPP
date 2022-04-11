@@ -14,8 +14,7 @@
         
         菲谢尔::~菲谢尔() {
         }
-        菲谢尔::菲谢尔(u32* frameCur) {
-            _framCur = frameCur;
+        菲谢尔::菲谢尔(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,26 @@
         */
         
             /*******普通攻击·罪灭之矢
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            瞄准射击|{param6:F1P}
-            满蓄力瞄准射击|{param7:P}
-            下坠期间伤害|{param8:F1P}
-            低空/高空坠地冲击伤害|{param9:P}/{param10:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续弓箭射击。
+             * 
+             * **重击**
+             * 进行伤害更高、更为精准的**瞄准射击**。
+             * 瞄准时，幽夜净土的黯雷精灵会听从皇女的号令，凭附在她的雷影魔箭上。聚满了断罪之雷的魔箭会造成高额的雷元素伤害。
+             * 
+             * **下落攻击**
+             * 从空中射出箭雨，并迅速下坠冲击地面，在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 瞄准射击|{param6:F1P}
+             * 满蓄力瞄准射击|{param7:P}
+             * 下坠期间伤害|{param8:F1P}
+             * 低空/高空坠地冲击伤害|{param9:P}/{param10:P}
             */
             void 菲谢尔::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,10 +104,17 @@
 
 
             /*******夜巡影翼
-            奥兹攻击伤害|{param1:F1P}
-            召唤伤害|{param2:P}
-            奥兹存在时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
+             * 
+             * 召唤奥兹。暗影与雷电构成的夜鸦降生尘世时，会在小范围内造成雷元素伤害。
+             * 存在期间内，奥兹会持续发射雷之魔弹攻击附近的敌人。
+             * 
+             * 长按以调整技能生效位置。
+             * 奥兹存在期间内再次点按可以将其召唤至身旁。
+             * 
+             * 奥兹攻击伤害|{param1:F1P}
+             * 召唤伤害|{param2:P}
+             * 奥兹存在时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
             */
             void 菲谢尔::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,9 +140,16 @@
 
 
             /*******至夜幻现
-            落雷伤害|{param1:P}
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 呼唤奥兹，张开纯粹的夜色编织成的双翼，守护菲谢尔。
+             * 持续期间，具有如下效果：
+             * ·以奥兹的形态进行高速移动；
+             * ·对附近的敌人降下落雷，造成雷元素伤害。每个敌人只能受到一次落雷伤害；
+             * ·效果结束时，奥兹将会停留在战场上，攻击皇女的敌人。若奥兹已经在场，则重置奥兹的存在时间。
+             * 
+             * 落雷伤害|{param1:P}
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 菲谢尔::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

@@ -14,8 +14,7 @@
         
         珊瑚宫心海::~珊瑚宫心海() {
         }
-        珊瑚宫心海::珊瑚宫心海(u32* frameCur) {
-            _framCur = frameCur;
+        珊瑚宫心海::珊瑚宫心海(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -69,13 +68,23 @@
         */
         
             /*******普通攻击·水有常形
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            重击伤害|{param4:P}
-            重击体力消耗|{param5:F1}点
-            下坠期间伤害|{param6:F1P}
-            低空/高空坠地冲击伤害|{param7:P}/{param8:P}
+             * 
+             * **普通攻击**
+             * 以水元素幻造成的游鱼进行至多三段的攻击，造成水元素伤害。
+             * 
+             * **重击**
+             * 消耗一定体力，短暂咏唱后，造成水元素范围伤害。
+             * 
+             * **下落攻击**
+             * 凝聚水元素的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成水元素范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 重击伤害|{param4:P}
+             * 重击体力消耗|{param5:F1}点
+             * 下坠期间伤害|{param6:F1P}
+             * 低空/高空坠地冲击伤害|{param7:P}/{param8:P}
             */
             void 珊瑚宫心海::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -101,10 +110,17 @@
 
 
             /*******海月之誓
-            治疗量|{param1:F1P}生命值上限+{param2:I}
-            波纹伤害|{param3:F1P}
-            存在时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
+             * 
+             * 召唤能够治愈同伴的幻造水之生命「化海月」。
+             * 施放的瞬间，为珊瑚宫心海施加潮湿状态。
+             * 
+             * **化海月**
+             * 每隔一段时间，对周围的敌人造成水元素伤害，并为周围的当前场上角色恢复生命值，回复量受益于珊瑚宫心海的生命值上限。
+             * 
+             * 治疗量|{param1:F1P}生命值上限+{param2:I}
+             * 波纹伤害|{param3:F1P}
+             * 存在时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
             */
             void 珊瑚宫心海::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -130,14 +146,24 @@
 
 
             /*******海人化羽
-            技能伤害|{param1:F1P}生命值上限
-            普通攻击伤害提升|{param4:F1P}生命值上限
-            重击伤害提升|{param5:F1P}生命值上限
-            化海月伤害提升|{param9:F1P}生命值上限
-            命中治疗量|{param2:F2P}生命值上限+{param3:I}
-            持续时间|{param6:F1}秒
-            冷却时间|{param7:F1}秒
-            元素能量|{param8:I}
+             * 
+             * 请降海祇的力量，对周围的敌人造成水元素伤害，并披上珊瑚宫之水汇聚而成的「仪来羽衣」。
+             * 
+             * **仪来羽衣**
+             * ·增加珊瑚宫心海的普通攻击，重击以及元素战技的「化海月」造成的伤害，增加值基于珊瑚宫心海的生命值上限；
+             * ·普通攻击和重击命中敌人时，为队伍中附近的所有角色恢复生命值，回复量受益于珊瑚宫心海的生命值上限；
+             * ·提升珊瑚宫心海的抗打断能力，并使她能在水面上移动。
+             * 
+             * 效果将在珊瑚宫心海退场时解除。
+             * 
+             * 技能伤害|{param1:F1P}生命值上限
+             * 普通攻击伤害提升|{param4:F1P}生命值上限
+             * 重击伤害提升|{param5:F1P}生命值上限
+             * 化海月伤害提升|{param9:F1P}生命值上限
+             * 命中治疗量|{param2:F2P}生命值上限+{param3:I}
+             * 持续时间|{param6:F1}秒
+             * 冷却时间|{param7:F1}秒
+             * 元素能量|{param8:I}
             */
             void 珊瑚宫心海::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

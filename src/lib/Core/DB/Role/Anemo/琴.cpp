@@ -14,8 +14,7 @@
         
         琴::~琴() {
         }
-        琴::琴(u32* frameCur) {
-            _framCur = frameCur;
+        琴::琴(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,26 @@
         */
         
             /*******普通攻击·西风剑术
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            重击伤害|{param6:P}
-            重击体力消耗|{param7:F1}点
-            下坠期间伤害|{param8:F1P}
-            低空/高空坠地冲击伤害|{param9:P}/{param10:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，进行饱含风之力的挑击。
+             * 被挑飞的敌人，在短时间内会缓慢坠落。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 重击伤害|{param6:P}
+             * 重击体力消耗|{param7:F1}点
+             * 下坠期间伤害|{param8:F1P}
+             * 低空/高空坠地冲击伤害|{param9:P}/{param10:P}
             */
             void 琴::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,10 +104,18 @@
 
 
             /*******风压剑
-            技能伤害|{param1:P}
-            体力消耗|每秒{param2:F1}点
-            最大持续时间|{param3:F1}秒
-            冷却时间|{param4:F1}秒
+             * 
+             * 将无形的风之力汇聚在剑上，释放微型的风暴，将敌人向瞄准的方向击飞，造成大量风元素伤害。
+             * 
+             * **长按**
+             * 以持续消耗体力为代价，令旋风将周围的敌人与物体牵引至面前。
+             * 可以调整方向。
+             * 期间无法移动。
+             * 
+             * 技能伤害|{param1:P}
+             * 体力消耗|每秒{param2:F1}点
+             * 最大持续时间|{param3:F1}秒
+             * 冷却时间|{param4:F1}秒
             */
             void 琴::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,12 +141,21 @@
 
 
             /*******蒲公英之风
-            爆发伤害|{param1:P}
-            出入领域伤害|{param2:F1P}
-            领域发动治疗量|{param3:P}攻击力+{param4:I}
-            持续治疗|每秒{param5:F2P}攻击力+{param6:I}
-            冷却时间|{param7:F1}秒
-            元素能量|{param8:I}
+             * 
+             * 呼唤风的护佑，创造千风涌动的蒲公英领域，击退周围的敌人并造成风元素伤害。
+             * 同时，为队伍中的所有角色瞬间恢复大量生命值，回复量受益于琴的攻击力。
+             * 
+             * **蒲公英领域**
+             * ·为其中的角色持续恢复生命值；
+             * ·令其中的角色持续受到风元素影响；
+             * ·对出入领域的敌人造成风元素伤害。
+             * 
+             * 爆发伤害|{param1:P}
+             * 出入领域伤害|{param2:F1P}
+             * 领域发动治疗量|{param3:P}攻击力+{param4:I}
+             * 持续治疗|每秒{param5:F2P}攻击力+{param6:I}
+             * 冷却时间|{param7:F1}秒
+             * 元素能量|{param8:I}
             */
             void 琴::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

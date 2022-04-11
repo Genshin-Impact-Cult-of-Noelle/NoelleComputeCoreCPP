@@ -21,7 +21,7 @@ namespace Advanced {
 	/// 刷新buff状态
 	/// </summary>
 	/// <param name="frame">帧位</param>
-	void BuffPool::Update(u32 frame) {
+	bool BuffPool::Update(u32 frame) {
 		BuffNode* cur = buffStart;
 		BuffNode* pre = nullptr;
 		BuffNode* DeleteCur = nullptr;
@@ -39,16 +39,18 @@ namespace Advanced {
 				else {
 					buffStart = cur->next;
 				}
+				changed = true;
 				cur = cur->next;
 				delete DeleteCur;
 			}
 		}
+		return changed;
 	};
 	/// <summary>
 	/// 取最终的BaseObject
 	/// </summary>
 	/// <returns></returns>
-	BaseObject::Result* BuffPool::LastValue() {
+	BaseObject* BuffPool::Compute() {
 		if (changed) {
 			Clean();
 			BuffNode* cur = buffStart;
@@ -57,8 +59,9 @@ namespace Advanced {
 				Add(cur->data);
 				cur = cur->next;
 			}
+			changed = false;
 		}
-		return BaseObject::LastValue();
+		return this;
 	};
 	/// <summary>
 	/// 传入buff

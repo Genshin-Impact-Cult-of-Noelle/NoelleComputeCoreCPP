@@ -37,11 +37,6 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
                     void A(Role*, u32);
                     void E(Role*, u32);
                     void Q(Role*, u32);
-                    u32 GetFrameCur(){
-                        return *_framCur;
-                    };
-                private:
-                    u32* _framCur;
                 };
             }
         }
@@ -63,8 +58,7 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
         
         ${名字}::~${名字}() {
         }
-        ${名字}::${名字}(u32* frameCur) {
-            _framCur = frameCur;
+        ${名字}::${名字}(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -97,9 +91,12 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
         */
         ${技能表.map((技能, 序号) => {
                 return `
-            /*******${技能.name}${技能.attributes.labels.map(label => {
+            /*******${技能.name}
+             * ${技能.info.split("\n").map(info=>`
+             * ${info}`).join("")}
+             * ${技能.attributes.labels.map(label => {
                     return `
-            ${label}`
+             * ${label}`
                 }).join("")}
             */
             void ${名字}::${SkillDefName[序号]}(Role* role, u32 cmd) {

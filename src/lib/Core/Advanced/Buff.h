@@ -31,9 +31,9 @@ namespace Advanced {
 			delete buffStart;
 		};
 		BuffPool();
-		void Update(u32);
+		bool Update(u32);
 		void PushBuff(Buff*);
-		Atom::BaseObject::Result* LastValue();
+		Atom::BaseObject* Compute();
 	private:
 		struct BuffNode {
 			BuffNode(Buff* buff) {

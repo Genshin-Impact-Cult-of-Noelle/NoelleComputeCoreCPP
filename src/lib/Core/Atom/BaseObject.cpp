@@ -102,6 +102,7 @@ namespace Atom {
 		return this;
 	}
 	BaseObject::BaseObject() {
+		NowAtkType = ElementType::Physical;
 		Atk = Attr::Zero();
 		Def = Attr::Zero();
 		Helath = Attr::Zero();
@@ -168,6 +169,7 @@ namespace Atom {
 		delete result;
 	}
 	BaseObject::BaseObject(Attr** datas) {
+		NowAtkType = ElementType::Physical;
 		Atk = datas[0];
 		Def = datas[1];
 		Helath = datas[2];
@@ -203,6 +205,17 @@ namespace Atom {
 	}
 	BaseObject* BaseObject::Add(BaseObject* data) {
 		changed = true;
+		if (data->MustElement) {
+			NowAtkType = data->NowAtkType;
+		}
+		else if (data->NowAtkType != NowAtkType) {
+			NowAtkType = data->NowAtkType < NowAtkType ? data->NowAtkType : NowAtkType;
+			//火，冰，水 相互增幅
+
+			//雷 向上剧变
+
+			//风岩 （向上结晶扩散，相互不反应）
+		}
 		Atk->Add(data->Atk);
 		Def->Add(data->Def);
 		Helath->Add(data->Helath);
@@ -338,6 +351,7 @@ namespace Atom {
 	}
 	BaseObject* BaseObject::Copy(BaseObject* other) {
 		changed = true;
+		NowAtkType = other->NowAtkType;
 		Atk->Copy(other->Atk);
 		Def->Copy(other->Def);
 		Helath->Copy(other->Helath);

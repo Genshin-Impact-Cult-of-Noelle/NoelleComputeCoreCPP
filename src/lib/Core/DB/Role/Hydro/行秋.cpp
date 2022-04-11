@@ -14,8 +14,7 @@
         
         行秋::~行秋() {
         }
-        行秋::行秋(u32* frameCur) {
-            _framCur = frameCur;
+        行秋::行秋(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,25 @@
         */
         
             /*******普通攻击·古华剑法
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}+{param4:F1P}
-            四段伤害|{param5:F1P}
-            五段伤害|{param6:F1P}+{param7:F1P}
-            重击伤害|{param8:F1P}+{param9:F1P}
-            重击体力消耗|{param10:F1}点
-            下坠期间伤害|{param11:F1P}
-            低空/高空坠地冲击伤害|{param12:P}/{param13:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，瞬间向前方挥出两剑。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}+{param4:F1P}
+             * 四段伤害|{param5:F1P}
+             * 五段伤害|{param6:F1P}+{param7:F1P}
+             * 重击伤害|{param8:F1P}+{param9:F1P}
+             * 重击体力消耗|{param10:F1}点
+             * 下坠期间伤害|{param11:F1P}
+             * 低空/高空坠地冲击伤害|{param12:P}/{param13:P}
             */
             void 行秋::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,10 +103,21 @@
 
 
             /*******古华剑·画雨笼山
-            技能伤害|{param1:P}+{param2:P}
-            减伤比例|{param3:P}
-            持续时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
+             * 
+             * 使出连续两段的剑技，对前方的敌人造成水元素伤害。同时，生成最大数量的雨帘剑围绕在当前场上自己的角色身边。
+             * 具有如下特性：
+             * ·角色受到伤害时会破碎，降低受到的伤害；
+             * ·提高角色的抗打断能力。
+             * 行秋水元素伤害加成的20%将转换为雨帘剑的额外伤害减免。
+             * 
+             * 最多通过这种方式获得24%额外伤害减免。
+             * 初始雨帘剑的最大数量为3柄。
+             * 施放的瞬间，为角色施加潮湿状态。
+             * 
+             * 技能伤害|{param1:P}+{param2:P}
+             * 减伤比例|{param3:P}
+             * 持续时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
             */
             void 行秋::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,10 +143,17 @@
 
 
             /*******古华剑·裁雨留虹
-            剑雨伤害|{param1:F1P}
-            持续时间|{param2:F1}秒
-            冷却时间|{param3:F1}秒
-            元素能量|{param4:I}
+             * 
+             * 展开虹剑势，驾御幻影剑雨战斗，并生成最大数量的雨帘剑。
+             * 
+             * **虹剑势**
+             * ·当前场上自己的角色进行普通攻击时，会产生剑雨连携攻击，造成水元素伤害；
+             * ·雨帘剑的数量将始终维持在最大数量。
+             * 
+             * 剑雨伤害|{param1:F1P}
+             * 持续时间|{param2:F1}秒
+             * 冷却时间|{param3:F1}秒
+             * 元素能量|{param4:I}
             */
             void 行秋::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

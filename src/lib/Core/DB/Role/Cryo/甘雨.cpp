@@ -14,8 +14,7 @@
         
         甘雨::~甘雨() {
         }
-        甘雨::甘雨(u32* frameCur) {
-            _framCur = frameCur;
+        甘雨::甘雨(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,18 +59,31 @@
         */
         
             /*******普通攻击·流天射术
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            六段伤害|{param6:F1P}
-            瞄准射击|{param7:F1P}
-            一段蓄力瞄准射击|{param8:P}
-            霜华矢命中伤害|{param9:P}
-            霜华矢·霜华绽发伤害|{param10:P}
-            下坠期间伤害|{param11:F1P}
-            低空/高空坠地冲击伤害|{param12:P}/{param13:P}
+             * 
+             * **普通攻击**
+             * 进行至多六段的连续弓箭射击。
+             * 
+             * **重击**
+             * 进行伤害更高、更为精准的**瞄准射击**。
+             * 瞄准时，冰寒之气会在箭矢上持续积聚，并随攻击发射出去。根据蓄力时间长短，能造成不同的效果：
+             * ·一段蓄力：射出附有寒气的箭矢，造成冰元素伤害；
+             * ·二段蓄力：发射霜华矢，造成冰元素伤害；命中后霜华绽发，再次造成冰元素范围伤害。
+             * 
+             * **下落攻击**
+             * 从空中射出箭雨，并迅速下坠冲击地面，在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 六段伤害|{param6:F1P}
+             * 瞄准射击|{param7:F1P}
+             * 一段蓄力瞄准射击|{param8:P}
+             * 霜华矢命中伤害|{param9:P}
+             * 霜华矢·霜华绽发伤害|{param10:P}
+             * 下坠期间伤害|{param11:F1P}
+             * 低空/高空坠地冲击伤害|{param12:P}/{param13:P}
             */
             void 甘雨::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -97,10 +109,18 @@
 
 
             /*******山泽麟迹
-            继承生命|{param1:P}
-            技能伤害|{param2:P}
-            持续时间|{param3:F1}秒
-            冷却时间|{param4:F1}秒
+             * 
+             * 甘雨留下一朵冰莲并迅速后退，远离一切魑魅魍魉，造成冰元素范围伤害。
+             * 
+             * **冰莲**
+             * ·持续嘲讽周围的敌人，吸引敌人攻击；
+             * ·耐久度按比例继承甘雨的生命值上限；
+             * ·被摧毁或持续时间结束时，会剧烈地绽放，造成冰元素范围伤害。
+             * 
+             * 继承生命|{param1:P}
+             * 技能伤害|{param2:P}
+             * 持续时间|{param3:F1}秒
+             * 冷却时间|{param4:F1}秒
             */
             void 甘雨::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -126,10 +146,14 @@
 
 
             /*******降众天华
-            冰棱伤害|{param1:P}
-            持续时间|{param2:F1}秒
-            冷却时间|{param3:F1}秒
-            元素能量|{param4:I}
+             * 
+             * 凝聚大气中的霜雪，召唤退魔的冰灵珠。
+             * 存在期间内，冰灵珠会持续降下冰棱，攻击范围内的敌人，造成冰元素伤害。
+             * 
+             * 冰棱伤害|{param1:P}
+             * 持续时间|{param2:F1}秒
+             * 冷却时间|{param3:F1}秒
+             * 元素能量|{param4:I}
             */
             void 甘雨::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

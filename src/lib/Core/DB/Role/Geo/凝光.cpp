@@ -14,8 +14,7 @@
         
         凝光::~凝光() {
         }
-        凝光::凝光(u32* frameCur) {
-            _framCur = frameCur;
+        凝光::凝光(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,12 +59,24 @@
         */
         
             /*******普通攻击·千金掷
-            普通攻击伤害|{param1:F1P}
-            重击伤害|{param2:P}
-            星璇伤害|每个{param3:F1P}
-            重击体力消耗|{param4:F1}点
-            下坠期间伤害|{param5:F1P}
-            低空/高空坠地冲击伤害|{param6:P}/{param7:P}
+             * 
+             * **普通攻击**
+             * 发射宝石，造成岩元素伤害。
+             * 命中时，赋予凝光一枚星璇。
+             * 
+             * **重击**
+             * 消耗体力，发射一颗巨型宝石，造成岩元素伤害。
+             * 若凝光拥有星璇，施放重击时会将所有星璇一同发射，造成额外的伤害。
+             * 
+             * **下落攻击**
+             * 凝聚晶岩的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成岩元素范围伤害。
+             * 
+             * 普通攻击伤害|{param1:F1P}
+             * 重击伤害|{param2:P}
+             * 星璇伤害|每个{param3:F1P}
+             * 重击体力消耗|{param4:F1}点
+             * 下坠期间伤害|{param5:F1P}
+             * 低空/高空坠地冲击伤害|{param6:P}/{param7:P}
             */
             void 凝光::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -91,9 +102,18 @@
 
 
             /*******璇玑屏
-            继承生命|{param3:F1P}
-            技能伤害|{param2:P}
-            冷却时间|{param4:F1}秒
+             * 
+             * 借由黄金、黑曜岩与强者的余裕，构建出坚固的璇玑屏，并造成岩元素范围伤害。
+             * 
+             * **璇玑屏**
+             * ·阻挡敌人发射的投射物；
+             * ·耐久度按比例继承凝光的生命值上限。
+             * 
+             * 璇玑屏被视为岩元素创造物，可以阻挡部分攻击，不可攀爬。同时只能存在一个。
+             * 
+             * 继承生命|{param3:F1P}
+             * 技能伤害|{param2:P}
+             * 冷却时间|{param4:F1}秒
             */
             void 凝光::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -119,9 +139,13 @@
 
 
             /*******天权崩玉
-            宝石伤害|每个{param1:F1P}
-            冷却时间|{param2:F1}秒
-            元素能量|{param3:I}
+             * 
+             * 凝光在身边凝聚诸多宝石，散之一瞬，自动索敌打击附近的敌人，造成大量岩元素伤害。
+             * 施放天权崩玉时，如果附近有璇玑屏存在，璇玑屏将发射额外的宝石飞弹协同攻击。
+             * 
+             * 宝石伤害|每个{param1:F1P}
+             * 冷却时间|{param2:F1}秒
+             * 元素能量|{param3:I}
             */
             void 凝光::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

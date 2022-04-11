@@ -14,8 +14,7 @@
         
         重云::~重云() {
         }
-        重云::重云(u32* frameCur) {
-            _framCur = frameCur;
+        重云::重云(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,16 +59,27 @@
         */
         
             /*******普通攻击·灭邪四式
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:P}
-            重击循环伤害|{param5:F1P}
-            重击终结伤害|{param6:P}
-            重击体力消耗|每秒{param7:F1}点
-            最大持续时间|{param8:F1}秒
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的连续挥砍。
+             * 
+             * **重击**
+             * 持续消耗体力，旋转大剑攻击周围的敌人。
+             * 停止旋转时，会进行一次格外有力的挥砍。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:P}
+             * 重击循环伤害|{param5:F1P}
+             * 重击终结伤害|{param6:P}
+             * 重击体力消耗|每秒{param7:F1}点
+             * 最大持续时间|{param8:F1}秒
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 重云::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -95,10 +105,14 @@
 
 
             /*******灵刃·重华叠霜
-            技能伤害|{param1:P}
-            附魔持续时间|{param2:F1}秒
-            领域持续时间|{param4:F1}秒
-            冷却时间|{param3:F1}秒
+             * 
+             * 重云挥动巨剑猛击地面，在前方圆形范围内引发冰爆，并对敌人造成冰元素伤害。
+             * 短暂延迟后，冰爆引发的寒气汇聚成重华叠霜领域，其中的单手剑、大剑、长柄武器角色获得冰元素附魔。
+             * 
+             * 技能伤害|{param1:P}
+             * 附魔持续时间|{param2:F1}秒
+             * 领域持续时间|{param4:F1}秒
+             * 冷却时间|{param3:F1}秒
             */
             void 重云::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -124,9 +138,13 @@
 
 
             /*******灵刃·云开星落
-            技能伤害|{param1:P}
-            冷却时间|{param2:F1}秒
-            元素能量|{param3:I}
+             * 
+             * 重云结印，在前方半空中连续召唤出三柄巨大灵刃，短时间内依次落向地面并爆裂。
+             * 灵刃爆裂时，会造成冰元素范围伤害，并击飞敌人。
+             * 
+             * 技能伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
+             * 元素能量|{param3:I}
             */
             void 重云::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

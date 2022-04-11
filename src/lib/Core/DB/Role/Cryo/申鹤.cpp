@@ -14,8 +14,7 @@
         
         申鹤::~申鹤() {
         }
-        申鹤::申鹤(u32* frameCur) {
-            _framCur = frameCur;
+        申鹤::申鹤(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -62,15 +61,25 @@
         */
         
             /*******普通攻击·踏辰摄斗
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}+{param5:F1P}
-            五段伤害|{param6:F1P}
-            重击伤害|{param7:F1P}
-            重击体力消耗|{param8:F1}点
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续枪击。
+             * 
+             * **重击**
+             * 消耗一定体力，向前方突进，对路径上的敌人造成伤害。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}+{param5:F1P}
+             * 五段伤害|{param6:F1P}
+             * 重击伤害|{param7:F1P}
+             * 重击体力消耗|{param8:F1}点
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 申鹤::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -96,13 +105,29 @@
 
 
             /*******仰灵威召将役咒
-            点按技能伤害|{param1:P}
-            长按技能伤害|{param2:F1P}
-            伤害值提升|{param3:F1P}攻击力
-            点按/长按持续时间|{param4:F1}秒/{param5:F1}秒
-            点按/长按生效次数|{param6:I}次/{param7:I}次
-            点按冷却时间|{param8:F1}秒
-            长按冷却时间|{param9:F1}秒
+             * 
+             * 凝叠银之霜露，摒退一切邪魔。
+             * 为队伍中附近的所有角色施加「冰翎」效果，并依据点按、长按，以不同的方式造成冰元素伤害。
+             * 
+             * **点按**
+             * 与「箓灵」一同向前突进，对路径上的敌人造成冰元素伤害。
+             * 
+             * **长按**
+             * 律令「箓灵」，造成冰元素范围伤害。
+             * 
+             * **冰翎**
+             * 普通攻击、重击、下落攻击、元素战技和元素爆发伤害对敌人造成冰元素伤害时，基于申鹤自己当前的攻击力，提高造成的伤害。
+             * 
+             * 「冰翎」效果会在持续时间结束或生效一定次数后消失。长按施加的「冰翎」相比点按，拥有更长的持续时间与更多的生效次数。
+             * 一次冰元素伤害同时命中多名敌人时，会依据命中敌人的数量消耗生效次数；队伍中具有「冰翎」的角色，其生效次数单独计算。
+             * 
+             * 点按技能伤害|{param1:P}
+             * 长按技能伤害|{param2:F1P}
+             * 伤害值提升|{param3:F1P}攻击力
+             * 点按/长按持续时间|{param4:F1}秒/{param5:F1}秒
+             * 点按/长按生效次数|{param6:I}次/{param7:I}次
+             * 点按冷却时间|{param8:F1}秒
+             * 长按冷却时间|{param9:F1}秒
             */
             void 申鹤::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -128,12 +153,16 @@
 
 
             /*******神女遣灵真诀
-            技能伤害|{param1:P}
-            抗性降低|{param2:F1P}
-            持续伤害|{param3:F1P}
-            持续时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 解放「箓灵」的力量，驱使其驰骋世间，造成冰元素范围伤害。
+             * 「箓灵」将结成领域，使其中敌人的冰元素抗性与物理抗性降低，并持续对其中的敌人造成冰元素伤害。
+             * 
+             * 技能伤害|{param1:P}
+             * 抗性降低|{param2:F1P}
+             * 持续伤害|{param3:F1P}
+             * 持续时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 申鹤::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

@@ -14,8 +14,7 @@
         
         可莉::~可莉() {
         }
-        可莉::可莉(u32* frameCur) {
-            _framCur = frameCur;
+        可莉::可莉(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -61,13 +60,23 @@
         */
         
             /*******普通攻击·砰砰
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            重击伤害|{param4:P}
-            重击体力消耗|{param5:F1}点
-            下坠期间伤害|{param6:F1P}
-            低空/高空坠地冲击伤害|{param7:P}/{param8:P}
+             * 
+             * **普通攻击**
+             * 投掷在碰撞后会爆炸的好东西！进行至多三段的炸弹攻击，造成火元素范围伤害。
+             * 
+             * **重击**
+             * 消耗一定体力，短暂咏唱后，轰击敌人，造成火元素范围伤害。
+             * 
+             * **下落攻击**
+             * 凝聚烈焰的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成火元素范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 重击伤害|{param4:P}
+             * 重击体力消耗|{param5:F1}点
+             * 下坠期间伤害|{param6:F1P}
+             * 低空/高空坠地冲击伤害|{param7:P}/{param8:P}
             */
             void 可莉::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -93,10 +102,19 @@
 
 
             /*******蹦蹦炸弹
-            蹦蹦炸弹伤害|{param1:F1P}
-            诡雷伤害|{param4:F1P}
-            诡雷持续时间|{param5:F1}秒
-            冷却时间|{param6:F1}秒
+             * 
+             * 投出带来无限快乐的蹦蹦炸弹！
+             * 蹦蹦炸弹会连续弹跳三次，每次弹跳都会引发爆炸，造成火元素范围伤害。
+             * 
+             * 第三次弹跳后，将分裂成许多诡雷。
+             * 诡雷会在接触到敌人或一段时间后爆炸，造成火元素范围伤害。
+             * 
+             * 初始拥有2次可使用次数。
+             * 
+             * 蹦蹦炸弹伤害|{param1:F1P}
+             * 诡雷伤害|{param4:F1P}
+             * 诡雷持续时间|{param5:F1}秒
+             * 冷却时间|{param6:F1}秒
             */
             void 可莉::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -122,10 +140,13 @@
 
 
             /*******轰轰火花
-            轰轰火花伤害|{param1:F1P}
-            持续时间|{param5:F1}秒
-            冷却时间|{param2:F1}秒
-            元素能量|{param3:I}
+             * 
+             * 可莉火力全开！在技能持续时间内，不停召唤轰轰火花攻击附近的敌人，造成火元素范围伤害。
+             * 
+             * 轰轰火花伤害|{param1:F1P}
+             * 持续时间|{param5:F1}秒
+             * 冷却时间|{param2:F1}秒
+             * 元素能量|{param3:I}
             */
             void 可莉::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

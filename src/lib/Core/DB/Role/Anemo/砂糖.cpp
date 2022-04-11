@@ -14,8 +14,7 @@
         
         砂糖::~砂糖() {
         }
-        砂糖::砂糖(u32* frameCur) {
-            _framCur = frameCur;
+        砂糖::砂糖(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,14 +59,24 @@
         */
         
             /*******普通攻击·简式风灵作成
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            重击伤害|{param5:P}
-            重击体力消耗|{param6:F1}点
-            下坠期间伤害|{param7:F1P}
-            低空/高空坠地冲击伤害|{param8:P}/{param9:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的风灵攻击，造成风元素伤害。
+             * 
+             * **重击**
+             * 消耗一定体力，短暂咏唱后，造成风元素范围伤害。
+             * 
+             * **下落攻击**
+             * 凝聚风灵的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成风元素范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 重击伤害|{param5:P}
+             * 重击体力消耗|{param6:F1}点
+             * 下坠期间伤害|{param7:F1P}
+             * 低空/高空坠地冲击伤害|{param8:P}/{param9:P}
             */
             void 砂糖::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -93,8 +102,11 @@
 
 
             /*******风灵作成·陆叁零捌
-            技能伤害|{param1:P}
-            冷却时间|{param2:F1}秒
+             * 
+             * 召唤出小型风灵，将敌人与物体牵引至风灵所在位置，击飞范围内的敌人，并造成风元素伤害。
+             * 
+             * 技能伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
             */
             void 砂糖::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -120,11 +132,19 @@
 
 
             /*******禁·风灵作成·柒伍同构贰型
-            持续伤害|{param1:P}
-            附加元素伤害|{param2:F1P}
-            持续时间|{param3:F1}秒
-            冷却时间|{param4:F1}秒
-            元素能量|{param5:I}
+             * 
+             * 砂糖抛出不稳定的烧瓶，生成大型风灵。
+             * 存在期间，大型风灵会持续牵引附近的敌人与物体，击飞附近的敌人，并造成风元素伤害。
+             * 
+             * **元素转化**
+             * 若风灵在技能持续期间接触了水元素/火元素/冰元素/雷元素，则会获得对应元素属性，额外造成该元素的附加伤害。
+             * 元素转化在技能持续期间仅会发生一次。
+             * 
+             * 持续伤害|{param1:P}
+             * 附加元素伤害|{param2:F1P}
+             * 持续时间|{param3:F1}秒
+             * 冷却时间|{param4:F1}秒
+             * 元素能量|{param5:I}
             */
             void 砂糖::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

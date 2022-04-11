@@ -14,8 +14,7 @@
         
         刻晴::~刻晴() {
         }
-        刻晴::刻晴(u32* frameCur) {
-            _framCur = frameCur;
+        刻晴::刻晴(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,25 @@
         */
         
             /*******普通攻击·云来剑法
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}+{param5:F1P}
-            五段伤害|{param6:F1P}
-            重击伤害|{param7:F1P}+{param8:F1P}
-            重击体力消耗|{param9:F1}点
-            下坠期间伤害|{param10:F1P}
-            低空/高空坠地冲击伤害|{param11:P}/{param12:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，瞬间向前方挥出两剑。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}+{param5:F1P}
+             * 五段伤害|{param6:F1P}
+             * 重击伤害|{param7:F1P}+{param8:F1P}
+             * 重击体力消耗|{param9:F1}点
+             * 下坠期间伤害|{param10:F1P}
+             * 低空/高空坠地冲击伤害|{param11:P}/{param12:P}
             */
             void 刻晴::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,10 +103,23 @@
 
 
             /*******星斗归位
-            雷楔伤害|{param1:F1P}
-            斩击伤害|{param2:P}
-            雷暴连斩伤害|{param3:F1P}*2
-            冷却时间|{param4:F1}秒
+             * 
+             * 迅速投出雷楔，以疾雷之势歼敌。
+             * 雷楔命中时会对小范围内的敌人造成雷元素伤害，并在命中的位置留下雷楔标记。
+             * 
+             * **长按**
+             * 长按以调整雷楔标记投掷的方向。
+             * 通过长按投出的雷楔，可以悬浮在空中，并使刻晴再次施放星斗归位时跨越地形。
+             * 
+             * **雷楔**
+             * 在雷楔的持续期间内，刻晴再次施放星斗归位或施展重击时，会清除雷楔标记并造成不同的效果：
+             * ·再次施放星斗归位时，瞬移到标记处进行一次斩击，造成雷元素范围伤害。瞬移至长按投掷的雷楔处时，可以跨越地形障碍；
+             * ·施展重击时，在标记处引发雷暴连斩，造成数次雷元素范围伤害。
+             * 
+             * 雷楔伤害|{param1:F1P}
+             * 斩击伤害|{param2:P}
+             * 雷暴连斩伤害|{param3:F1P}*2
+             * 冷却时间|{param4:F1}秒
             */
             void 刻晴::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,11 +145,15 @@
 
 
             /*******天街巡游
-            技能伤害|{param1:F1P}
-            连斩伤害|{param2:F1P}*8
-            最后一击伤害|{param3:P}
-            冷却时间|{param4:F1}秒
-            元素能量|{param5:I}
+             * 
+             * 爆发雷电的力量，造成范围雷元素伤害。
+             * 随后隐入剑影中，对周围的敌人进行如同迅雷霆霓般疾速的连斩，造成多段雷元素伤害，并在最后一击时造成高额雷元素范围伤害。
+             * 
+             * 技能伤害|{param1:F1P}
+             * 连斩伤害|{param2:F1P}*8
+             * 最后一击伤害|{param3:P}
+             * 冷却时间|{param4:F1}秒
+             * 元素能量|{param5:I}
             */
             void 刻晴::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

@@ -14,8 +14,7 @@
         
         迪卢克::~迪卢克() {
         }
-        迪卢克::迪卢克(u32* frameCur) {
-            _framCur = frameCur;
+        迪卢克::迪卢克(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,16 +59,27 @@
         */
         
             /*******普通攻击·淬炼之剑
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:P}
-            重击循环伤害|{param5:F1P}
-            重击终结伤害|{param6:P}
-            重击体力消耗|每秒{param7:F1}点
-            最大持续时间|{param8:F1}秒
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的连续挥砍。
+             * 
+             * **重击**
+             * 持续消耗体力，快速进行连续的斩击。
+             * 重击结束时，会进行一次格外有力的挥砍。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:P}
+             * 重击循环伤害|{param5:F1P}
+             * 重击终结伤害|{param6:P}
+             * 重击体力消耗|每秒{param7:F1}点
+             * 最大持续时间|{param8:F1}秒
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 迪卢克::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -95,10 +105,16 @@
 
 
             /*******逆焰之刃
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:P}
-            冷却时间|{param4:F1}秒
+             * 
+             * 挥舞大剑向前劈砍，造成火元素伤害。
+             * 
+             * 可以连续施放3次。
+             * 若在短时间内没有施放，则会进入冷却。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:P}
+             * 冷却时间|{param4:F1}秒
             */
             void 迪卢克::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -124,12 +140,16 @@
 
 
             /*******黎明
-            斩击伤害|{param1:P}
-            持续伤害|{param2:F1P}
-            爆裂伤害|{param3:P}
-            冷却时间|{param4:F1}秒
-            附魔持续时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 爆发出烈焰的力量，击退周围的敌人，造成火元素伤害。随后，将烈焰凝聚在武器上，挥出向前飞行的火之鸟，对路径上的敌人造成高额火元素伤害，并在火之鸟行进的终点爆裂造成大量的火元素范围伤害。
+             * 武器上凝聚的烈焰会使迪卢克获得火元素附魔。
+             * 
+             * 斩击伤害|{param1:P}
+             * 持续伤害|{param2:F1P}
+             * 爆裂伤害|{param3:P}
+             * 冷却时间|{param4:F1}秒
+             * 附魔持续时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 迪卢克::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

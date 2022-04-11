@@ -14,8 +14,7 @@
         
         罗莎莉亚::~罗莎莉亚() {
         }
-        罗莎莉亚::罗莎莉亚(u32* frameCur) {
-            _framCur = frameCur;
+        罗莎莉亚::罗莎莉亚(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -62,15 +61,25 @@
         */
         
             /*******普通攻击·教会枪术
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}*2
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}+{param6:F1P}
-            重击伤害|{param7:P}
-            重击体力消耗|{param8:F1}点
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续枪击。
+             * 
+             * **重击**
+             * 消耗一定体力，向前方突进，对路径上的敌人造成伤害。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}*2
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}+{param6:F1P}
+             * 重击伤害|{param7:P}
+             * 重击体力消耗|{param8:F1}点
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 罗莎莉亚::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -96,8 +105,12 @@
 
 
             /*******噬罪的告解
-            技能伤害|{param1:P}+{param2:P}
-            冷却时间|{param3:F1}秒
+             * 
+             * 罗莎莉亚快速移动至目标敌人身后，进行长枪穿刺与挥砍，造成冰元素伤害。
+             * 无法通过施放时的快速移动，转移至体型较大的敌人身后。
+             * 
+             * 技能伤害|{param1:P}+{param2:P}
+             * 冷却时间|{param3:F1}秒
             */
             void 罗莎莉亚::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,11 +136,15 @@
 
 
             /*******终命的圣礼
-            技能伤害|{param1:P}+{param2:P}
-            冰枪持续伤害|{param3:P}
-            持续时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 这是罗莎莉亚专属的领祷仪式。挥舞武器扫击身边的敌人后，凝聚极寒的冰枪击向地面，分别造成冰元素伤害。
+             * 冰枪在存在期间内，会间歇性释放寒气，对附近的敌人造成冰元素伤害。
+             * 
+             * 技能伤害|{param1:P}+{param2:P}
+             * 冰枪持续伤害|{param3:P}
+             * 持续时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 罗莎莉亚::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

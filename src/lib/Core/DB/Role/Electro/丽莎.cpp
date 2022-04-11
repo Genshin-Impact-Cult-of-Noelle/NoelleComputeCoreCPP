@@ -14,8 +14,7 @@
         
         丽莎::~丽莎() {
         }
-        丽莎::丽莎(u32* frameCur) {
-            _framCur = frameCur;
+        丽莎::丽莎(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,14 +59,24 @@
         */
         
             /*******普通攻击·指尖雷暴
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            重击伤害|{param5:P}
-            重击体力消耗|{param6:F1}点
-            下坠期间伤害|{param7:F1P}
-            低空/高空坠地冲击伤害|{param8:P}/{param9:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的电击，造成雷元素伤害。
+             * 
+             * **重击**
+             * 消耗一定体力，短暂咏唱后，造成雷元素范围伤害。
+             * 
+             * **下落攻击**
+             * 凝聚雷电的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成雷元素范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 重击伤害|{param5:P}
+             * 重击体力消耗|{param6:F1}点
+             * 下坠期间伤害|{param7:F1P}
+             * 低空/高空坠地冲击伤害|{param8:P}/{param9:P}
             */
             void 丽莎::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -93,13 +102,24 @@
 
 
             /*******苍雷
-            点按伤害|{param6:F1P}
-            点按冷却时间|{param7:F1}秒
-            无引雷长按伤害|{param1:P}
-            一层引雷长按伤害|{param2:P}
-            二层引雷长按伤害|{param3:P}
-            三层引雷长按伤害|{param4:P}
-            长按冷却时间|{param5:F1}秒
+             * 
+             * 导引雷电的力量，把麻烦的东西都清理干净。
+             * 
+             * **点按**
+             * 放出能自行索敌的球形闪电。
+             * 命中时，会造成雷元素伤害，并对小范围内的敌人施加至多叠加3层的引雷状态。
+             * 
+             * **长按**
+             * 持续咏唱后，召唤雷电从天而降，对附近的所有敌人造成大量雷元素伤害。
+             * 对处于引雷状态下的敌人，会根据叠加层数造成大量额外伤害，并清除引雷效果。
+             * 
+             * 点按伤害|{param6:F1P}
+             * 点按冷却时间|{param7:F1}秒
+             * 无引雷长按伤害|{param1:P}
+             * 一层引雷长按伤害|{param2:P}
+             * 二层引雷长按伤害|{param3:P}
+             * 三层引雷长按伤害|{param4:P}
+             * 长按冷却时间|{param5:F1}秒
             */
             void 丽莎::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -125,10 +145,14 @@
 
 
             /*******蔷薇的雷光
-            放电伤害|{param1:F1P}
-            持续时间|{param2:F1}秒
-            冷却时间|{param3:F1}秒
-            元素能量|{param4:I}
+             * 
+             * 召唤蔷薇雷光，释放强大的雷电之力，击退周围的敌人并造成雷元素伤害。
+             * 存在期间内，蔷薇雷光会持续放电攻击附近的敌人，造成雷元素伤害。
+             * 
+             * 放电伤害|{param1:F1P}
+             * 持续时间|{param2:F1}秒
+             * 冷却时间|{param3:F1}秒
+             * 元素能量|{param4:I}
             */
             void 丽莎::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

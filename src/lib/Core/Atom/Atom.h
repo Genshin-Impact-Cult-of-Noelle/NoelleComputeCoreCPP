@@ -7,6 +7,8 @@ typedef unsigned char      u8;
 typedef unsigned short     u16;
 typedef unsigned int       u32;
 typedef unsigned long long u64;
+const u32 帧一秒 = 100;
+const u32 帧百分之一秒 = 1;
 #include "Enum.h"
 #include "Attr.h"
 #include "BaseObject.h"

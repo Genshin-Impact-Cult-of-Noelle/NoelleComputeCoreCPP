@@ -7,7 +7,6 @@ namespace Advanced {
 	class Weapon;
 	class BuffPool;
 	class Character;
-	class Character;
 	class Buff;
 	/// <summary>
 	/// 高级角色类、真实角色的下一层
@@ -22,7 +21,7 @@ namespace Advanced {
 			delete result;
 			// delete this;
 		};
-		Role();
+		Role(u32*);
 		/// <summary>
 		/// 添加buff
 		/// </summary>
@@ -49,7 +48,7 @@ namespace Advanced {
 		/// <summary>
 		/// 当前最终面板
 		/// </summary>
-		Atom::BaseObject::Result* GetLastData();
+		Atom::BaseObject* GetLastData();
 		/// <summary>
 		/// 帧更新
 		/// </summary>
@@ -79,15 +78,11 @@ namespace Advanced {
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
 
 		virtual	void Q(Role*, u32) = 0;
-
 		/// <summary>
 		/// 结果
 		/// </summary>
-		Atom::BaseObject::Result* result;
-		/// <summary>
-		/// 改变标记
-		/// </summary>		
-		bool Changed;
+		Atom::BaseObject* result;
+
 		/// <summary>
 		/// 圣遗物组
 		/// </summary>
@@ -104,6 +99,19 @@ namespace Advanced {
 		/// buff池子
 		/// </summary>
 		BuffPool* rawBuffPool;
+		/// <summary>
+		/// 获取帧位置
+		/// </summary>
+		/// <returns></returns>
+		u32 GetFrameCur() {
+			return *_framCur;
+		};
+	private:
+		/// <summary>
+		/// 改变标记
+		/// </summary>		
+		bool changed;
+		u32* _framCur;
 	};
 
 }

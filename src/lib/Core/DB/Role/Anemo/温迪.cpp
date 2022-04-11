@@ -14,8 +14,7 @@
         
         温迪::~温迪() {
         }
-        温迪::温迪(u32* frameCur) {
-            _framCur = frameCur;
+        温迪::温迪(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -62,16 +61,27 @@
         */
         
             /*******普通攻击·神代射术
-            一段伤害|{param1:F1P}+{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}+{param4:F1P}
-            五段伤害|{param5:F1P}
-            六段伤害|{param6:F1P}
-            瞄准射击|{param7:F1P}
-            满蓄力瞄准射击|{param8:P}
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多六段的连续弓箭射击。
+             * 
+             * **重击**
+             * 进行伤害更高、更为精准的**瞄准射击**。
+             * 瞄准时，眷顾天地的风会在箭矢上持续积聚。聚满了风之力的箭矢会造成风元素伤害。
+             * 
+             * **下落攻击**
+             * 从空中射出箭雨，并迅速下坠冲击地面，在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}+{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}+{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 六段伤害|{param6:F1P}
+             * 瞄准射击|{param7:F1P}
+             * 满蓄力瞄准射击|{param8:P}
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 温迪::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -97,10 +107,22 @@
 
 
             /*******高天之歌
-            点按伤害|{param1:P}
-            点按冷却时间|{param2:F1}秒
-            长按伤害|{param3:P}
-            长按冷却时间|{param4:F1}秒
+             * 
+             * 呼唤与诗和乐协鸣的风，将在尘泥中行走的事物送上高空吧。
+             * 
+             * **点按**
+             * 在敌人所在的位置唤出风域，造成风元素范围伤害，并击飞其中的敌人。
+             * 
+             * **长按**
+             * 以自身为中心，唤出更大的风域，造成风元素范围伤害，并击飞其中的敌人。
+             * 长按施放后，温迪会乘风飞到空中。
+             * 
+             * 被高天之歌击飞的敌人，在短时间内会缓慢坠落。
+             * 
+             * 点按伤害|{param1:P}
+             * 点按冷却时间|{param2:F1}秒
+             * 长按伤害|{param3:P}
+             * 长按冷却时间|{param4:F1}秒
             */
             void 温迪::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -126,11 +148,18 @@
 
 
             /*******风神之诗
-            持续伤害|{param1:F1P}
-            附加元素伤害|{param2:F1P}
-            持续时间|{param3:F1}秒
-            冷却时间|{param4:F1}秒
-            元素能量|{param5:I}
+             * 
+             * 射出千风汇聚而成的箭矢，在前方造出巨大的暴风之眼，将敌人卷入，持续造成风元素伤害。
+             * 
+             * **元素转化**
+             * 若暴风之眼在技能持续期间接触了水元素/火元素/冰元素/雷元素，则会获得对应元素属性，额外造成该元素的附加伤害。
+             * 元素转化在技能持续期间仅会发生一次。
+             * 
+             * 持续伤害|{param1:F1P}
+             * 附加元素伤害|{param2:F1P}
+             * 持续时间|{param3:F1}秒
+             * 冷却时间|{param4:F1}秒
+             * 元素能量|{param5:I}
             */
             void 温迪::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

@@ -14,8 +14,7 @@
         
         芭芭拉::~芭芭拉() {
         }
-        芭芭拉::芭芭拉(u32* frameCur) {
-            _framCur = frameCur;
+        芭芭拉::芭芭拉(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -61,14 +60,24 @@
         */
         
             /*******普通攻击·水之浅唱
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            重击伤害|{param5:P}
-            重击体力消耗|{param6:F1}点
-            下坠期间伤害|{param7:F1P}
-            低空/高空坠地冲击伤害|{param8:P}/{param9:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的水花攻击，造成水元素伤害。
+             * 
+             * **重击**
+             * 消耗一定体力，短暂咏唱后，造成水元素范围伤害。
+             * 
+             * **下落攻击**
+             * 凝聚水元素的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成水元素范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 重击伤害|{param5:P}
+             * 重击体力消耗|{param6:F1}点
+             * 下坠期间伤害|{param7:F1P}
+             * 低空/高空坠地冲击伤害|{param8:P}/{param9:P}
             */
             void 芭芭拉::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,11 +103,20 @@
 
 
             /*******演唱，开始♪
-            命中治疗量|{param3:F2P}生命值上限+{param4:I}
-            持续治疗量|{param1:F2P}生命值上限+{param2:I}
-            水珠伤害|{param5:F1P}
-            持续时间|{param6:F1}秒
-            冷却时间|{param7:F1}秒
+             * 
+             * 唤出歌声般跃动的水珠，形成歌声之环，对周围的敌人造成水元素伤害，并施加潮湿状态。
+             * 
+             * **歌声之环**
+             * ·芭芭拉的普通攻击命中时，为队伍中自己的角色，以及附近的友方角色恢复生命值，回复量受益于芭芭拉的生命值上限；
+             * ·重击命中时，能产生4倍回复量；
+             * ·每隔一段时间，为当前场上自己的角色恢复生命值；
+             * ·对角色与触及的敌人施加潮湿状态。
+             * 
+             * 命中治疗量|{param3:F2P}生命值上限+{param4:I}
+             * 持续治疗量|{param1:F2P}生命值上限+{param2:I}
+             * 水珠伤害|{param5:F1P}
+             * 持续时间|{param6:F1}秒
+             * 冷却时间|{param7:F1}秒
             */
             void 芭芭拉::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -124,9 +142,12 @@
 
 
             /*******闪耀奇迹♪
-            治疗量|{param1:F1P}生命值上限+{param2:I}
-            冷却时间|{param3:F1}秒
-            元素能量|{param4:I}
+             * 
+             * 为附近的友方角色及队伍中自己的角色恢复大量生命值，回复量受益于芭芭拉的生命值上限。
+             * 
+             * 治疗量|{param1:F1P}生命值上限+{param2:I}
+             * 冷却时间|{param3:F1}秒
+             * 元素能量|{param4:I}
             */
             void 芭芭拉::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

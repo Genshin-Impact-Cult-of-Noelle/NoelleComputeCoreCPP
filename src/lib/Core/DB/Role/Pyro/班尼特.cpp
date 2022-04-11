@@ -14,8 +14,7 @@
         
         班尼特::~班尼特() {
         }
-        班尼特::班尼特(u32* frameCur) {
-            _framCur = frameCur;
+        班尼特::班尼特(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -62,15 +61,25 @@
         */
         
             /*******普通攻击·好运剑
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            重击伤害|{param6:F1P}+{param7:F1P}
-            重击体力消耗|{param8:F1}点
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，瞬间向前方挥出两剑。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 重击伤害|{param6:F1P}+{param7:F1P}
+             * 重击体力消耗|{param8:F1}点
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 班尼特::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -96,11 +105,22 @@
 
 
             /*******热情过载
-            点按伤害|{param1:P}
-            一段蓄力伤害|{param2:F1P}+{param3:F1P}
-            二段蓄力伤害|{param4:F1P}+{param5:F1P}
-            爆炸伤害|{param6:P}
-            冷却时间|{param7:F1}/{param8:F1}/{param9:F1}秒
+             * 
+             * 班尼特将火元素与冒险的热情凝聚在剑上。根据热情凝聚的程度，可能会发生不同的事情…
+             * 
+             * **点按**
+             * 快速向前挥出火焰一击，造成火元素伤害。
+             * 
+             * **长按**
+             * 根据长按时间进行蓄力，释放时依照蓄力段数造成不同的效果。
+             * ·一段蓄力：发动二段攻击，造成火元素伤害并将敌人击飞；
+             * ·二段蓄力：发动三段连续攻击，造成可观的火元素伤害。最后一击会发生爆炸，将班尼特与敌人同时击飞。被击飞时，班尼特不会受到伤害。
+             * 
+             * 点按伤害|{param1:P}
+             * 一段蓄力伤害|{param2:F1P}+{param3:F1P}
+             * 二段蓄力伤害|{param4:F1P}+{param5:F1P}
+             * 爆炸伤害|{param6:P}
+             * 冷却时间|{param7:F1}/{param8:F1}/{param9:F1}秒
             */
             void 班尼特::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -126,12 +146,20 @@
 
 
             /*******美妙旅程
-            技能伤害|{param1:P}
-            持续治疗|每秒{param2:F2P}生命值上限+{param3:I}
-            攻击力加成比例|{param4:P}
-            持续时间|{param5:F1}秒
-            冷却时间|{param6:F1}秒
-            元素能量|{param7:I}
+             * 
+             * 班尼特进行腾跃轰击，造成火元素伤害，并生成鼓舞领域。
+             * 
+             * **鼓舞领域**
+             * ·领域内的角色如果生命值低于或等于70%，会持续恢复生命值，回复量受益于班尼特的最大生命值；
+             * ·领域内的角色如果生命值高于70%，会基于班尼特的基础攻击力，以一定比例获得攻击力加成；
+             * ·为其中的角色施加火元素附着。
+             * 
+             * 技能伤害|{param1:P}
+             * 持续治疗|每秒{param2:F2P}生命值上限+{param3:I}
+             * 攻击力加成比例|{param4:P}
+             * 持续时间|{param5:F1}秒
+             * 冷却时间|{param6:F1}秒
+             * 元素能量|{param7:I}
             */
             void 班尼特::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

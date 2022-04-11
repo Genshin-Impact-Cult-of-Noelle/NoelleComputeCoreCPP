@@ -14,8 +14,7 @@
         
         埃洛伊::~埃洛伊() {
         }
-        埃洛伊::埃洛伊(u32* frameCur) {
-            _framCur = frameCur;
+        埃洛伊::埃洛伊(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,14 +59,25 @@
         */
         
             /*******普通攻击·快速射击
-            一段伤害|{param1:F1P}+{param2:F1P}
-            二段伤害|{param3:F1P}
-            三段伤害|{param4:F1P}
-            四段伤害|{param5:F1P}
-            瞄准射击|{param6:F1P}
-            满蓄力瞄准射击|{param7:P}
-            下坠期间伤害|{param8:F1P}
-            低空/高空坠地冲击伤害|{param9:P}/{param10:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的连续弓箭射击。
+             * 
+             * **重击**
+             * 进行伤害更高、更为精准的**瞄准射击**。
+             * 瞄准时，冰霜散发的寒气会凭附在箭矢上。聚满了寒气的箭矢会造成冰元素伤害。
+             * 
+             * **下落攻击**
+             * 从空中射出箭雨，并迅速下坠冲击地面，在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}+{param2:F1P}
+             * 二段伤害|{param3:F1P}
+             * 三段伤害|{param4:F1P}
+             * 四段伤害|{param5:F1P}
+             * 瞄准射击|{param6:F1P}
+             * 满蓄力瞄准射击|{param7:P}
+             * 下坠期间伤害|{param8:F1P}
+             * 低空/高空坠地冲击伤害|{param9:P}/{param10:P}
             */
             void 埃洛伊::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -93,14 +103,26 @@
 
 
             /*******冰尘雪野
-            冰尘弹伤害|{param1:P}
-            冷冻炸弹伤害|{param2:F1P}
-            攻击力降低|{param3:P}
-            攻击力降低持续时间|{param4:F1}秒
-            线圈普通攻击伤害提升|{param5:F1P}/{param6:F1P}/{param7:F1P}
-            冰驰普通攻击伤害提升|{param8:F1P}
-            冰驰持续时间|{param9:F1}秒
-            冷却时间|{param10:F1}秒
+             * 
+             * 向目标方向投掷一枚冰尘弹，在命中后引发爆炸，造成冰元素伤害。爆炸后，冰尘弹将分裂成许多冷冻炸弹，在接触到敌人或一段时间后爆炸，造成冰元素伤害。
+             * 冰尘弹或冷冻炸弹命中敌人后，会使敌人的攻击力降低，并为埃洛伊赋予1层「线圈」效果。
+             * 每0.1秒至多获得1层线圈效果。
+             * 
+             * **线圈**
+             * ·依据层数，提高埃洛伊的普通攻击造成的伤害；
+             * ·拥有4层线圈时，埃洛伊清除所有的线圈效果，并获得「冰驰」，进一步提高普通攻击造成的伤害，并将普通攻击造成的伤害转为冰元素伤害。
+             * 
+             * 处于冰驰状态下时，埃洛伊无法获得线圈效果。
+             * 线圈效果会在脱离战斗30秒后清除。
+             * 
+             * 冰尘弹伤害|{param1:P}
+             * 冷冻炸弹伤害|{param2:F1P}
+             * 攻击力降低|{param3:P}
+             * 攻击力降低持续时间|{param4:F1}秒
+             * 线圈普通攻击伤害提升|{param5:F1P}/{param6:F1P}/{param7:F1P}
+             * 冰驰普通攻击伤害提升|{param8:F1P}
+             * 冰驰持续时间|{param9:F1}秒
+             * 冷却时间|{param10:F1}秒
             */
             void 埃洛伊::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -126,9 +148,12 @@
 
 
             /*******曙光预言
-            技能伤害|{param1:P}
-            冷却时间|{param2:F1}秒
-            元素能量|{param3:I}
+             * 
+             * 向目标方向投掷冰元素满溢的蓄能容器，并用弓箭引爆，造成冰元素范围伤害。
+             * 
+             * 技能伤害|{param1:P}
+             * 冷却时间|{param2:F1}秒
+             * 元素能量|{param3:I}
             */
             void 埃洛伊::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

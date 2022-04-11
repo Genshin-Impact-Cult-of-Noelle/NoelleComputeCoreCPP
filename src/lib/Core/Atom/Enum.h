@@ -34,12 +34,12 @@ namespace Atom {
 		enum class ElementType {
 			//其他属性
 			OtherElement,
+			//火
+			Pyro,
 			//水
 			Hydro,
 			//冰
 			Cryo,
-			//火
-			Pyro,
 			//电
 			Electro,
 			//草

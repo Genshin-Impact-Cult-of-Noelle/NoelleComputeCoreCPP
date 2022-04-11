@@ -14,8 +14,7 @@
         
         北斗::~北斗() {
         }
-        北斗::北斗(u32* frameCur) {
-            _framCur = frameCur;
+        北斗::北斗(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -63,17 +62,28 @@
         */
         
             /*******普通攻击·征涛
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:P}
-            重击循环伤害|{param6:F1P}
-            重击终结伤害|{param7:P}
-            重击体力消耗|每秒{param8:F1}点
-            最大持续时间|{param9:F1}秒
-            下坠期间伤害|{param10:F1P}
-            低空/高空坠地冲击伤害|{param11:P}/{param12:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续挥砍。
+             * 
+             * **重击**
+             * 持续消耗体力，快速进行连续的斩击。
+             * 重击结束时，会进行一次格外有力的挥砍。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:P}
+             * 重击循环伤害|{param6:F1P}
+             * 重击终结伤害|{param7:P}
+             * 重击体力消耗|每秒{param8:F1}点
+             * 最大持续时间|{param9:F1}秒
+             * 下坠期间伤害|{param10:F1P}
+             * 低空/高空坠地冲击伤害|{param11:P}/{param12:P}
             */
             void 北斗::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -99,10 +109,23 @@
 
 
             /*******捉浪
-            护盾吸收量|{param1:F1P}生命值上限+{param2:I}
-            基础伤害|{param3:P}
-            受击时伤害提升|{param4:P}
-            冷却时间|{param5:F1}秒
+             * 
+             * 没有什么好担心的。如果有人敢对她或她的人出手，那就以雷电与大剑十倍奉还。
+             * 
+             * **点按**
+             * 积聚雷之力，猛烈向前挥舞大剑，造成雷元素伤害。
+             * 
+             * **长按**
+             * 举起武器形成护盾，伤害吸收量受益于北斗的生命值上限。
+             * 松开技能或持续时间结束时，会挥舞大剑释放积攒的力量进行攻击，造成雷元素伤害。依据技能期间受到攻击的次数，提高释放时造成的伤害。触发2次达到最高伤害加成。
+             * 护盾具有如下效果：
+             * ·对雷元素伤害有250%的吸收效果；
+             * ·施放的瞬间，为北斗施加雷元素附着。
+             * 
+             * 护盾吸收量|{param1:F1P}生命值上限+{param2:I}
+             * 基础伤害|{param3:P}
+             * 受击时伤害提升|{param4:P}
+             * 冷却时间|{param5:F1}秒
             */
             void 北斗::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -128,12 +151,21 @@
 
 
             /*******斫雷
-            技能伤害|{param1:P}
-            闪雷伤害|{param2:F1P}
-            伤害减免|{param3:P}
-            持续时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 重忆斩灭海山巨兽之战，唤起巨兽与雷电的力量，创造环绕自身的雷兽之盾，并对周围的敌人造成雷元素伤害。
+             * 
+             * **雷兽之盾**
+             * ·普通攻击与重击命中时，释放雷电之力，引来1道能在敌人之间跃动的闪雷，造成雷元素伤害；
+             * ·提高角色的抗打断能力，并降低受到的伤害。
+             * 
+             * 每秒至多触发1道闪雷。
+             * 
+             * 技能伤害|{param1:P}
+             * 闪雷伤害|{param2:F1P}
+             * 伤害减免|{param3:P}
+             * 持续时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 北斗::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

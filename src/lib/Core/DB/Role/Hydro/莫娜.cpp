@@ -14,8 +14,7 @@
         
         莫娜::~莫娜() {
         }
-        莫娜::莫娜(u32* frameCur) {
-            _framCur = frameCur;
+        莫娜::莫娜(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -73,14 +72,24 @@
         */
         
             /*******普通攻击·因果点破
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            重击伤害|{param5:P}
-            重击体力消耗|{param6:F1}点
-            下坠期间伤害|{param7:F1P}
-            低空/高空坠地冲击伤害|{param8:P}/{param9:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的水花攻击，造成水元素伤害。
+             * 
+             * **重击**
+             * 消耗一定体力，短暂咏唱后，造成水元素范围伤害。
+             * 
+             * **下落攻击**
+             * 凝聚水元素的力量，从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成水元素范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 重击伤害|{param5:P}
+             * 重击体力消耗|{param6:F1}点
+             * 下坠期间伤害|{param7:F1P}
+             * 低空/高空坠地冲击伤害|{param8:P}/{param9:P}
             */
             void 莫娜::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -106,9 +115,23 @@
 
 
             /*******水中幻愿
-            持续伤害|{param1:F1P}
-            爆裂伤害|{param2:P}
-            冷却时间|{param5:F1}秒
+             * 
+             * 聚集水花汇成命运的虚影。
+             * 
+             * **虚影**
+             * 具有如下特性：
+             * ·持续嘲讽周围的敌人，吸引火力；
+             * ·持续对附近的敌人造成水元素伤害；
+             * ·持续时间结束时，虚影破裂，造成水元素范围伤害。
+             * 
+             * **长按**
+             * 借助水流之势迅速后退，并唤出虚影。
+             * 
+             * 场上同时只能存在一个通过水中幻愿创造的虚影。
+             * 
+             * 持续伤害|{param1:F1P}
+             * 爆裂伤害|{param2:P}
+             * 冷却时间|{param5:F1}秒
             */
             void 莫娜::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -134,12 +157,24 @@
 
 
             /*******星命定轨
-            泡影持续时间|{param1:F1}秒
-            泡影破裂伤害|{param2:P}
-            伤害加成|{param10:P}
-            星异持续时间|{param4:F1}秒
-            冷却时间|{param5:F1}秒
-            元素能量|{param6:I}
+             * 
+             * 凝聚粼粼的水波，倒映出虚幻星空，对大范围内的敌人施加泡影状态。
+             * 
+             * **泡影**
+             * 以星相的气泡包裹敌人，施加潮湿状态。较弱的敌人会被禁锢在泡影中，无法行动。
+             * 处于泡影影响下的敌人受到伤害时，会产生以下效果：
+             * ·对敌人施加星异的伤害加成效果，并以此提高这一次造成的伤害；
+             * ·解除泡影效果，并额外造成一次水元素伤害。
+             * 
+             * **星异**
+             * 持续时间内，提高受到的伤害。
+             * 
+             * 泡影持续时间|{param1:F1}秒
+             * 泡影破裂伤害|{param2:P}
+             * 伤害加成|{param10:P}
+             * 星异持续时间|{param4:F1}秒
+             * 冷却时间|{param5:F1}秒
+             * 元素能量|{param6:I}
             */
             void 莫娜::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

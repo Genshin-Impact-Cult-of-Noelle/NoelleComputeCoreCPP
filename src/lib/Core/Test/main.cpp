@@ -3,7 +3,6 @@
 #include "../DB/DB.h"
 #define LOOPCOUNT 10000000;
 using namespace std;
-using namespace Advanced;
 using namespace DB::RoleConstruct;
 //using namespace Role;
 //void testAttr();
@@ -25,16 +24,20 @@ void main() {
 	u32* mm = new u32[1];
 	*mm = 15;
 	Advanced::Role* x = nullptr;
-	int LoopCount;
-	LoopCount = LOOPCOUNT;
+	x = Create(RoleName::诺艾尔, mm);
+	x->Q(x, 0);
+	cout << x->GetLastData()->LastValue()->Atk;
+	//int LoopCount;
+	//LoopCount = LOOPCOUNT;
 	clock_t start, end;
 	start = clock();
-	while (LoopCount--)
-	{
-		x = Create(RoleName::五郎, mm);
-		//cout << x;
-		delete x;
-	}
+	//while (LoopCount--)
+	//{
+	//	
+	//	//cout << x;
+	//	delete x;
+	//}
+	//Wait
 	//cout << x;
 	//testAttr();
 	//testBaseObject();

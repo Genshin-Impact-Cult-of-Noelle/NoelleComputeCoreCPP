@@ -14,8 +14,7 @@
         
         辛焱::~辛焱() {
         }
-        辛焱::辛焱(u32* frameCur) {
-            _framCur = frameCur;
+        辛焱::辛焱(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -62,16 +61,27 @@
         */
         
             /*******普通攻击·炎舞
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            重击循环伤害|{param5:F1P}
-            重击终结伤害|{param6:P}
-            重击体力消耗|每秒{param7:F1}点
-            最大持续时间|{param8:F1}秒
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多四段的连续挥砍。
+             * 
+             * **重击**
+             * 持续消耗体力，旋转大剑攻击周围的敌人。
+             * 停止旋转时，会进行一次格外有力的挥砍。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 重击循环伤害|{param5:F1P}
+             * 重击终结伤害|{param6:P}
+             * 重击体力消耗|每秒{param7:F1}点
+             * 最大持续时间|{param8:F1}秒
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 辛焱::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -97,13 +107,24 @@
 
 
             /*******热情拂扫
-            挥舞伤害|{param1:P}
-            一级护盾吸收量|{param2:F1P}防御力+{param3:I}
-            二级护盾吸收量|{param4:F1P}防御力+{param5:I}
-            三级护盾吸收量|{param6:F1P}防御力+{param7:I}
-            持续伤害|{param8:F1P}
-            护盾持续时间|{param9:F1}秒
-            冷却时间|{param10:F1}秒
+             * 
+             * 辛焱挥动乐器，对周围的敌人造成火元素伤害，并借由「观众」的「热情」，形成护盾。
+             * 护盾的伤害吸收量受益于辛焱的防御力，并基于命中敌人的数目：
+             * ·未命中或命中一名敌人：一级护盾·散序节拍；
+             * ·命中二名敌人：二级护盾·歌头节拍；
+             * ·命中三名或更多敌人时，将产生三级护盾·舞遍节拍。除了吸收伤害，还会间歇性对周围的敌人造成火元素伤害。
+             * 
+             * 护盾具有如下特性：
+             * ·施放的瞬间，为辛焱施加火元素附着；
+             * ·对火元素伤害有250%的吸收效果。
+             * 
+             * 挥舞伤害|{param1:P}
+             * 一级护盾吸收量|{param2:F1P}防御力+{param3:I}
+             * 二级护盾吸收量|{param4:F1P}防御力+{param5:I}
+             * 三级护盾吸收量|{param6:F1P}防御力+{param7:I}
+             * 持续伤害|{param8:F1P}
+             * 护盾持续时间|{param9:F1}秒
+             * 冷却时间|{param10:F1}秒
             */
             void 辛焱::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -129,11 +150,15 @@
 
 
             /*******叛逆刮弦
-            技能伤害|{param1:P}
-            火元素持续伤害|{param2:P}
-            持续时间|{param5:F1}秒
-            冷却时间|{param3:F1}秒
-            元素能量|{param4:I}
+             * 
+             * 迅速扫弦引发音波，击退敌人，对周围的敌人造成物理伤害，激起「舞台」上的氛围。
+             * 因为氛围实在太过炙烈，所以会引起烈焰，对周围的敌人持续造成火元素伤害。
+             * 
+             * 技能伤害|{param1:P}
+             * 火元素持续伤害|{param2:P}
+             * 持续时间|{param5:F1}秒
+             * 冷却时间|{param3:F1}秒
+             * 元素能量|{param4:I}
             */
             void 辛焱::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{

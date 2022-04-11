@@ -1,11 +1,16 @@
 ﻿#pragma once
 #include "Atom.h"
 namespace Atom {
+	namespace Enum {
+		enum class ElementType;
+	};
 	class Attr;
 #pragma region 实例基类
-	const char BaseObjectAttrSize = 26;
+	//const char BaseObjectAttrSize = 26;
 	class  BaseObject {
 	public:
+		Enum::ElementType NowAtkType;
+		bool MustElement = false;
 		class Result {
 		public:
 			~Result();

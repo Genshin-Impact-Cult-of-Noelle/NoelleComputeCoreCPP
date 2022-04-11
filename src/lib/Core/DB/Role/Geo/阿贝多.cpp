@@ -14,8 +14,7 @@
         
         阿贝多::~阿贝多() {
         }
-        阿贝多::阿贝多(u32* frameCur) {
-            _framCur = frameCur;
+        阿贝多::阿贝多(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
 			* HelathAttr = new Attr(HP, 0., 0.),
@@ -60,15 +59,25 @@
         */
         
             /*******普通攻击·西风剑术·白
-            一段伤害|{param1:F1P}
-            二段伤害|{param2:F1P}
-            三段伤害|{param3:F1P}
-            四段伤害|{param4:F1P}
-            五段伤害|{param5:F1P}
-            重击伤害|{param6:F1P}+{param7:F1P}
-            重击体力消耗|{param8:F1}点
-            下坠期间伤害|{param9:F1P}
-            低空/高空坠地冲击伤害|{param10:P}/{param11:P}
+             * 
+             * **普通攻击**
+             * 进行至多五段的连续剑击。
+             * 
+             * **重击**
+             * 消耗一定体力，瞬间向前方挥出两剑。
+             * 
+             * **下落攻击**
+             * 从空中下坠冲击地面，攻击下落路径上的敌人，并在落地时造成范围伤害。
+             * 
+             * 一段伤害|{param1:F1P}
+             * 二段伤害|{param2:F1P}
+             * 三段伤害|{param3:F1P}
+             * 四段伤害|{param4:F1P}
+             * 五段伤害|{param5:F1P}
+             * 重击伤害|{param6:F1P}+{param7:F1P}
+             * 重击体力消耗|{param8:F1}点
+             * 下坠期间伤害|{param9:F1P}
+             * 低空/高空坠地冲击伤害|{param10:P}/{param11:P}
             */
             void 阿贝多::A(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -94,10 +103,23 @@
 
 
             /*******创生法·拟造阳华
-            技能伤害|{param1:P}
-            刹那之花伤害|{param2:P}防御力
-            持续时间|{param3:F1}秒
-            技能冷却|{param4:F1}秒
+             * 
+             * 炼成阳华，造成岩元素范围伤害。
+             * 
+             * **阳华**
+             * 具有如下特性：
+             * ·以阳华为中心的领域中的敌人受到伤害时，阳华将会生成刹那之花，绽放造成岩元素范围伤害，伤害基于阿贝多的防御力。
+             * ·每2秒只能生成一次刹那之花。
+             * ·角色处在阳华上时，阳华将会凝聚岩元素的力量，形成将角色托起至一定高度的晶台。同时只能存在一个晶台。
+             * ·同时只能存在一个由阿贝多自己创造的阳华，视为岩元素创造物。
+             * 
+             * **长按**
+             * 可以调整技能生效位置。
+             * 
+             * 技能伤害|{param1:P}
+             * 刹那之花伤害|{param2:P}防御力
+             * 持续时间|{param3:F1}秒
+             * 技能冷却|{param4:F1}秒
             */
             void 阿贝多::E(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
@@ -123,10 +145,16 @@
 
 
             /*******诞生式·大地之潮
-            爆发伤害|{param1:P}
-            生灭之花伤害|每朵{param2:F1P}
-            冷却时间|{param3:F1}秒
-            元素能量|{param4:I}
+             * 
+             * 岩晶在阿贝多的指示下涌动爆发，在阿贝多前方造成岩元素范围伤害。
+             * 场上存在阿贝多自己创造的阳华时，会在阳华的领域内生成7朵生灭之花，猛烈绽放并造成岩元素范围伤害。
+             * 
+             * 爆发伤害与生灭之花的伤害不会生成刹那之花。
+             * 
+             * 爆发伤害|{param1:P}
+             * 生灭之花伤害|每朵{param2:F1P}
+             * 冷却时间|{param3:F1}秒
+             * 元素能量|{param4:I}
             */
             void 阿贝多::Q(Role* role, u32 cmd) {
                 const static double** SkillPrama = new const double* [15]{
