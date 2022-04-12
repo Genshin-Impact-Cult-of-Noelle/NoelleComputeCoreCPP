@@ -22,11 +22,11 @@
 			* DefAttr = new Attr(DEF, 0., 0.),
 			* CritRateAttr = new Attr(0.05, 0., 0.),
 			* CritDamageAttr = new Attr(0.5, 0., 0.);
-            baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
-		    baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
-		    baseData->SetAttr((u32)AttrType::Def, DefAttr);
-		    baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
-		    baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
+            baseData->SetAttr(HelathAttr,AttrType::Helath);
+		    baseData->SetAttr(AtkAttr,AttrType::Atk);
+		    baseData->SetAttr(DefAttr,AttrType::Def);
+		    baseData->SetAttr(CritRateAttr,AttrType::CritRate);
+		    baseData->SetAttr(CritDamageAttr,AttrType::CritDamage);
             this->rawCharacter = new Character(baseData, CharacterGender::Female, CharacterGroup::Tivat, ElementType::Electro, WeaponType::Polearm);
             delete baseData;
         };        
@@ -100,7 +100,7 @@
                         new const double[11]{ 1.0707190036773682,1.0730409622192383,1.347108006477356,0.7827159762382507,0.7827159762382507,1.7674989700317383,2.689570903778076,25,1.6206120252609253,3.24053692817688,4.047605991363525},
                         new const double[11]{ 1.1520390510559082,1.1545380353927612,1.4494199752807617,0.8421630263328552,0.8421630263328552,1.9017390012741089,2.8938419818878174,25,1.709820032119751,3.418915033340454,4.270410060882568}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -140,7 +140,7 @@
                         new const double[5]{ 2.63700008392334,0.9449999928474426,25,0.003000000026077032,10},
                         new const double[5]{ 2.7834999561309814,0.9975000023841858,25,0.003000000026077032,10}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -197,7 +197,7 @@
                         new const double[20]{ 9.017999649047852,0.08748000115156174,0.016339000314474106,0.20000000298023224,0.9811729788780212,0.9640349745750427,1.1804070472717285,0.6774299740791321,0.6793599724769592,1.6217210292816162,1.3509999513626099,1.6308499574661255,20,1.6206120252609253,3.24053692817688,4.047605991363525,2.5,7,18,90},
                         new const double[20]{ 9.519000053405762,0.09233999997377396,0.017246000468730927,0.20000000298023224,1.0269279479980469,1.0089900493621826,1.2354520559310913,0.7090200185775757,0.7110400199890137,1.6973450183868408,1.4140000343322754,1.7069000005722046,20,1.709820032119751,3.418915033340454,4.270410060882568,2.5,7,18,90}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
         /*****雷电将军

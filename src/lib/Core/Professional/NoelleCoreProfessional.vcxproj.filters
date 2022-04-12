@@ -15,14 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RoleGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="RoleGroup.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Professional.h">
       <Filter>Header Files</Filter>
     </ClInclude>

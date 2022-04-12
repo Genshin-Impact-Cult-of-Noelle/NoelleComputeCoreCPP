@@ -22,11 +22,11 @@
 			* DefAttr = new Attr(DEF, 0., 0.),
 			* CritRateAttr = new Attr(0.05, 0., 0.),
 			* CritDamageAttr = new Attr(0.5, 0., 0.);
-            baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
-		    baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
-		    baseData->SetAttr((u32)AttrType::Def, DefAttr);
-		    baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
-		    baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
+            baseData->SetAttr(HelathAttr,AttrType::Helath);
+		    baseData->SetAttr(AtkAttr,AttrType::Atk);
+		    baseData->SetAttr(DefAttr,AttrType::Def);
+		    baseData->SetAttr(CritRateAttr,AttrType::CritRate);
+		    baseData->SetAttr(CritDamageAttr,AttrType::CritDamage);
             this->rawCharacter = new Character(baseData, CharacterGender::Female, CharacterGroup::Tivat, ElementType::Hydro, WeaponType::Catalyst);
             delete baseData;
         };        
@@ -104,7 +104,7 @@
                         new const double[8]{ 1.5384600162506104,1.3846139907836914,2.1218760013580322,3.3371999263763428,50,1.4405440092086792,2.8804779052734375,3.597872018814087},
                         new const double[8]{ 1.6239299774169922,1.4615370035171509,2.239758014678955,3.522599935531616,50,1.5198400020599365,3.0390360355377197,3.795919895172119}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -140,7 +140,7 @@
                         new const double[5]{ 0.0989999994635582,1250.0484619140625,2.4567840099334717,12,20},
                         new const double[5]{ 0.10450000315904617,1338.3328857421875,2.5932719707489014,12,20}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -183,7 +183,7 @@
                         new const double[9]{ 0.2343599945306778,0.01817999966442585,227.2811279296875,0.10890000313520432,0.1524599939584732,10,18,70,0.1596670001745224},
                         new const double[9]{ 0.24738000333309174,0.019190000370144844,243.3328094482422,0.11495000123977661,0.16092999279499054,10,18,70,0.16853800415992737}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
         /*****珊瑚宫心海

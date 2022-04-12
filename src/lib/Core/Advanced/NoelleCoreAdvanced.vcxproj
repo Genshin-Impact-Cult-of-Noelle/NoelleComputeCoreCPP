@@ -104,6 +104,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Damage.cpp" />
     <ClCompile Include="Role.cpp" />
+    <ClCompile Include="RoleGroup.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +114,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Damage.h" />
     <ClInclude Include="Role.h" />
+    <ClInclude Include="RoleGroup.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>

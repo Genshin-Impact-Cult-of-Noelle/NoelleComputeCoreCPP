@@ -22,11 +22,11 @@
 			* DefAttr = new Attr(DEF, 0., 0.),
 			* CritRateAttr = new Attr(0.05, 0., 0.),
 			* CritDamageAttr = new Attr(0.5, 0., 0.);
-            baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
-		    baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
-		    baseData->SetAttr((u32)AttrType::Def, DefAttr);
-		    baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
-		    baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
+            baseData->SetAttr(HelathAttr,AttrType::Helath);
+		    baseData->SetAttr(AtkAttr,AttrType::Atk);
+		    baseData->SetAttr(DefAttr,AttrType::Def);
+		    baseData->SetAttr(CritRateAttr,AttrType::CritRate);
+		    baseData->SetAttr(CritDamageAttr,AttrType::CritDamage);
             this->rawCharacter = new Character(baseData, CharacterGender::Male, CharacterGroup::Tivat, ElementType::Anemo, WeaponType::Bow);
             delete baseData;
         };        
@@ -101,7 +101,7 @@
                         new const double[11]{ 0.5504559874534607,1.1984620094299316,1.4144630432128906,0.7037479877471924,1.3680109977722168,1.9161449670791626,1.184525966644287,2.866879940032959,1.4405440092086792,2.8804779052734375,3.597872018814087},
                         new const double[11]{ 0.5922629833221436,1.2894840240478516,1.5218909978866577,0.7571970224380493,1.4719109535217285,2.0616750717163086,1.2744899988174438,3.035520076751709,1.5198400020599365,3.0390360355377197,3.795919895172119}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -142,7 +142,7 @@
                         new const double[4]{ 6.210000038146973,6,8.550000190734863,15},
                         new const double[4]{ 6.554999828338623,6,9.024999618530273,15}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -179,7 +179,7 @@
                         new const double[5]{ 0.8460000157356262,0.4230000078678131,8,15,60},
                         new const double[5]{ 0.8930000066757202,0.4465000033378601,8,15,60}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
         /*****温迪

@@ -6,3 +6,4 @@
 #include "Damage.h"
 #include "Weapon.h"
 #include "Role.h"
+#include "RoleGroup.h"

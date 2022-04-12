@@ -15,8 +15,8 @@ namespace Advanced {
 		Buff(Role*, Role*, u32 = 0);
 		virtual	void Action(u32) = 0;
 		virtual void DamageModify(Damage*) = 0;
-		virtual void BuffUpdate(u32) = 0;
-		bool Update(u32);
+		virtual void BuffUpdate(u32&) = 0;
+		bool Update(u32&);
 	protected:
 		u32 deadFrame;
 		Role* from;
@@ -31,10 +31,11 @@ namespace Advanced {
 			delete buffStart;
 		};
 		BuffPool();
-		bool Update(u32);
+		bool Update(u32&);
 		void PushBuff(Buff*);
 		Atom::BaseObject* Compute();
 	private:
+		u32* _frameCur;
 		struct BuffNode {
 			BuffNode(Buff* buff) {
 				data = buff;

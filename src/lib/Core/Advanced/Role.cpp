@@ -2,10 +2,11 @@
 using namespace Atom;
 namespace Advanced {
 	Role::Role(u32* framCur) {
-		_framCur = framCur;
+		_frameCur = framCur;
 		changed = true;
 		rawWeapon = nullptr;
 		rawCharacter = nullptr;
+		rawGroup = nullptr;
 		rawBuffPool = new BuffPool();
 		rawArtifactGroup = new ArtifactGroup();
 		result = new BaseObject();
@@ -14,8 +15,8 @@ namespace Advanced {
 		if (changed) {
 			result->Clean();
 			result
-				//->Add(rawWeapon)
-				//->Add(Group->BuffData())
+				->Add(rawWeapon)
+				->Add(rawGroup->Compute())
 				->Add(rawCharacter)
 				->Add(rawArtifactGroup)
 				->Add(rawBuffPool->Compute());
@@ -34,11 +35,13 @@ namespace Advanced {
 		return this;
 	}
 
-	void Role::Update(u32 frame) {
-		if (rawBuffPool->Update(frame)) {
+	void Role::Update() {
+		if (rawBuffPool->Update(GetFrameCur())) {
 			changed = true;
 		};
 
 	}
-
+	void Role::SetGroup(RoleGroup* group) {
+		rawGroup = group;
+	}
 }

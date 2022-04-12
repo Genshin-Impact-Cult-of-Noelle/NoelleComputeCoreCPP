@@ -21,22 +21,28 @@ void main() {
 	Attr a = c;
 	Attr* y = new Attr[5]{ c };
 	cout << c->LastValue() << endl << a.LastValue() << endl << (*y).LastValue() << endl;*/
+	//Advanced::RoleGroup(1);
 	u32* mm = new u32[1];
-	*mm = 15;
+	*mm = 0;
+	auto group = new  Advanced::RoleGroup(mm);
 	Advanced::Role* x = nullptr;
 	x = Create(RoleName::诺艾尔, mm);
-	x->Q(x, 0);
-	cout << x->GetLastData()->LastValue()->Atk;
-	//int LoopCount;
-	//LoopCount = LOOPCOUNT;
+	group->Join(x);
+	group->Swap(x);
+	x->Q(x, 14);
+	cout << x->GetLastData()->LastValue()->Atk << endl;
+	/*int LoopCount;
+	LoopCount = 0;*/
 	clock_t start, end;
 	start = clock();
-	//while (LoopCount--)
-	//{
-	//	
-	//	//cout << x;
-	//	delete x;
-	//}
+	while (++(*mm) < 300000000)
+	{
+		//cout << *mm << endl;
+		x->Update();
+		//cout << *mm << "||" << x->GetLastData()->LastValue()->Atk << endl;
+	}
+	cout << x->GetLastData()->LastValue()->Atk << endl;
+
 	//Wait
 	//cout << x;
 	//testAttr();
@@ -50,6 +56,6 @@ void main() {
 	//testAttr();
 	//testBaseObject();
 	end = clock();
-	cout << endl << "RUN::" << ((double)(end - start) / 1000) << "秒" << endl;
+	cout << endl << "RUN::" << ((double)(end - start)) << "毫秒" << endl;
 	//system("pause");
 };

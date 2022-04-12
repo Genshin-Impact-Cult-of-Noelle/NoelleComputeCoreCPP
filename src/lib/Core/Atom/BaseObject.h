@@ -3,6 +3,7 @@
 namespace Atom {
 	namespace Enum {
 		enum class ElementType;
+		enum class AttrType;
 	};
 	class Attr;
 #pragma region 实例基类
@@ -11,12 +12,20 @@ namespace Atom {
 	public:
 		Enum::ElementType NowAtkType;
 		bool MustElement = false;
+		static u32 CreatKey(Enum::AttrType);
+		static u32 CreatKey(Enum::AttrType, Enum::ElementType);
 		class Result {
 		public:
 			~Result();
 			Result();
 			void Clean();
-			Result* Merge(Result*);
+			double GetSum();
+			double GetAttr(u32);
+			double GetAttr(Enum::AttrType);
+			double GetAttr(Enum::AttrType, Enum::ElementType);
+			//Result* Merge(Result*);
+			bool changed;
+			double Sum;
 			double Atk;
 			double Def;
 			double Helath;
@@ -30,33 +39,38 @@ namespace Atom {
 			double ColdDownRate;
 			double ArmorRate;
 
-			double EWaterDef;
-			double EFireDef;
-			double EIceDef;
-			double EElectricDef;
-			double EGrassDef;
-			double ELandDef;
-			double EWindDef;
+			double EHydroDef;
+			double EPyroDef;
+			double ECryoDef;
+			double EElectroDef;
+			double EDendroDef;
+			double EGeoDef;
+			double EAnemoDef;
 			double EPhysicalDef;
 
-			double EWaterDmg;
-			double EFireDmg;
-			double EIceDmg;
-			double EElectricDmg;
-			double EGrassDmg;
-			double ELandDmg;
-			double EWindDmg;
+			double EHydroDmg;
+			double EPyroDmg;
+			double ECryoDmg;
+			double EElectroDmg;
+			double EDendroDmg;
+			double EGeoDmg;
+			double EAnemoDmg;
 			double EPhysicalDmg;
+
 		};
-		//
 		BaseObject(Attr** datas);
 		BaseObject(BaseObject* datas);
 		BaseObject();
 		~BaseObject();
+		BaseObject* Product(BaseObject*);
 		BaseObject* Add(BaseObject*);
-		BaseObject* Add(u32, Attr*);
-		BaseObject* Add(u32, BaseObject*);
-		BaseObject* SetAttr(u32, Attr*);
+		BaseObject* Add(Attr*, Enum::AttrType);
+		BaseObject* Add(Attr*, Enum::AttrType, Enum::ElementType);
+		BaseObject* Add(BaseObject*, Enum::AttrType);
+		BaseObject* Add(BaseObject*, Enum::AttrType, Enum::ElementType);
+		BaseObject* SetAttr(Attr*, Enum::AttrType);
+		double GetSum();
+
 		Attr* GetAttr(u32);
 		BaseObject* Copy(BaseObject*);
 		Result* LastValue();

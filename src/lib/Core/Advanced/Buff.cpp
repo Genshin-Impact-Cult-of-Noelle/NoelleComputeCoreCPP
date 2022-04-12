@@ -6,9 +6,9 @@ namespace Advanced {
 		to = target;
 		deadFrame = startFrame;
 	};
-	bool  Buff::Update(u32 frame) {
+	bool  Buff::Update(u32& frame) {
 		BuffUpdate(frame);
-		return frame > deadFrame;
+		return frame < deadFrame;
 	}
 
 
@@ -21,7 +21,7 @@ namespace Advanced {
 	/// 刷新buff状态
 	/// </summary>
 	/// <param name="frame">帧位</param>
-	bool BuffPool::Update(u32 frame) {
+	bool BuffPool::Update(u32& frame) {
 		BuffNode* cur = buffStart;
 		BuffNode* pre = nullptr;
 		BuffNode* DeleteCur = nullptr;
@@ -31,16 +31,16 @@ namespace Advanced {
 				pre = cur;
 				cur = cur->next;
 			}
-			else if (cur->next) {
-				DeleteCur = cur;
+			else {
 				if (pre) {
 					pre->next = cur->next;
 				}
 				else {
 					buffStart = cur->next;
 				}
-				changed = true;
+				DeleteCur = cur;
 				cur = cur->next;
+				changed = true;
 				delete DeleteCur;
 			}
 		}

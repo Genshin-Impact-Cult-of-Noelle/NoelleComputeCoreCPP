@@ -13,24 +13,23 @@ const double DEF = 798.5501533747884;
 const double OTHER = 0.30000001192092896;
 const char* 大扫除Key = "大扫除";
 
+
 class 大扫除 :public Buff {
+
 public:
 	大扫除(Role* role, Role* target, double Rate) :Buff(role, target) {
 		NowAtkType = ElementType::Geo;
 		MustElement = true;
 		deadFrame = role->GetFrameCur() + 帧一秒 * 15;
 		Attr* AtkData = new Attr(0., 0., role->GetLastData()->LastValue()->Def * Rate);
-		SetAttr((u32)AttrType::Atk, AtkData);
+		SetAttr(AtkData, AttrType::Atk);
 		delete AtkData;
 	}
 	void Action(u32 cmd) {
-
 	}
 	void DamageModify(Damage* dmg) {
-
 	}
-	void BuffUpdate(u32 farme) {
-
+	void BuffUpdate(u32& farme) {
 	}
 private:
 };
@@ -44,11 +43,11 @@ private:
 		* DefAttr = new Attr(DEF, OTHER, 0.),
 		* CritRateAttr = new Attr(0.05, 0., 0.),
 		* CritDamageAttr = new Attr(0.5, 0., 0.);
-	baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
-	baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
-	baseData->SetAttr((u32)AttrType::Def, DefAttr);
-	baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
-	baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
+	baseData->SetAttr(HelathAttr, AttrType::Helath);
+	baseData->SetAttr(AtkAttr, AttrType::Atk);
+	baseData->SetAttr(DefAttr, AttrType::Def);
+	baseData->SetAttr(CritRateAttr, AttrType::CritRate);
+	baseData->SetAttr(CritDamageAttr, AttrType::CritDamage);
 	this->rawCharacter = new Character(baseData, CharacterGender::Female, CharacterGroup::Tivat, ElementType::Geo, WeaponType::Claymore);
 	delete baseData;
 };
@@ -125,7 +124,20 @@ void 诺艾尔::A(Role* role, u32 cmd) {
 			new const double[11]{ 2.0055999755859375,1.8595399856567383,2.186539888381958,2.875420093536377,1.2862000465393066,2.2933599948883057,40,5,1.8907140493392944,3.7806270122528076,4.722207069396973},
 			new const double[11]{ 2.115999937057495,1.961899995803833,2.3069000244140625,3.0336999893188477,1.3569999933242798,2.419600009918213,40,5,1.994789958000183,3.9887349605560303,4.982144832611084}
 	};
-	const double* curData = SkillPrama[cmd && 0xFF];
+	const double* curData = SkillPrama[cmd & 0xFF];
+	const u32 lineCur = (cmd & 0xFF00) >> 8;
+	if (role->rawCharacter->group != rawCharacter->group) {
+		Damage* dmg = new Damage(this, role);
+		switch (lineCur)
+		{
+		case 0:
+
+		default:
+			break;
+		}
+		//role->Hit(dmg);
+	}
+
 	////////下面是技能实现   
 
 };
@@ -165,7 +177,7 @@ void 诺艾尔::E(Role* role, u32 cmd) {
 			new const double[8]{ 3.5999999046325684,0.4787999987602234,0.6000000238418579,12,24,2.700000047683716,2271.07470703125,303.0459899902344},
 			new const double[8]{ 3.799999952316284,0.5054000020027161,0.6000000238418579,12,24,2.8499999046325684,2431.46875,324.44854736328125}
 	};
-	const double* curData = SkillPrama[cmd && 0xFF];
+	const double* curData = SkillPrama[cmd & 0xFF];
 	////////下面是技能实现   
 };
 
@@ -203,7 +215,7 @@ void 诺艾尔::Q(Role* role, u32 cmd) {
 			new const double[6]{ 1.5119999647140503,2.0880000591278076,0.8999999761581421,15,15,60},
 			new const double[6]{ 1.5959999561309814,2.2039999961853027,0.949999988079071,15,15,60}
 	};
-	const double* curData = SkillPrama[cmd && 0xFF];
+	const double* curData = SkillPrama[cmd & 0xFF];
 	////////下面是技能实现  
 	auto buff = new 大扫除(this, this, curData[2]);
 	this->AddBuff(buff);

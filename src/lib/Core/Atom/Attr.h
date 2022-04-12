@@ -23,11 +23,12 @@ namespace Atom {
 		Attr();
 		~Attr();
 		static Attr* Zero();
-		Attr* Add(Attr* data);
-		Attr* Copy(Attr* data);
+		Attr* Add(Attr*);
+		Attr* Product(Attr*);
+		Attr* Copy(Attr*);
 		void Clean();
 		double LastValue();
-	private:
+
 		double base;
 		double rate;
 		double extra;

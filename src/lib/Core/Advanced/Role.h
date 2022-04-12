@@ -8,6 +8,7 @@ namespace Advanced {
 	class BuffPool;
 	class Character;
 	class Buff;
+	class RoleGroup;
 	/// <summary>
 	/// 高级角色类、真实角色的下一层
 	/// </summary>
@@ -21,6 +22,7 @@ namespace Advanced {
 			delete result;
 			// delete this;
 		};
+
 		Role(u32*);
 		/// <summary>
 		/// 添加buff
@@ -52,7 +54,7 @@ namespace Advanced {
 		/// <summary>
 		/// 帧更新
 		/// </summary>
-		void Update(u32);
+		void Update();
 		/// <summary>
 		/// 受伤
 		/// </summary>
@@ -69,20 +71,21 @@ namespace Advanced {
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
-
 		virtual	void E(Role*, u32) = 0;
 		/// <summary>
 		/// 元素爆发模组
 		/// </summary>
 		/// <param name="target">目标角色</param>
 		/// <param name="Value">|[0](某类型)|[1](某段)|[2](技能等级)</param>
-
 		virtual	void Q(Role*, u32) = 0;
 		/// <summary>
 		/// 结果
 		/// </summary>
 		Atom::BaseObject* result;
-
+		/// <summary>
+		/// 组队
+		/// </summary>
+		RoleGroup* rawGroup;
 		/// <summary>
 		/// 圣遗物组
 		/// </summary>
@@ -103,15 +106,19 @@ namespace Advanced {
 		/// 获取帧位置
 		/// </summary>
 		/// <returns></returns>
-		u32 GetFrameCur() {
-			return *_framCur;
+		u32& GetFrameCur() {
+			return *_frameCur;
 		};
+		/// <summary>
+		/// 设置组队
+		/// </summary>
+		/// <param name=""></param>
+		void SetGroup(RoleGroup*);
 	private:
 		/// <summary>
 		/// 改变标记
 		/// </summary>		
 		bool changed;
-		u32* _framCur;
+		u32* _frameCur;
 	};
-
 }

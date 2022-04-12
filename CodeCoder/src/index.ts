@@ -61,16 +61,16 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
         ${名字}::${名字}(u32* frameCur):Role(frameCur) {
             BaseObject* baseData = new BaseObject();
             static Attr
-			* HelathAttr = new Attr(HP, 0., 0.),
-			* AtkAttr = new Attr(ATK, 0., 0.),
-			* DefAttr = new Attr(DEF, 0., 0.),
-			* CritRateAttr = new Attr(0.05, 0., 0.),
-			* CritDamageAttr = new Attr(0.5, 0., 0.);
-            baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
-		    baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
-		    baseData->SetAttr((u32)AttrType::Def, DefAttr);
-		    baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
-		    baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
+			* HelathAttr = new Attr(HP, DOUBLEZERO, DOUBLEZERO),
+			* AtkAttr = new Attr(ATK, DOUBLEZERO, DOUBLEZERO),
+			* DefAttr = new Attr(DEF, DOUBLEZERO, DOUBLEZERO),
+			* CritRateAttr = new Attr(0.05, DOUBLEZERO, DOUBLEZERO),
+			* CritDamageAttr = new Attr(0.5, DOUBLEZERO, DOUBLEZERO);
+            baseData->SetAttr(HelathAttr,AttrType::Helath);
+		    baseData->SetAttr(AtkAttr,AttrType::Atk);
+		    baseData->SetAttr(DefAttr,AttrType::Def);
+		    baseData->SetAttr(CritRateAttr,AttrType::CritRate);
+		    baseData->SetAttr(CritDamageAttr,AttrType::CritDamage);
             this->rawCharacter = new Character(baseData, CharacterGender::${性别}, CharacterGroup::Tivat, ElementType::${属性}, WeaponType::${武器});
             delete baseData;
         };        
@@ -109,7 +109,7 @@ genshindb.characters('names', { matchCategories: true }).map(name => {
                     }}`
                     })}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };`}).join("\n\n")}
         /*****${star.name}

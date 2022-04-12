@@ -41,6 +41,13 @@ namespace Atom {
 		extra += data->extra;
 		return this;
 	}
+	Attr* Attr::Product(Attr* data) {
+		base = LastValue() * data->LastValue();
+		rate = 0;
+		extra = 0;
+		return this;
+	};
+
 	Attr* Attr::Copy(Attr* data) {
 		base = data->base;
 		rate = data->rate;

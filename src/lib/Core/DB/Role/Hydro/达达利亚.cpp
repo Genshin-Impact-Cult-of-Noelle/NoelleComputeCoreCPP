@@ -22,11 +22,11 @@
 			* DefAttr = new Attr(DEF, 0., 0.),
 			* CritRateAttr = new Attr(0.05, 0., 0.),
 			* CritDamageAttr = new Attr(0.5, 0., 0.);
-            baseData->SetAttr((u32)AttrType::Helath, HelathAttr);
-		    baseData->SetAttr((u32)AttrType::Atk, AtkAttr);
-		    baseData->SetAttr((u32)AttrType::Def, DefAttr);
-		    baseData->SetAttr((u32)AttrType::CritRate, CritRateAttr);
-		    baseData->SetAttr((u32)AttrType::CritDamage, CritDamageAttr);
+            baseData->SetAttr(HelathAttr,AttrType::Helath);
+		    baseData->SetAttr(AtkAttr,AttrType::Atk);
+		    baseData->SetAttr(DefAttr,AttrType::Def);
+		    baseData->SetAttr(CritRateAttr,AttrType::CritRate);
+		    baseData->SetAttr(CritDamageAttr,AttrType::CritDamage);
             this->rawCharacter = new Character(baseData, CharacterGender::Male, CharacterGroup::Tivat, ElementType::Hydro, WeaponType::Bow);
             delete baseData;
         };        
@@ -108,7 +108,7 @@
                         new const double[14]{ 1.0463999509811401,1.1728399991989136,1.40392005443573,1.4453400373458862,1.5434399843215942,1.8442800045013428,1.111799955368042,2.7899999618530273,0.27900001406669617,1.3949999809265137,1.6206120252609253,3.24053692817688,4.047605991363525,10},
                         new const double[14]{ 1.1039999723434448,1.2374000549316406,1.4811999797821045,1.524899959564209,1.6283999681472778,1.9457999467849731,1.1729999780654907,2.944999933242798,0.2944999933242798,1.472499966621399,1.709820032119751,3.418915033340454,4.270410060882568,10}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -162,7 +162,7 @@
                         new const double[16]{ 1.6200000047683716,0.9853600263595581,1.0551199913024902,1.427899956703186,1.5194599628448486,1.4017399549484253,0.8981599807739258,0.9548400044441223,1.5260000228881836,1.8246599435806274,1.5260000228881836,20,30,6,36,45},
                         new const double[16]{ 1.7100000381469727,1.0396000146865845,1.1131999492645264,1.506500005722046,1.6030999422073364,1.4788999557495117,0.9476000070571899,1.0074000358581543,1.6100000143051147,1.9250999689102173,1.6100000143051147,20,30,6,36,45}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
 
@@ -206,7 +206,7 @@
                         new const double[6]{ 10.4399995803833,2.700000047683716,8.513999938964844,20,15,60},
                         new const double[6]{ 11.020000457763672,2.8499999046325684,8.987000465393066,20,15,60}                    
                 };  
-                const double* curData = SkillPrama[cmd && 0xFF];
+                const double* curData = SkillPrama[cmd & 0xFF];
                 ////////下面是技能实现   
             };
         /*****达达利亚
