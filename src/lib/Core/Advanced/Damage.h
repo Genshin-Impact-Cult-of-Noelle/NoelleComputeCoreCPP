@@ -25,7 +25,8 @@ namespace Advanced {
 		Damage(Role*, Role*, Atom::Enum::ElementType);
 		Damage(Role*, Role*, Atom::Enum::DamageType);
 		Damage(Role*, Role*, Atom::Enum::ElementType, Atom::Enum::DamageType);
-		void Modify(void (*fun)(Damage*));
+		DamageResult* result;
+		bool computed = false;
 		/// <summary>
 		/// 根属性值相加
 		/// </summary>

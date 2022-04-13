@@ -1,4 +1,5 @@
 ﻿#include "RoleGroup.h"
+#include <iostream>
 namespace Advanced {
 	using namespace Atom;
 	RoleGroup::RoleGroup(u32* framCur) {
@@ -34,25 +35,34 @@ namespace Advanced {
 	BaseObject* RoleGroup::Compute() {
 		return rawBuffPool->Compute();
 	};
+	/// <summary>
+	/// 开始伤害修饰
+	/// </summary>
+	/// <param name="dmg">伤害实例</param>
 	void  RoleGroup::ModifyDamageStart(Damage* dmg) {
-		auto cur = 0;
-		while (roles[cur])
+		u32 cur = 0;
+		Damage* dmgCur = dmg;
+		while (dmgCur)
 		{
-			roles[cur]->ModifyDamage(dmg);
-			++cur;
-		}
-		std::cout << dmg->LastReasult()->avg << std::endl;
-		if (dmg->otherDMG) {
-			std::cout << dmg->LastReasult()->avg << std::endl;
+			cur = 0;
+			while (roles[cur])
+			{
+				roles[cur]->ModifyDamage(dmgCur);
+				++cur;
+			}
+
+			std::cout << dmgCur->LastReasult()->min << std::endl;
+			dmgCur = dmgCur->otherDMG;
 		}
 	};
 
 	void RoleGroup::Update() {
 		++(*_frameCur);
 		u32 cur = 0;
-		while (cur < 4)
+		while (roles[cur])
 		{
 			roles[cur]->Update();
+			++cur;
 		}
 		rawBuffPool->Update(*_frameCur);
 	};

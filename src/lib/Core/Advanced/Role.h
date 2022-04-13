@@ -114,7 +114,6 @@ namespace Advanced {
 		/// </summary>
 		/// <param name=""></param>
 		void SetGroup(RoleGroup*);
-
 		void ModifyDamage(Damage*);
 	private:
 		/// <summary>

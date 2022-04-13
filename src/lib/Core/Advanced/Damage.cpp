@@ -28,11 +28,11 @@ namespace Advanced {
 		DMGElementType = element;
 		DMGType = type;
 	}
-	void Damage::Modify(void(*fun)(Damage*))
+	/*void Damage::Modify(void(*fun)(Damage*))
 	{
 		(*fun)(this);
 		if (otherDMG)otherDMG->Modify(fun);
-	};
+	};*/
 	void Damage::AddBase(Attr* data, AttrType type) {
 		fromBase->Add(data, type);
 		delete data;
@@ -58,9 +58,11 @@ namespace Advanced {
 		delete data;
 	};
 	Damage::DamageResult* Damage::LastReasult() {
+		if (computed)return result;
+		computed = true;
 		auto FromRoleResult = fromBase->LastValue();
 		auto ToRoleResult = fromBase->LastValue();
-		double avgRate, maxRate, damageExtraRate, elementDef, defRate;
+		double avgRate, maxRate, damageExtraRate, elementDef, defRate, critRate, critDMG;
 		avgRate = FromRoleResult->CritRate * (DOUBLEONE + FromRoleResult->CritDamage) + DOUBLEONE;
 		maxRate = FromRoleResult->CritDamage + DOUBLEONE;
 		damageExtraRate = extraRateValue->LastValue() + FromRoleResult->GetAttr(AttrType::ElementDmg, DMGElementType);
@@ -74,9 +76,11 @@ namespace Advanced {
 		else {
 			defRate = DOUBLEONE - 1 / (1 + 4 * elementDef);
 		}
-		auto x = fromBase->Product(rateValue)->GetSum();
-		double value = (x  /*//TODO:额外伤害*/)*damageExtraRate * defRate;
-		return new DamageResult(value, value, value, otherDMG ? otherDMG->LastReasult() : nullptr);
+		critRate = FromRoleResult->CritRate;
+		critDMG = FromRoleResult->CritDamage;
+		double value = (fromBase->Product(rateValue)->GetSum()  /*//TODO:额外伤害*/) * damageExtraRate * defRate;
+		result = new DamageResult(value, value * (DOUBLEONE + critDMG * critRate), value * (DOUBLEONE + critDMG), otherDMG ? otherDMG->LastReasult() : nullptr);
+		return result;
 	}
 	void Damage::AddExtraRate(Atom::Attr* data) {
 		extraRateValue->Add(data);

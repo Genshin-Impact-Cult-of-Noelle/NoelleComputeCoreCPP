@@ -38,10 +38,10 @@ void main() {
 	start = clock();
 	x->Q(zl, 14);
 
-	while (++(*mm) < 300)
+	while ((*mm) < 300)
 	{
 		//cout << *mm << endl;
-		x->Update();
+		group->Update();
 		//cout << *mm << "||" << x->GetLastData()->LastValue()->Atk << endl;
 	}
 	cout << x->GetLastData()->LastValue()->Atk << endl;
