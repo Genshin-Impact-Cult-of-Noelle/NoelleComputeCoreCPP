@@ -33,9 +33,9 @@ namespace Advanced {
 		BuffPool();
 		bool Update(u32&);
 		void PushBuff(Buff*);
+		void ModifyDamage(Damage*);
 		Atom::BaseObject* Compute();
 	private:
-		u32* _frameCur;
 		struct BuffNode {
 			BuffNode(Buff* buff) {
 				data = buff;

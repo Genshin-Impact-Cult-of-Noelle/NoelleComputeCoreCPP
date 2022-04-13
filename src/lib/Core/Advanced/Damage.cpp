@@ -10,27 +10,36 @@ namespace Advanced {
 		delete toBase;
 	}
 	Damage::Damage(Role* fromCur, Role* toCur) {
-		DMGElementType = ElementType::Physical;
 		otherDMG = nullptr;
-		from = fromCur;
-		to = toCur;
 		rateValue = new BaseObject();
 		extraRateValue = new Attr(DOUBLEONE, DOUBLEZERO, DOUBLEZERO);
+		from = fromCur;
 		fromBase = new BaseObject(fromCur->GetLastData());
+		to = toCur;
 		toBase = new BaseObject(toCur->GetLastData());
+	}
+	Damage::Damage(Role* fromCur, Role* toCur, ElementType element) :Damage(fromCur, toCur) {
+		DMGElementType = element;
+	}
+	Damage::Damage(Role* fromCur, Role* toCur, DamageType type) : Damage(fromCur, toCur) {
+		DMGType = type;
+	}
+	Damage::Damage(Role* fromCur, Role* toCur, ElementType element, DamageType type) : Damage(fromCur, toCur) {
+		DMGElementType = element;
+		DMGType = type;
 	}
 	void Damage::Modify(void(*fun)(Damage*))
 	{
 		(*fun)(this);
 		if (otherDMG)otherDMG->Modify(fun);
 	};
-	void Damage::AddBase(Attr* value, AttrType type) {
-		fromBase->Add(value, type);
-		delete value;
+	void Damage::AddBase(Attr* data, AttrType type) {
+		fromBase->Add(data, type);
+		delete data;
 	};
-	void Damage::AddBase(Attr* value, AttrType type, ElementType elemnet) {
-		fromBase->Add(value, type, elemnet);
-		delete value;
+	void Damage::AddBase(Attr* data, AttrType type, ElementType elemnet) {
+		fromBase->Add(data, type, elemnet);
+		delete data;
 	};
 	void Damage::SetOtherDMG(Damage* data) {
 		if (otherDMG) {
@@ -42,11 +51,13 @@ namespace Advanced {
 	}
 	void Damage::AddRate(Atom::Attr* data, AttrType type) {
 		rateValue->Add(data, type);
+		delete data;
 	};
 	void Damage::AddRate(Atom::Attr* data, AttrType type, ElementType elemnet) {
 		rateValue->Add(data, type, elemnet);
+		delete data;
 	};
-	void Damage::LastReasult() {
+	Damage::DamageResult* Damage::LastReasult() {
 		auto FromRoleResult = fromBase->LastValue();
 		auto ToRoleResult = fromBase->LastValue();
 		double avgRate, maxRate, damageExtraRate, elementDef, defRate;
@@ -63,6 +74,17 @@ namespace Advanced {
 		else {
 			defRate = DOUBLEONE - 1 / (1 + 4 * elementDef);
 		}
-		double value = (fromBase->Product(rateValue)->GetSum()  /*//TODO:额外伤害*/) * damageExtraRate * defRate;
+		auto x = fromBase->Product(rateValue)->GetSum();
+		double value = (x  /*//TODO:额外伤害*/)*damageExtraRate * defRate;
+		return new DamageResult(value, value, value, otherDMG ? otherDMG->LastReasult() : nullptr);
 	}
+	void Damage::AddExtraRate(Atom::Attr* data) {
+		extraRateValue->Add(data);
+	};
+	void Damage::SetElement(Atom::Enum::ElementType element) {
+		DMGElementType = element;
+	};
+	void Damage::SetDMGType(Atom::Enum::DamageType type) {
+		DMGType = type;
+	};
 }

@@ -2,6 +2,7 @@
 #include "Advanced.h"
 namespace Advanced {
 	class Role;
+	class Damage;
 	class RoleGroup
 	{
 	public:
@@ -12,6 +13,7 @@ namespace Advanced {
 		RoleGroup* Join(Role*);
 		RoleGroup* Swap(Role*);
 		Atom::BaseObject* Compute();
+		void ModifyDamageStart(Damage*);
 	private:
 		BuffPool* rawBuffPool;
 		u32 joinCur = 0;

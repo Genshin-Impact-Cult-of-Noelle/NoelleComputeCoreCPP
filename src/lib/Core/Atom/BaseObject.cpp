@@ -11,6 +11,7 @@ namespace Atom {
 	BaseObject::Result::~Result() {
 	}
 	BaseObject::Result::Result() {
+		changed = true;
 		Sum = DOUBLEZERO;
 		Atk = DOUBLEZERO;
 		Def = DOUBLEZERO;
@@ -209,7 +210,7 @@ namespace Atom {
 		result = new Result();
 		changed = false;
 	}
-	BaseObject::BaseObject(BaseObject* datas) {
+	BaseObject::BaseObject(BaseObject* datas) :BaseObject() {
 		Copy(datas);
 	}
 	BaseObject* BaseObject::Product(BaseObject* data) {
@@ -500,8 +501,9 @@ namespace Atom {
 		throw;
 
 	};
+
 	double BaseObject::Result::GetSum() {
-		if (changed)return Sum;
+		if (!changed)return Sum;
 		Sum = 0.;
 		Sum += Atk;
 		Sum += Def;

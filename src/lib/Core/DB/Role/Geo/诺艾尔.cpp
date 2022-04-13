@@ -125,18 +125,7 @@ void 诺艾尔::A(Role* role, u32 cmd) {
 			new const double[11]{ 2.115999937057495,1.961899995803833,2.3069000244140625,3.0336999893188477,1.3569999933242798,2.419600009918213,40,5,1.994789958000183,3.9887349605560303,4.982144832611084}
 	};
 	const double* curData = SkillPrama[cmd & 0xFF];
-	const u32 lineCur = (cmd & 0xFF00) >> 8;
-	if (role->rawCharacter->group != rawCharacter->group) {
-		Damage* dmg = new Damage(this, role);
-		switch (lineCur)
-		{
-		case 0:
 
-		default:
-			break;
-		}
-		//role->Hit(dmg);
-	}
 
 	////////下面是技能实现   
 
@@ -216,9 +205,22 @@ void 诺艾尔::Q(Role* role, u32 cmd) {
 			new const double[6]{ 1.5959999561309814,2.2039999961853027,0.949999988079071,15,15,60}
 	};
 	const double* curData = SkillPrama[cmd & 0xFF];
-	////////下面是技能实现  
 	auto buff = new 大扫除(this, this, curData[2]);
 	this->AddBuff(buff);
+	if (role->rawCharacter->group != rawCharacter->group) {
+		const u32 lineCur = (cmd & 0xFF00) >> 8;
+		Damage* dmg0, * dmg1;
+		dmg0 = new Damage(this, role, ElementType::Geo, DamageType::Burst);
+		dmg0->AddRate(new Attr(curData[0], DOUBLEZERO, DOUBLEZERO), AttrType::Atk);
+
+		dmg1 = new Damage(this, role, ElementType::Geo, DamageType::Burst);
+		dmg1->AddRate(new Attr(curData[1], DOUBLEZERO, DOUBLEZERO), AttrType::Atk);
+
+		dmg0->SetOtherDMG(dmg1);
+		role->Hit(dmg0);
+	}
+	////////下面是技能实现  
+
 };
 /*****诺艾尔
 

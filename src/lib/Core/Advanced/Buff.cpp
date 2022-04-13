@@ -46,6 +46,15 @@ namespace Advanced {
 		}
 		return changed;
 	};
+	void BuffPool::ModifyDamage(Damage* dmg) {
+		BuffNode* cur = buffStart;
+		while (cur)
+		{
+			cur->data->DamageModify(dmg);
+			cur = cur->next;
+		}
+	};
+
 	/// <summary>
 	/// 取最终的BaseObject
 	/// </summary>

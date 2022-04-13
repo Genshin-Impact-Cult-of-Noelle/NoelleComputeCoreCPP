@@ -32,9 +32,21 @@ namespace Advanced {
 		return this;
 	}
 	BaseObject* RoleGroup::Compute() {
-
 		return rawBuffPool->Compute();
 	};
+	void  RoleGroup::ModifyDamageStart(Damage* dmg) {
+		auto cur = 0;
+		while (roles[cur])
+		{
+			roles[cur]->ModifyDamage(dmg);
+			++cur;
+		}
+		std::cout << dmg->LastReasult()->avg << std::endl;
+		if (dmg->otherDMG) {
+			std::cout << dmg->LastReasult()->avg << std::endl;
+		}
+	};
+
 	void RoleGroup::Update() {
 		++(*_frameCur);
 		u32 cur = 0;

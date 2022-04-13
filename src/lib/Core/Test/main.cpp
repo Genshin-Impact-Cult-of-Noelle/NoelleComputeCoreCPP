@@ -27,28 +27,28 @@ void main() {
 	auto group = new  Advanced::RoleGroup(mm);
 	Advanced::Role* x = nullptr;
 	x = Create(RoleName::诺艾尔, mm);
-	group->Join(x);
+	auto zl = Create(RoleName::钟离, mm);
+	group->Join(x)->Join(zl);
 	group->Swap(x);
-	x->Q(x, 14);
+
 	cout << x->GetLastData()->LastValue()->Atk << endl;
 	/*int LoopCount;
 	LoopCount = 0;*/
 	clock_t start, end;
 	start = clock();
-	while (++(*mm) < 300000000)
+	x->Q(zl, 14);
+
+	while (++(*mm) < 300)
 	{
 		//cout << *mm << endl;
 		x->Update();
 		//cout << *mm << "||" << x->GetLastData()->LastValue()->Atk << endl;
 	}
 	cout << x->GetLastData()->LastValue()->Atk << endl;
-
 	//Wait
 	//cout << x;
 	//testAttr();
 	//testBaseObject();
-
-
 	//LoopMapFindTest();
 	//LoopSwitchFindTest();
 	//LoopRand();

@@ -22,6 +22,9 @@ namespace Advanced {
 		};
 		~Damage();
 		Damage(Role*, Role*);
+		Damage(Role*, Role*, Atom::Enum::ElementType);
+		Damage(Role*, Role*, Atom::Enum::DamageType);
+		Damage(Role*, Role*, Atom::Enum::ElementType, Atom::Enum::DamageType);
 		void Modify(void (*fun)(Damage*));
 		/// <summary>
 		/// 根属性值相加
@@ -41,8 +44,11 @@ namespace Advanced {
 		/// <param name="value">base(不可用)、rate(不可用)、extra(增伤相加)</param>
 		void AddExtraRate(Atom::Attr*);
 		void SetOtherDMG(Damage*);
-		void LastReasult();
+		void SetElement(Atom::Enum::ElementType);
+		void SetDMGType(Atom::Enum::DamageType);
+		DamageResult* LastReasult();
 		Atom::Enum::ElementType DMGElementType;
+		Atom::Enum::DamageType DMGType;
 		Role* from;
 		Role* to;
 		Damage* otherDMG;

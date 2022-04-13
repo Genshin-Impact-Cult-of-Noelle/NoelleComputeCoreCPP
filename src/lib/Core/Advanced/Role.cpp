@@ -10,7 +10,7 @@ namespace Advanced {
 		rawBuffPool = new BuffPool();
 		rawArtifactGroup = new ArtifactGroup();
 		result = new BaseObject();
-	}
+	};
 	BaseObject* Role::GetLastData() {
 		if (changed) {
 			result->Clean();
@@ -23,25 +23,30 @@ namespace Advanced {
 			changed = false;
 		}
 		return result;
-	}
+	};
 	Role* Role::AddBuff(Buff* data) {
 		changed = true;
 		rawBuffPool->PushBuff(data);
 		return this;
-	}
+	};
 	Role* Role::SetArtifactSet(u32 SetID) {
 		changed = true;
 		//TODO:设置圣遗物套装
 		return this;
-	}
-
+	};
 	void Role::Update() {
 		if (rawBuffPool->Update(GetFrameCur())) {
 			changed = true;
 		};
-
-	}
+	};
 	void Role::SetGroup(RoleGroup* group) {
 		rawGroup = group;
-	}
+	};
+	void Role::Hit(Damage* dmg) {
+		rawGroup->ModifyDamageStart(dmg);
+	};
+	void Role::ModifyDamage(Damage* dmg) {
+		rawBuffPool->ModifyDamage(dmg);
+	};
+
 }
