@@ -50,10 +50,10 @@ namespace Advanced {
 				roles[cur]->ModifyDamage(dmgCur);
 				++cur;
 			}
-
-			std::cout << dmgCur->LastReasult()->min << std::endl;
+			//std::cout << dmgCur->LastReasult()->min << std::endl;
 			dmgCur = dmgCur->otherDMG;
 		}
+		delete dmg;
 	};
 
 	void RoleGroup::Update() {

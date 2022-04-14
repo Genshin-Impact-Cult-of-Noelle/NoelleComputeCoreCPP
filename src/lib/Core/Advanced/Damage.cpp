@@ -17,6 +17,9 @@ namespace Advanced {
 		fromBase = new BaseObject(fromCur->GetLastData());
 		to = toCur;
 		toBase = new BaseObject(toCur->GetLastData());
+		DMGElementType = ElementType::OtherElement;
+		DMGType = DamageType::OtherDamageType;
+		result = nullptr;
 	}
 	Damage::Damage(Role* fromCur, Role* toCur, ElementType element) :Damage(fromCur, toCur) {
 		DMGElementType = element;
