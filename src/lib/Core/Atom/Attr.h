@@ -29,6 +29,10 @@ namespace Atom {
 		void Clean();
 		double LastValue();
 
+	private:
+
+		bool changed;
+		double LastValueCache;
 		double base;
 		double rate;
 		double extra;

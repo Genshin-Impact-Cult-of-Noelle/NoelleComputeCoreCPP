@@ -10,24 +10,18 @@ namespace Atom {
 	/// <param name="Rate">倍率</param>
 	/// <param name="Extra">额外</param>
 	Attr::Attr(double Base, double Rate, double Extra) {
+		changed = true;
 		base = Base;
 		rate = Rate;
 		extra = Extra;
+		changed = true;
+		LastValue();
 	}
-	Attr::Attr(Attr* data) {
-		base = data->base;
-		rate = data->rate;
-		extra = data->extra;
+	Attr::Attr(Attr* data) :Attr(data->base, data->rate, data->extra) {
 	}
-	Attr::Attr(Attr& data) {
-		base = data.base;
-		rate = data.rate;
-		extra = data.extra;
+	Attr::Attr(Attr& data) : Attr(data.base, data.rate, data.extra) {
 	}
-	Attr::Attr() {
-		base = 0;
-		rate = 0;
-		extra = 0;
+	Attr::Attr() : Attr(DOUBLEZERO, DOUBLEZERO, DOUBLEZERO) {
 	}
 	Attr::~Attr() {
 		// delete this;
@@ -39,12 +33,15 @@ namespace Atom {
 		base += data->base;
 		rate += data->rate;
 		extra += data->extra;
+		changed = true;
 		return this;
 	}
 	Attr* Attr::Product(Attr* data) {
+
 		base = LastValue() * data->LastValue();
 		rate = 0;
 		extra = 0;
+		changed = true;
 		return this;
 	};
 
@@ -52,15 +49,21 @@ namespace Atom {
 		base = data->base;
 		rate = data->rate;
 		extra = data->extra;
+		changed = true;
 		return this;
 	}
 	void Attr::Clean() {
 		base = DOUBLEZERO;
 		rate = DOUBLEZERO;
 		extra = DOUBLEZERO;
+		changed = true;
 	}
 	double Attr::LastValue() {
-		return base * (DOUBLEONE + rate) + extra;
+		if (changed) {
+			LastValueCache = base * (DOUBLEONE + rate) + extra;
+			changed = false;
+		}
+		return LastValueCache;
 	}
 #pragma endregion
 
