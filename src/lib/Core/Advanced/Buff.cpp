@@ -1,5 +1,6 @@
 ﻿#include "Buff.h"
 using namespace Atom;
+#include<iostream>
 namespace Advanced {
 	Buff::Buff(Role* role, Role* target, u32 startFrame) {
 		from = role;
@@ -78,6 +79,16 @@ namespace Advanced {
 	/// <param name="buff">buff指针</param>
 	void BuffPool::PushBuff(Buff* buff) {
 		changed = true;
+		BuffNode* cur = buffStart;
+		while (cur)
+		{
+			if (typeid(*buff) == typeid(*(buffStart->data))) {
+				delete cur->data;
+				cur->data = buff;
+				return;
+			}
+
+		}
 		BuffNode* buffCur = new BuffNode(buff);
 		buffCur->next = buffStart;
 		buffStart = buffCur;
