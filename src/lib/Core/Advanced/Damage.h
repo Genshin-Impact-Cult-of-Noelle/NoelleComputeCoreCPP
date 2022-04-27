@@ -21,11 +21,9 @@ namespace Advanced {
 			DamageResult* other;
 		};
 		~Damage();
+
 		Damage(Role*, Role*);
-		Damage(Role*, Role*, Atom::Enum::ElementType);
-		Damage(Role*, Role*, Atom::Enum::DamageType);
 		Damage(Role*, Role*, Atom::Enum::ElementType, Atom::Enum::DamageType);
-		DamageResult* result;
 		bool computed = false;
 		/// <summary>
 		/// 根属性值相加
@@ -40,6 +38,11 @@ namespace Advanced {
 		void AddRate(Atom::Attr*, Atom::Enum::AttrType);
 		void AddRate(Atom::Attr*, Atom::Enum::AttrType, Atom::Enum::ElementType);
 		/// <summary>
+		/// 同倍率技能克隆
+		/// </summary>
+		/// <param name=""></param>
+		void Clone(u32);
+		/// <summary>
 		/// 增伤
 		/// </summary>
 		/// <param name="value">base(不可用)、rate(不可用)、extra(增伤相加)</param>
@@ -48,6 +51,7 @@ namespace Advanced {
 		void SetElement(Atom::Enum::ElementType);
 		void SetDMGType(Atom::Enum::DamageType);
 		DamageResult* LastReasult();
+
 		Atom::Enum::ElementType DMGElementType;
 		Atom::Enum::DamageType DMGType;
 		Role* from;
@@ -57,6 +61,10 @@ namespace Advanced {
 		Atom::BaseObject* toBase;
 		Atom::BaseObject* rateValue;
 		Atom::Attr* extraRateValue;
+	private:
+		DamageResult* result;
+
+		Damage(Damage*);
 	};
 }
 

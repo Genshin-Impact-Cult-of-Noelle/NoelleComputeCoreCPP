@@ -217,6 +217,8 @@ void 诺艾尔::Q(Role* role, u32 cmd) {
 		dmg1->AddRate(new Attr(curData[1], DOUBLEZERO, DOUBLEZERO), AttrType::Atk);
 
 		dmg0->SetOtherDMG(dmg1);
+		dmg1->Clone(3);
+		dmg0->Clone(2);
 		role->Hit(dmg0);
 	}
 	////////下面是技能实现  

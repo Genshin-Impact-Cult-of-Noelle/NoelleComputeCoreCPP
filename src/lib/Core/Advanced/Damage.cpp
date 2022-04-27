@@ -8,24 +8,23 @@ namespace Advanced {
 		delete extraRateValue;
 		delete fromBase;
 		delete toBase;
+		delete result;
 	}
+	Damage::Damage(Damage* target) :Damage(target->from, target->to, target->DMGElementType, target->DMGType) {
+		rateValue->Copy(target->rateValue);
+	};
+
 	Damage::Damage(Role* fromCur, Role* toCur) {
 		otherDMG = nullptr;
 		rateValue = new BaseObject();
 		extraRateValue = new Attr(DOUBLEONE, DOUBLEZERO, DOUBLEZERO);
 		from = fromCur;
-		fromBase = new BaseObject(fromCur->GetLastData());
+		fromBase = new BaseObject();
 		to = toCur;
-		toBase = new BaseObject(toCur->GetLastData());
+		toBase = new BaseObject();
 		DMGElementType = ElementType::OtherElement;
 		DMGType = DamageType::OtherDamageType;
 		result = nullptr;
-	}
-	Damage::Damage(Role* fromCur, Role* toCur, ElementType element) :Damage(fromCur, toCur) {
-		DMGElementType = element;
-	}
-	Damage::Damage(Role* fromCur, Role* toCur, DamageType type) : Damage(fromCur, toCur) {
-		DMGType = type;
 	}
 	Damage::Damage(Role* fromCur, Role* toCur, ElementType element, DamageType type) : Damage(fromCur, toCur) {
 		DMGElementType = element;
@@ -60,9 +59,20 @@ namespace Advanced {
 		rateValue->Add(data, type, elemnet);
 		delete data;
 	};
+	void Damage::Clone(u32 times) {
+		auto cache = otherDMG;
+		otherDMG = nullptr;
+		while (--times)
+		{
+			SetOtherDMG(new Damage(this));
+		}
+		SetOtherDMG(cache);
+	}
 	Damage::DamageResult* Damage::LastReasult() {
 		if (computed)return result;
 		computed = true;
+		fromBase->Add(from->GetLastData());
+		toBase->Add(to->GetLastData());
 		auto FromRoleResult = fromBase->LastValue();
 		auto ToRoleResult = fromBase->LastValue();
 		double avgRate, maxRate, damageExtraRate, elementDef, defRate, critRate, critDMG;
