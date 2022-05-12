@@ -59,6 +59,10 @@ namespace Advanced {
 		rateValue->Add(data, type, elemnet);
 		delete data;
 	};
+	/// <summary>
+	/// 简单复制
+	/// </summary>
+	/// <param name="times">达到times倍</param>
 	void Damage::Clone(u32 times) {
 		auto cache = otherDMG;
 		otherDMG = nullptr;
