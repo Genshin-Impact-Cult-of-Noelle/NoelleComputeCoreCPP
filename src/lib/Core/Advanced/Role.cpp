@@ -4,7 +4,7 @@ namespace Advanced {
 	Role::Role(u32* framCur) {
 		_frameCur = framCur;
 		changed = true;
-		rawWeapon = nullptr;
+		rawWeapon = new Default::Weapon();
 		rawCharacter = nullptr;
 		rawGroup = nullptr;
 		rawBuffPool = new BuffPool();
@@ -29,13 +29,21 @@ namespace Advanced {
 		rawBuffPool->PushBuff(data);
 		return this;
 	};
+	Role* Role::SetWeapon(Weapon* data) {
+		data->Init(this);
+		return this;
+	}
 	Role* Role::SetArtifactSet(u32 SetID) {
 		changed = true;
 		//TODO:设置圣遗物套装
 		return this;
 	};
 	void Role::Update() {
-		if (rawBuffPool->Update(GetFrameCur())) {
+		u32 frame = GetFrameCur();
+		if (rawBuffPool->Update(frame)) {
+			changed = true;
+		};
+		if (rawWeapon != nullptr && rawWeapon->Update(frame)) {
 			changed = true;
 		};
 	};

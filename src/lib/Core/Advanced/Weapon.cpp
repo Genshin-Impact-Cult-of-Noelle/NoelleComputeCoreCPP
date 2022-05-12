@@ -2,9 +2,11 @@
 namespace Advanced {
 	Weapon::Weapon() :BaseObject() {
 		user = nullptr;
+		//buffPool = new BuffPool();
 	}
 	Weapon::~Weapon() {
-		delete user;
+		//delete user;
+		//delete buffPool;
 	}
 	void Weapon::SetRole(Role* role) {
 		user = role;
