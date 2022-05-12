@@ -2,7 +2,7 @@
 namespace Advanced {
 	Weapon::Weapon() :BaseObject() {
 		user = nullptr;
-		//buffPool = new BuffPool();
+		buffPool = new BuffPool();
 	}
 	Weapon::~Weapon() {
 		//delete user;

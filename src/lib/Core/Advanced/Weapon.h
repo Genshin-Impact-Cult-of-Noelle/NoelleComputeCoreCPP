@@ -2,6 +2,7 @@
 #include "Advanced.h"
 namespace Advanced {
 	class Role;
+	class BuffPool;
 #pragma region 武器类
 	/// <summary>
 	/// 武器类
@@ -16,7 +17,7 @@ namespace Advanced {
 		virtual void ModifyDamage(Damage* dmg) = 0;
 		virtual bool Update(u32) = 0;
 		//void (*skill)(Character*, Character*, u32);
-		//Advanced::BuffPool* buffPool;
+		BuffPool* buffPool;
 
 	};
 	namespace Default {
