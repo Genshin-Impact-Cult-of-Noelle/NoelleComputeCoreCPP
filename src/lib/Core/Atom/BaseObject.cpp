@@ -2,9 +2,20 @@
 namespace Atom {
 	using namespace Enum;
 #pragma region 实例基类
+	/// <summary>
+	/// 转化为key
+	/// </summary>
+	/// <param name="type">属性键</param>
+	/// <returns></returns>
 	u32 BaseObject::CreatKey(AttrType type) {
 		return (u32)type;
 	}
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="type"></param>
+	/// <param name="element"></param>
+	/// <returns></returns>
 	u32 BaseObject::CreatKey(AttrType type, ElementType element) {
 		return ((u32)element << 8) | ((u32)type);
 	}
@@ -295,10 +306,7 @@ namespace Atom {
 
 	}
 	BaseObject* BaseObject::Add(Attr* value, AttrType type) {
-		changed = true;
-		u32 key = CreatKey(type);
-		GetAttr(key)->Add(value);
-		return this;
+		return Add(value, type, ElementType::OtherElement);
 	}
 	BaseObject* BaseObject::Add(Attr* value, AttrType type, ElementType elemnet) {
 		changed = true;
@@ -308,10 +316,7 @@ namespace Atom {
 	}
 
 	BaseObject* BaseObject::Add(BaseObject* data, AttrType type) {
-		changed = true;
-		u32 key = CreatKey(type);
-		GetAttr(key)->Add(data->GetAttr(key));
-		return this;
+		return Add(data, type, ElementType::OtherElement);
 	}
 	BaseObject* BaseObject::Add(BaseObject* data, AttrType type, ElementType elemnet) {
 		changed = true;
@@ -354,16 +359,13 @@ namespace Atom {
 			return  ArmorRate;
 		}
 		bool isDef = typeKey == AttrType::ElementDef;
-
 		ElementType element = ElementType((key & 0xFF00) >> 8);
-
-
 		switch (element)
 		{
-		case ElementType::Hydro:
-			return isDef ? EHydroDef : EHydroDmg;
 		case ElementType::Pyro:
 			return isDef ? EPyroDef : EPyroDmg;
+		case ElementType::Hydro:
+			return isDef ? EHydroDef : EHydroDmg;
 		case ElementType::Cryo:
 			return isDef ? ECryoDef : ECryoDmg;
 		case ElementType::Electro:
@@ -475,16 +477,13 @@ namespace Atom {
 			return  ArmorRate;
 		}
 		bool isDef = typeKey == AttrType::ElementDef;
-
 		ElementType element = ElementType((key & 0xFF00) >> 8);
-
-
 		switch (element)
 		{
-		case ElementType::Hydro:
-			return isDef ? EHydroDef : EHydroDmg;
 		case ElementType::Pyro:
 			return isDef ? EPyroDef : EPyroDmg;
+		case ElementType::Hydro:
+			return isDef ? EHydroDef : EHydroDmg;
 		case ElementType::Cryo:
 			return isDef ? ECryoDef : ECryoDmg;
 		case ElementType::Electro:
@@ -499,7 +498,6 @@ namespace Atom {
 			return isDef ? EPhysicalDef : EPhysicalDmg;
 		}
 		throw;
-
 	};
 
 	double BaseObject::Result::GetSum() {

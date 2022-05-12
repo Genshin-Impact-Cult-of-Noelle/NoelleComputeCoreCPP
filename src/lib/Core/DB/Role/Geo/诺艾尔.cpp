@@ -208,17 +208,15 @@ void 诺艾尔::Q(Role* role, u32 cmd) {
 	auto buff = new 大扫除(this, this, curData[2]);
 	this->AddBuff(buff);
 	if (role->rawCharacter->group != rawCharacter->group) {
-		const u32 lineCur = (cmd & 0xFF00) >> 8;
 		Damage* dmg0, * dmg1;
 		dmg0 = new Damage(this, role, ElementType::Geo, DamageType::Burst);
+		//添加倍率
 		dmg0->AddRate(new Attr(curData[0], DOUBLEZERO, DOUBLEZERO), AttrType::Atk);
 
 		dmg1 = new Damage(this, role, ElementType::Geo, DamageType::Burst);
 		dmg1->AddRate(new Attr(curData[1], DOUBLEZERO, DOUBLEZERO), AttrType::Atk);
 
 		dmg0->SetOtherDMG(dmg1);
-		dmg1->Clone(3);
-		dmg0->Clone(2);
 		role->Hit(dmg0);
 	}
 	////////下面是技能实现  
