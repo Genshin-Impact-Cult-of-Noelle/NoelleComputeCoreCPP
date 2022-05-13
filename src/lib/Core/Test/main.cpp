@@ -37,14 +37,14 @@ void main() {
 	clock_t start, end;
 	start = clock();
 	x->Q(zl, 14);
-	while ((*mm) < 3000000)
-	{
-		//cout << *mm << endl;
-		x->Q(zl, 14);
+	//while ((*mm) < 3000000)
+	//{
+	//	//cout << *mm << endl;
+	//	x->Q(zl, 14);
 
-		group->Update();
-		//cout << *mm << "||" << x->GetLastData()->LastValue()->Atk << endl;
-	}
+	//	group->Update();
+	//	//cout << *mm << "||" << x->GetLastData()->LastValue()->Atk << endl;
+	//}
 	cout << x->GetLastData()->LastValue()->Atk << endl;
 	//Wait
 	//cout << x;

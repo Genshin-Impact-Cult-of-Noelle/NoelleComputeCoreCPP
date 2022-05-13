@@ -212,10 +212,8 @@ void 诺艾尔::Q(Role* role, u32 cmd) {
 		dmg0 = new Damage(this, role, ElementType::Geo, DamageType::Burst);
 		//添加倍率
 		dmg0->AddRate(new Attr(curData[0], DOUBLEZERO, DOUBLEZERO), AttrType::Atk);
-
 		dmg1 = new Damage(this, role, ElementType::Geo, DamageType::Burst);
 		dmg1->AddRate(new Attr(curData[1], DOUBLEZERO, DOUBLEZERO), AttrType::Atk);
-
 		dmg0->SetOtherDMG(dmg1);
 		role->Hit(dmg0);
 	}

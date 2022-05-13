@@ -9,12 +9,24 @@ namespace Advanced {
 	/// 注意实现3个虚函数
 	/// void Action(u32)
 	/// void DamageModify(Damage*)
-	/// void BuffUpdate(u32)
+	/// void BuffUpdate(u32&)
 	class Buff : public  Atom::BaseObject {
 	public:
 		Buff(Role*, Role*, u32 = 0);
+		/// <summary>
+		/// 操作指令
+		/// </summary>
+		/// <param name=""></param>
 		virtual	void Action(u32) = 0;
+		/// <summary>
+		/// 伤害修饰
+		/// </summary>
+		/// <param name=""></param>
 		virtual void DamageModify(Damage*) = 0;
+		/// <summary>
+		/// 帧刷新
+		/// </summary>
+		/// <param name=""></param>
 		virtual void BuffUpdate(u32&) = 0;
 		bool Update(u32&);
 	protected:

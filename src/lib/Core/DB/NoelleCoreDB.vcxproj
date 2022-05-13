@@ -147,6 +147,8 @@
     <ClCompile Include="Role\Pyro\迪卢克.cpp" />
     <ClCompile Include="Role\Pyro\香菱.cpp" />
     <ClCompile Include="Role\Role.cpp" />
+    <ClCompile Include="Weapon\Claymore\螭骨剑.cpp" />
+    <ClCompile Include="Weapon\Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB.h" />
@@ -198,6 +200,8 @@
     <ClInclude Include="Role\Pyro\迪卢克.h" />
     <ClInclude Include="Role\Pyro\香菱.h" />
     <ClInclude Include="Role\Role.h" />
+    <ClInclude Include="Weapon\Claymore\螭骨剑.h" />
+    <ClInclude Include="Weapon\Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Professional\NoelleCoreProfessional.vcxproj">

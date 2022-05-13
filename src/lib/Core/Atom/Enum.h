@@ -98,5 +98,12 @@ namespace Atom {
 			//属性攻击，属性枚举左移8与运算得键
 			ElementDmg
 		};
+		/*enum class EventType {
+			蒸发,
+			融化,
+			超载,
+			蒸发,
+			蒸发,
+		};*/
 	}
 }

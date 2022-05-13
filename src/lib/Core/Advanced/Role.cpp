@@ -10,12 +10,13 @@ namespace Advanced {
 		rawBuffPool = new BuffPool();
 		rawArtifactGroup = new ArtifactGroup();
 		result = new BaseObject();
+		skillLevel = new SkillLevel(0, 0, 0);
 	};
 	BaseObject* Role::GetLastData() {
 		if (changed) {
 			result->Clean();
 			result
-				->Add(rawWeapon)
+				->Add(rawWeapon->Compute())
 				->Add(rawGroup->Compute())
 				->Add(rawCharacter)
 				->Add(rawArtifactGroup)
@@ -30,7 +31,7 @@ namespace Advanced {
 		return this;
 	};
 	Role* Role::SetWeapon(Weapon* data) {
-		data->Init(this);
+		data->SetRole(this);
 		return this;
 	}
 	Role* Role::SetArtifactSet(u32 SetID) {

@@ -5,14 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
-    </Filter>
     <Filter Include="角色">
       <UniqueIdentifier>{d4c2862a-c0e7-4b1c-bdf6-9c47b5c5c5d6}</UniqueIdentifier>
     </Filter>
@@ -33,6 +25,12 @@
     </Filter>
     <Filter Include="角色\冰">
       <UniqueIdentifier>{c3585eb5-f255-4a26-b45f-362e8044facc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="武器">
+      <UniqueIdentifier>{7fa23f8f-3517-4bd2-a219-b5932b87f888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="武器\双手剑">
+      <UniqueIdentifier>{44f9db73-11e1-41ea-aaa3-578f60ceb8a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +177,12 @@
     </ClCompile>
     <ClCompile Include="Role\Role.cpp">
       <Filter>角色</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\Claymore\螭骨剑.cpp">
+      <Filter>武器\双手剑</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon\Weapon.cpp">
+      <Filter>武器</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -328,6 +332,12 @@
     </ClInclude>
     <ClInclude Include="Role\Pyro\香菱.h">
       <Filter>角色\火</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\Claymore\螭骨剑.h">
+      <Filter>武器\双手剑</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon\Weapon.h">
+      <Filter>武器</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

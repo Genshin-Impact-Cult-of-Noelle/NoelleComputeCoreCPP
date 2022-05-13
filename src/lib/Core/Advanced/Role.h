@@ -20,10 +20,23 @@ namespace Advanced {
 			delete rawCharacter;
 			delete rawArtifactGroup;
 			delete result;
+			delete skillLevel;
 			// delete this;
 		};
-
 		Role(u32*);
+		Role(u32*, u8, u8, u8, u8);
+		struct  SkillLevel
+		{
+			SkillLevel(u8 a, u8 e, u8 q) {
+				A = a;
+				E = e;
+				Q = q;
+			}
+			u8 A;
+			u8 E;
+			u8 Q;
+		};
+		SkillLevel* skillLevel;
 		/// <summary>
 		/// 添加buff
 		/// </summary>

@@ -101,7 +101,6 @@
   <ItemGroup>
     <ClCompile Include="Attr.cpp" />
     <ClCompile Include="BaseObject.cpp" />
-    <ClCompile Include="Enum.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Atom.h" />
